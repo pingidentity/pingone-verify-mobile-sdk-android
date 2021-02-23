@@ -15,8 +15,8 @@ public class P1FirebaseMessagingService extends FirebaseMessagingService {
 
     private static final String TAG = P1FirebaseMessagingService.class.getCanonicalName();
 
-    private static final MutableLiveData<String> pushToken =  new MutableLiveData<>();
-    private static final MutableLiveData<Map<String, String>> notificationData =  new MutableLiveData<>();
+    private static final MutableLiveData<String> pushToken =  new MutableLiveData<>(null);
+    private static final MutableLiveData<Map<String, String>> notificationData =  new MutableLiveData<>(null);
 
     public static void updatePushToken(@NonNull final String pushToken) {
         P1FirebaseMessagingService.pushToken.postValue(pushToken);
@@ -45,6 +45,8 @@ public class P1FirebaseMessagingService extends FirebaseMessagingService {
     @Override
     public void onMessageReceived(@NonNull RemoteMessage remoteMessage) {
         super.onMessageReceived(remoteMessage);
+        Log.d(TAG, "Received notification from: " + remoteMessage.getFrom());
+        Log.d(TAG, "Notification Message notification body: " + remoteMessage.getData().toString());
         notificationData.postValue(remoteMessage.getData());
     }
 }

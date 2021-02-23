@@ -22,10 +22,9 @@ public interface HomeContract {
 
         void navigateToQR();
 
-        void showAlert(int title, int message);
+        void showError(String errorTitle, String errorMessage);
 
-        void showAlert(String message);
-
+        void showError(int errorTitle, int errorMessage);
     }
 
     interface Presenter {

@@ -1,14 +1,20 @@
 package com.pingidentity.sample.P1VerifyApp.fragments.home;
 
 
+import android.util.Log;
+
 import androidx.annotation.NonNull;
 import androidx.fragment.app.FragmentActivity;
 
 import com.pingidentity.did.sdk.idvalidation.NotificationHandler;
+import com.pingidentity.did.sdk.idvalidation.UserData;
+import com.pingidentity.did.sdk.idvalidation.VerificationResult;
 import com.pingidentity.did.sdk.idvalidation.errors.IdvError;
-import com.pingidentity.did.sdk.idvalidation.types.VerificationResult;
 import com.pingidentity.did.sdk.idvalidation.utils.BackgroundThreadHandler;
+import com.pingidentity.did.sdk.types.ProviderMessages;
+import com.pingidentity.p1verifyidschema.DriverLicense;
 import com.pingidentity.p1verifyidschema.IdCard;
+import com.pingidentity.p1verifyidschema.Passport;
 import com.pingidentity.sample.P1VerifyApp.R;
 import com.pingidentity.sample.P1VerifyApp.callbacks.DocumentCaptureListener;
 import com.pingidentity.sample.P1VerifyApp.di.Injector;
@@ -20,6 +26,7 @@ import com.pingidentity.sample.P1VerifyApp.utils.IdvHelper;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 import javax.inject.Inject;
 
@@ -33,7 +40,6 @@ public class HomePresenter implements HomeContract.Presenter, NotificationHandle
     public HomePresenter(HomeContract.View view) {
         Injector.getAppComponent().inject(this);
         this.mView = view;
-
         IdvHelper.getInstance().setNotificationHandler(this);
     }
 
@@ -134,7 +140,7 @@ public class HomePresenter implements HomeContract.Presenter, NotificationHandle
 
     @Override
     public void handleResult(@NonNull VerificationResult verificationResult) {
-        switch (verificationResult.getStatus().getStatus()) {
+        switch (verificationResult.getValidationStatus()) {
             case SUCCESS:
                 mRepository.setValidationStatus(true);
                 mView.showValidationSuccess();
@@ -148,11 +154,75 @@ public class HomePresenter implements HomeContract.Presenter, NotificationHandle
                 mView.showValidationInProgress();
                 break;
         }
+
+        final List<ProviderMessages> providerMessages = verificationResult.getProviderMessagesList();
+        if (providerMessages != null && !providerMessages.isEmpty()) {
+            providerMessages.forEach(messages -> {
+                Log.e("HomePresenter", "Validation Errors: " + messages.toString());
+            });
+        }
+
+        final UserData userData = verificationResult.getUserData();
+        if (userData == null || userData.isEmpty()) {
+            return;
+        }
+        updateIdCardFrom(userData);
     }
 
     @Override
     public void handleError(@NonNull IdvError idvError) {
-        BackgroundThreadHandler.postOnMainThread(() -> mView.showAlert(idvError.getMessage()));
+        Log.e("TAG", "Error checking status: ", idvError);
+        BackgroundThreadHandler.postOnMainThread(() -> mView.showError(null, idvError.getMessage()));
+    }
+
+    private void updateDriverLicenseFrom(@NonNull final UserData userData) {
+        final DriverLicense driverLicense = mRepository.getDriverLicense();
+        if (driverLicense == null) {
+            return;
+        }
+
+        driverLicense.setFirstName(userData.getFirstName().isEmpty() ? driverLicense.getFirstName() : userData.getFirstName());
+        driverLicense.setLastName(userData.getLastName().isEmpty() ? driverLicense.getLastName() : userData.getLastName());
+        driverLicense.setBirthDate(userData.getBirthDate().isEmpty() ? driverLicense.getBirthDate() : userData.getBirthDate());
+        driverLicense.setAddressStreet(userData.getAddressStreet().isEmpty() ? driverLicense.getAddressStreet() : userData.getAddressStreet());
+        driverLicense.setAddressCity(userData.getAddressCity().isEmpty() ? driverLicense.getAddressCity() : userData.getAddressCity());
+        driverLicense.setAddressState(userData.getAddressState().isEmpty() ? driverLicense.getAddressState() : userData.getAddressState());
+        driverLicense.setAddressZip(userData.getAddressZip().isEmpty() ? driverLicense.getAddressZip() : userData.getAddressZip());
+        driverLicense.setCountry(userData.getCountry().isEmpty() ? driverLicense.getCountry() : userData.getCountry());
+        driverLicense.setIdNumber(userData.getIdNumber().isEmpty() ? driverLicense.getIdNumber() : userData.getIdNumber());
+        driverLicense.setExpirationDate(userData.getExpirationDate().isEmpty() ? driverLicense.getExpirationDate() : userData.getExpirationDate());
+        driverLicense.setIssueDate(userData.getIssueDate().isEmpty() ? driverLicense.getIssueDate() : userData.getIssueDate());
+
+        mRepository.saveDriverLicense(driverLicense);
+    }
+
+    private void updatePassportFrom(@NonNull final UserData userData) {
+        final Passport passport = mRepository.getPassport();
+        if (passport == null) {
+            return;
+        }
+
+        passport.setFirstName(userData.getFirstName().isEmpty() ? passport.getFirstName() : userData.getFirstName());
+        passport.setLastName(userData.getLastName().isEmpty() ? passport.getLastName() : userData.getLastName());
+        passport.setBirthDate(userData.getBirthDate().isEmpty() ? passport.getBirthDate() : userData.getBirthDate());
+        passport.setCountry(userData.getCountry().isEmpty() ? passport.getCountry() : userData.getCountry());
+        passport.setIdNumber(userData.getIdNumber().isEmpty() ? passport.getIdNumber() : userData.getIdNumber());
+        passport.setExpirationDate(userData.getExpirationDate().isEmpty() ? passport.getExpirationDate() : userData.getExpirationDate());
+
+        mRepository.savePassport(passport);
+    }
+
+    private void updateIdCardFrom(@NonNull final UserData userData) {
+        Objects.requireNonNull(userData);
+
+        switch (userData.getCardType()) {
+            case DriverLicense.CARD_TYPE_DL:
+                updateDriverLicenseFrom(userData);
+                break;
+            case Passport.CARD_TYPE_PASSPORT:
+                updatePassportFrom(userData);
+                break;
+        }
     }
 
     ////////////////////////////////////////////
@@ -211,7 +281,7 @@ public class HomePresenter implements HomeContract.Presenter, NotificationHandle
         if (mRepository.getIdCard() != null && (mRepository.getDriverLicense() != null || mRepository.getPassport() != null)) {
             return true;
         } else {
-            mView.showAlert(R.string.insufficient_info, R.string.insufficient_info_desc);
+            mView.showError(R.string.insufficient_info, R.string.insufficient_info_desc);
         }
         return false;
     }

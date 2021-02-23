@@ -1,6 +1,7 @@
 package com.pingidentity.sample.P1VerifyApp.fragments.wizard;
 
 import android.content.Context;
+import android.util.Log;
 
 import androidx.fragment.app.FragmentActivity;
 
@@ -10,6 +11,7 @@ import com.pingidentity.sample.P1VerifyApp.di.Injector;
 import com.pingidentity.sample.P1VerifyApp.models.WizardItem;
 import com.pingidentity.sample.P1VerifyApp.models.DocumentType;
 import com.pingidentity.sample.P1VerifyApp.storage.CardRepository;
+import com.pingidentity.sample.P1VerifyApp.utils.AlertUtil;
 import com.pingidentity.sample.P1VerifyApp.utils.CaptureUtil;
 
 import java.util.ArrayList;
@@ -73,6 +75,13 @@ public class WizardPresenter implements WizardContract.Presenter {
 
     @Override
     public void captureSelfie(FragmentActivity activity) {
+        AlertUtil.showAlert(activity,
+                R.string.settings_alert_selfie_title,
+                R.string.settings_alert_selfie_message,
+                () -> runCaptureSelfie(activity));
+    }
+
+    private void runCaptureSelfie(FragmentActivity activity) {
         new CaptureUtil().startSelfieDialog(activity, new DocumentCaptureListener() {
             @Override
             public void onComplete() {
@@ -86,7 +95,6 @@ public class WizardPresenter implements WizardContract.Presenter {
             }
         });
     }
-
     @Override
     public void captureLicense(FragmentActivity activity) {
         new CaptureUtil().startLicenseDialog(activity, new DocumentCaptureListener() {
@@ -121,6 +129,11 @@ public class WizardPresenter implements WizardContract.Presenter {
 
     @Override
     public void onSkip() {
+        if (mView.getCurrentStep() < items.size() - 1) {
+            mView.nextStep();
+            return;
+        }
+
         if (mCompletedSteps.contains(DocumentType.SELFIE) && (mCompletedSteps.contains(DocumentType.LICENSE) || mCompletedSteps.contains(DocumentType.PASSPORT))) {
             mRepository.setUserAuthorized();
             mView.finishWizard();
@@ -135,11 +148,16 @@ public class WizardPresenter implements WizardContract.Presenter {
     }
 
     private void checkNextAction() {
-        if (mCompletedSteps.size() == items.size()) {
+        if (mView.getCurrentStep() < items.size() - 1) {
+            mView.nextStep();
+        } else if (hasRequiredInfo()) {
             mRepository.setUserAuthorized();
             mView.finishWizard();
-        } else
-            mView.nextStep();
+        }
+    }
+
+    private boolean hasRequiredInfo() {
+        return mCompletedSteps.contains(DocumentType.SELFIE) && (mCompletedSteps.contains(DocumentType.LICENSE) || mCompletedSteps.contains(DocumentType.PASSPORT));
     }
 
 }

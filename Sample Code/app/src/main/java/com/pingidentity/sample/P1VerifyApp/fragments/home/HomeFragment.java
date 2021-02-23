@@ -21,6 +21,8 @@ import com.pingidentity.sample.P1VerifyApp.databinding.FragmentHomeBinding;
 import com.pingidentity.sample.P1VerifyApp.fragments.details.DetailsFragment;
 import com.pingidentity.sample.P1VerifyApp.fragments.qrscanner.ScannerFragment;
 import com.pingidentity.sample.P1VerifyApp.models.CardItem;
+import com.pingidentity.sample.P1VerifyApp.utils.AlertUtil;
+import com.shocard.sholib.utils.AlertUtils;
 
 import org.jetbrains.annotations.NotNull;
 
@@ -93,25 +95,25 @@ public class HomeFragment extends Fragment implements HomeContract.View, QRClick
         });
         mBinding.btnAddSelfie.setOnClickListener(v -> {
             mBinding.drawerLayout.closeDrawers();
-            showAlert(
-                    getString(R.string.settings_alert_selfie_title),
-                    getString(R.string.settings_alert_selfie_message),
+            AlertUtil.showAlert(getContext(),
+                    R.string.settings_alert_selfie_title,
+                    R.string.settings_alert_selfie_message,
                     () -> mPresenter.updateSelfie(getActivity())
             );
         });
         mBinding.btnAddLicense.setOnClickListener(v -> {
             mBinding.drawerLayout.closeDrawers();
-            showAlert(
-                    getString(R.string.settings_alert_license_title),
-                    getString(R.string.settings_alert_license_message),
+            AlertUtil.showAlert(getContext(),
+                    R.string.settings_alert_license_title,
+                    R.string.settings_alert_license_message,
                     () -> mPresenter.updateLicense(getActivity())
             );
         });
         mBinding.btnAddPassport.setOnClickListener(v -> {
             mBinding.drawerLayout.closeDrawers();
-            showAlert(
-                    getString(R.string.settings_alert_passport_title),
-                    getString(R.string.settings_alert_passport_message),
+            AlertUtil.showAlert(getContext(),
+                    R.string.settings_alert_passport_title,
+                    R.string.settings_alert_passport_message,
                     () -> mPresenter.updatePassport(getActivity())
             );
         });
@@ -156,7 +158,7 @@ public class HomeFragment extends Fragment implements HomeContract.View, QRClick
 
     @Override
     public void showValidationError() {
-        mBinding.app.viewValidationStatus.showValidationError(() -> showAlert(R.string.validation_failed_title, R.string.validation_failed_description));
+        mBinding.app.viewValidationStatus.showValidationError(() -> showError(R.string.validation_failed_title, R.string.validation_failed_description));
     }
 
     @Override
@@ -205,27 +207,12 @@ public class HomeFragment extends Fragment implements HomeContract.View, QRClick
     //////////////////////////////////////////
 
     @Override
-    public void showAlert(int title, int message) {
-        showAlert(getString(title), getString(message), null);
+    public void showError(String errorTitle, String errorMessage) {
+        AlertUtils.showErrorAlert(getActivity(), errorTitle, errorMessage, null);
     }
 
     @Override
-    public void showAlert(String message) {
-        showAlert(getString(R.string.error_title), message, null);
+    public void showError(int errorTitle, int errorMessage) {
+        AlertUtils.showErrorAlert(getActivity(), errorTitle, errorMessage, null);
     }
-
-    private void showAlert(String title, String message, final Runnable positiveAnswer) {
-        AlertDialog.Builder builder = new AlertDialog.Builder(getActivity())
-                .setTitle(title)
-                .setMessage(message)
-                .setNegativeButton(R.string.home_cancel, (dialog, which) -> dialog.dismiss());
-        if (positiveAnswer != null) {
-            builder.setPositiveButton(R.string.home_continue, (dialog, which) -> {
-                positiveAnswer.run();
-                dialog.dismiss();
-            });
-        }
-        builder.show();
-    }
-
 }

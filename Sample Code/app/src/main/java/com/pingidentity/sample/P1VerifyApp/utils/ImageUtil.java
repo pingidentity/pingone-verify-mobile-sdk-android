@@ -15,7 +15,7 @@ public class ImageUtil {
         return resize(bitmap, scaleFactor);
     }
 
-    public static Bitmap resize(@NonNull final Bitmap bitmap, @NonNull final float scaleFactor) {
+    public static Bitmap resize(@NonNull final Bitmap bitmap, final float scaleFactor) {
         final int newWidth = (int) (bitmap.getWidth() / scaleFactor);
         final int newHeight = (int) (bitmap.getHeight() / scaleFactor);
         return ThumbnailUtils.extractThumbnail(bitmap, newWidth, newHeight);

@@ -15,6 +15,8 @@ public interface WizardContract {
 
         void nextStep();
 
+        int getCurrentStep();
+
         void showAlert(int title, int message);
 
         void finishWizard();

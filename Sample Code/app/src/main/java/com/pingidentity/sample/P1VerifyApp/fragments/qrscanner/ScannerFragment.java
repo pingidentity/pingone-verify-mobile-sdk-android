@@ -4,11 +4,9 @@ import android.content.Intent;
 import android.content.IntentFilter;
 import android.graphics.Bitmap;
 import android.os.Bundle;
-
-import androidx.appcompat.app.AlertDialog;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.fragment.app.Fragment;
-
+import android.os.Handler;
+import android.os.Looper;
+import android.util.Log;
 import android.util.Size;
 import android.util.SparseArray;
 import android.view.LayoutInflater;
@@ -16,11 +14,14 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
 
-import com.pingidentity.did.sdk.idvalidation.utils.BackgroundThreadHandler;
-import com.pingidentity.sample.P1VerifyApp.R;
+import androidx.appcompat.app.AlertDialog;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
+
 import com.google.android.gms.vision.Frame;
 import com.google.android.gms.vision.barcode.Barcode;
 import com.google.android.gms.vision.barcode.BarcodeDetector;
+import com.pingidentity.sample.P1VerifyApp.R;
 import com.pingidentity.sample.P1VerifyApp.callbacks.QRClickListener;
 import com.pingidentity.sample.P1VerifyApp.databinding.FragmentScannerBinding;
 import com.shocard.sholib.camera.CameraWrapper;
@@ -33,13 +34,15 @@ import static com.pingidentity.sample.P1VerifyApp.fragments.qrscanner.ManualCode
 public class ScannerFragment extends Fragment implements CameraWrapper.CameraWrapperListener {
 
     private static final int RESULT_CODE = 548;
-    private static  final String DIALOG_TAG = "dlg1";
+    private static final String DIALOG_TAG = "dlg1";
 
     private QRClickListener mCallback;
 
     private BarcodeDetector qrDetector;
 
     private FragmentScannerBinding binding;
+
+    private boolean qrFound = false;
 
     public ScannerFragment() {
         // Required empty public constructor
@@ -120,7 +123,11 @@ public class ScannerFragment extends Fragment implements CameraWrapper.CameraWra
             if (barcodes.size() > 0) {
                 binding.cameraWrapper.post(() -> binding.cameraWrapper.stopCamera());
                 final Barcode qrCode = barcodes.valueAt(0);
-                processQR(qrCode);
+                if (!qrFound) {
+                    Log.d(ScannerFragment.class.getCanonicalName(), "Found QR: " + qrCode.rawValue);
+                    processQR(qrCode);
+                    qrFound = true;
+                }
             }
         }
     }
@@ -141,12 +148,17 @@ public class ScannerFragment extends Fragment implements CameraWrapper.CameraWra
     }
 
     private void processQR(final Barcode qrCode) {
-        BackgroundThreadHandler.postOnMainThread(() -> {
-            if (mCallback != null) {
-                mCallback.onUrlResult(qrCode.rawValue);
+        new Handler(Looper.getMainLooper()).postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                if (mCallback != null) {
+                    mCallback.onUrlResult(qrCode.rawValue);
+                }
+                if (getActivity() != null) {
+                    getActivity().getSupportFragmentManager().popBackStack();
+                }
             }
-            getActivity().getSupportFragmentManager().popBackStack();
-        });
+        }, 1000);
     }
 
     private BarcodeDetector getBarcodeDetector() {

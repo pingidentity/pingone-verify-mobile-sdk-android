@@ -91,6 +91,11 @@ public class WizardFragment extends Fragment implements WizardContract.View {
     }
 
     @Override
+    public int getCurrentStep() {
+        return binding.viewPager.getCurrentItem();
+    }
+
+    @Override
     public void showAlert(int title, int message) {
         new AlertDialog.Builder(getActivity())
                 .setTitle(title)
