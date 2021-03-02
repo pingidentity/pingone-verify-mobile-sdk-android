@@ -1,0 +1,87 @@
+<resources>
+    <string name="app_name">P1VerifyApp</string>
+
+
+    <string name="get_started">Get Started</string>
+    <string name="ping_verify">PingOne Verify</string>
+    <string name="welcome_string">This form of digital identification is used by some service providers who require ID Validations.</string>
+
+    <string name="toolbar_cancel">Cancel</string>
+    <string name="toolbar_skip">Skip</string>
+
+    <string name="wizard_selfie_title">Selfie</string>
+    <string name="wizard_selfie_descriptions">Your facial scan will be used for biometric authentication. Make sure your full face is visible.</string>
+    <string name="wizard_selfie_info">Your selfie will only be stored on your phone and not our servers, and it will only be used for biometric authentication.</string>
+    <string name="wizard_selfie_action">Capture Selfie</string>
+
+    <string name="wizard_license_title">Driver License</string>
+    <string name="wizard_license_descriptions">Scan your driver license for the validation process.</string>
+    <string name="wizard_license_info">Your driver license image and information will only be stored on your phone and not our servers, and it will only be used for authentication.</string>
+    <string name="wizard_license_action">Capture Driver License</string>
+
+    <string name="wizard_passport_title">Passport</string>
+    <string name="wizard_passport_descriptions">Capture your passport for the validation process.</string>
+    <string name="wizard_passport_info">Your passport image and information will only be stored on your phone and not our servers, and it will only be used for identity validation.</string>
+    <string name="wizard_passport_action">Capture Passport</string>
+
+    <string name="wizard_toolbar_skip">Skip</string>
+    <string name="wizard_toolbar_cancel">Cancel</string>
+
+    <string name="wizard_ok">Okay</string>
+    <string name="wizard_info_title">More Information</string>
+
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+
+    <string name="menu_home">Home</string>
+    <string name="menu_gallery">Gallery</string>
+    <string name="menu_slideshow">Slideshow</string>
+
+    <string name="home_continue">Continue</string>
+    <string name="home_cancel">Cancel</string>
+    <string name="home_toolbar_title">Home</string>
+
+    <string name="settings">Settings</string>
+    <string name="settings_validation">Check validation status</string>
+    <string name="settings_selfie">Add/Update selfie</string>
+    <string name="settings_license">Add/Update Driver License</string>
+    <string name="settings_passport">Add/Update Passport</string>
+    <string name="settings_alert_selfie_title">Capture selfie</string>
+    <string name="settings_alert_selfie_message">In this next step, you will go through the process of capturing your selfie. Follow the instructions &amp; hold different facial expressions like smiling or keeping a straight face to verify that there is a real person in front of the camera.</string>
+    <string name="settings_alert_license_title">Capture driver license</string>
+    <string name="settings_alert_license_message">In this next step, you will go through the process of capturing your driver license.</string>
+    <string name="settings_alert_passport_title">Capture Passport</string>
+    <string name="settings_alert_passport_message">In this next step, you will go through the process of capturing your Passport.</string>
+
+    <string name="scanner_error">Error</string>
+    <string name="scanner_error_message">Unable to start Barcode Scanner. Please restart the app and try again. Contact support if the problem persists.</string>
+    <string name="scanner_title">Verify Your Device</string>
+    <string name="scanner_description">To start ID validation, scan the qr code or enter the 12-digit validation key.</string>
+    <string name="scanner_enter_code">Enter Validation Key Manually</string>
+    <string name="scanner_toolbar_cancel">Cancel</string>
+
+    <string name="manual_code_title">Verify your device</string>
+    <string name="manual_code_verify">Verify</string>
+    <string name="manual_code_enter">Verification Code</string>
+    <string name="manual_code_cancel">Cancel</string>
+
+    <string name="document_id_card">Selfie</string>
+    <string name="document_driver_license">Driver license</string>
+    <string name="document_passport">Passport</string>
+
+    <string name="details_delete_card">Delete this card</string>
+    <string name="details_toolbar_home">Home</string>
+
+    <string name="insufficient_info">Insufficient information</string>
+    <string name="insufficient_info_desc">You must add your selfie and at least one of the supported cards in order to proceed.</string>
+
+    <string name="message_coming_soon">Coming soon</string>
+    <string name="message_coming_soon_desc">Please press \'Skip\' button</string>
+
+    <string name="validation_success">ID Validation success</string>
+    <string name="validation_failure">ID Verification failed. Click for details.</string>
+    <string name="validation_progress">Submitting data for validation..</string>
+    <string name="validation_failed_title">Verification Failed</string>
+    <string name="validation_failed_description">Cannot verify your ID information.\nPlease contact your administrator for further details.</string>
+
+</resources>

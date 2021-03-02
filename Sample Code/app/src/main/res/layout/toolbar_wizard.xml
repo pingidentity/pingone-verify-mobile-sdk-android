@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.appcompat.widget.Toolbar xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="?actionBarSize"
+    android:background="@android:color/transparent"
+    app:contentInsetLeft="0dp"
+    app:contentInsetStart="0dp"
+    app:popupTheme="@style/ThemeOverlay.AppCompat.Light">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:orientation="horizontal"
+        android:padding="15dp"
+        android:weightSum="2">
+
+        <TextView
+            android:id="@+id/toolbar_cancel"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:drawablePadding="8dp"
+            android:gravity="start|center_vertical"
+            android:text="@string/wizard_toolbar_cancel"
+            android:textColor="@color/toolbar_blue"
+            android:textSize="18sp" />
+
+        <TextView
+            android:id="@+id/toolbar_skip"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:drawablePadding="8dp"
+            android:gravity="end|center_vertical"
+            android:text="@string/wizard_toolbar_skip"
+            android:textColor="@color/toolbar_blue"
+            android:textSize="18sp" />
+
+    </LinearLayout>
+
+</androidx.appcompat.widget.Toolbar>

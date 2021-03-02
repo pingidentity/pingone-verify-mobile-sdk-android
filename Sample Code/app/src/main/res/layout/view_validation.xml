@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/view_validation_status"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:paddingVertical="5dp"
+    android:animateLayoutChanges="true"
+    android:orientation="horizontal"
+    android:visibility="gone"
+    tools:background="@color/success_color">
+
+    <ImageView
+        android:id="@+id/img_validation"
+        app:tint="@android:color/white"
+        android:layout_width="40dp"
+        android:layout_height="match_parent"
+        android:padding="4dp"
+        android:scaleType="fitCenter"
+        tools:src="@drawable/ic_validation_success" />
+
+    <ProgressBar
+        android:id="@+id/progress_status"
+        android:layout_width="35dp"
+        android:layout_height="match_parent"
+        android:indeterminateTint="@color/progress_bar_color"
+        android:padding="4dp"
+        android:visibility="gone" />
+
+    <TextView
+        android:id="@+id/txt_status"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_vertical"
+        android:ellipsize="end"
+        android:paddingHorizontal="16dp"
+        android:textColor="@android:color/white"
+        android:textSize="18sp"
+        tools:text="Submitting data for validation.." />
+
+</LinearLayout>

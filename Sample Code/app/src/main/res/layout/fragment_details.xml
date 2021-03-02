@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".fragments.details.DetailsFragment">
+
+    <include
+        android:id="@+id/toolbar"
+        layout="@layout/toolbar_details" />
+
+    <LinearLayout
+        android:id="@+id/layout_header"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="16dp">
+
+        <TextView
+            android:id="@+id/txt_document_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/divider_black"
+            android:textSize="24sp"
+            android:textStyle="bold"
+            tools:text="Driver license" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="3dp"
+            android:layout_marginVertical="8dp"
+            android:background="@color/divider_black" />
+
+        <androidx.viewpager2.widget.ViewPager2
+            android:id="@+id/view_pager"
+            android:layout_width="match_parent"
+            android:layout_height="180dp" />
+
+        <me.relex.circleindicator.CircleIndicator3
+            android:id="@+id/pager_indicator"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            app:ci_drawable="@drawable/radius_active_indicator" />
+
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginHorizontal="32dp"
+        android:background="@color/divider_black" />
+
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:overScrollMode="never"
+        android:paddingBottom="16dp">
+
+        <LinearLayout
+            android:id="@+id/layout_details"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:paddingHorizontal="32dp" />
+
+    </ScrollView>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginHorizontal="32dp"
+        android:background="@color/divider_black" />
+
+    <Button
+        android:id="@+id/btn_delete_card"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="32dp"
+        android:background="@drawable/shape_button_red"
+        android:gravity="start|center_vertical"
+        android:paddingStart="12dp"
+        android:text="@string/details_delete_card"
+        android:textAllCaps="false"
+        android:textColor="@color/button_red"
+        android:textSize="16sp" />
+
+</LinearLayout>

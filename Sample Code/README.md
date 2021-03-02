@@ -1,3 +1,3 @@
 # Android PingOne Verify Sample App
 
-The Android Sample App will be available later this month. 
+Make sure you add `google-services.json` to the project to be able to build the app. You can refer to [this guide](https://apidocs.pingidentity.com/pingone/platform/v1/api/#installation-and-configuration-1) for instructions.
