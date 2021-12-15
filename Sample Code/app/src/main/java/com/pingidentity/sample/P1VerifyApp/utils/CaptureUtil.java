@@ -16,18 +16,17 @@ import com.pingidentity.sample.P1VerifyApp.storage.CardRepository;
 import com.shocard.sholib.idcapture.driverlicense.DriverLicenseScannerActivity;
 import com.shocard.sholib.idcapture.driverlicense.DriverLicenseScannerDialogFragment;
 import com.shocard.sholib.idcapture.listeners.DriverLicenseScannerListener;
-import com.shocard.sholib.livefaceverification.LiveFaceVerificationActivity;
-import com.shocard.sholib.livefaceverification.LiveFaceVerificationDialogFragment;
-import com.shocard.sholib.livefaceverification.listeners.LiveFaceVerificationListener;
-import com.shocard.sholib.livefaceverification.livefaceverifier.SCLiveFaceVerificationAccuracy;
-import com.shocard.sholib.livefaceverification.livefaceverifier.SCLiveFaceVerificationStep;
 import com.shocard.sholib.passport_capture.listeners.PassportCaptureListener;
 import com.shocard.sholib.passport_capture.passportcapture.PassportCaptureActivity;
 import com.shocard.sholib.passport_capture.passportcapture.PassportCaptureDialogFragment;
+import com.shocard.sholib.selfiecapture.SelfieCaptureDialogFragment;
+import com.shocard.sholib.selfiecapture.listeners.SelfieCaptureListener;
 
 import javax.inject.Inject;
 
-public class CaptureUtil implements LiveFaceVerificationListener, DriverLicenseScannerListener, PassportCaptureListener {
+public class CaptureUtil implements SelfieCaptureListener, DriverLicenseScannerListener, PassportCaptureListener {
+
+    private static final String BUNDLE_SELFIE_KEY = "key_verification_selfie";
 
     @Inject
     CardRepository mRepository;
@@ -44,17 +43,12 @@ public class CaptureUtil implements LiveFaceVerificationListener, DriverLicenseS
 
     public void startSelfieDialog(FragmentActivity activity, DocumentCaptureListener documentCaptureListener) {
         this.mCaptureListener = documentCaptureListener;
-        Bundle bundle = new LiveFaceVerificationActivity.LFVBundle.Builder()
-                .setAccuracy(SCLiveFaceVerificationAccuracy.medium)
-                .setVerificationSteps(SCLiveFaceVerificationStep.lfv_smile, SCLiveFaceVerificationStep.lfv_straight_face)
-                .setVerificationTimeInMillis(2000)
-                .create();
-        LiveFaceVerificationDialogFragment.start(activity, bundle, this);
+        SelfieCaptureDialogFragment.start(activity, this);
     }
 
     @Override
     public void onComplete(@NonNull Bundle bundle) {
-        final Selfie selfie = LiveFaceVerificationActivity.LFVBundle.getResultSelfie(bundle);
+        final Selfie selfie = bundle.getParcelable(BUNDLE_SELFIE_KEY);
         selfie.setSelfie(ImageUtil.resize(selfie.getSelfie(), 1024));
         if (mRepository.getIdCard() != null) {
             selfie.setCardId(mRepository.getIdCard().getCardId());

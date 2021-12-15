@@ -27,7 +27,7 @@ public class IdvHelper {
     public static final String TAG = IdvHelper.class.getCanonicalName();
 
     // TODO: Must set this value
-    // Refer to instruction here: https://apidocs.pingidentity.com/pingone/mobile-sdks/v1/api/#integrate-your-app-with-pingone-1
+    // Refer to instruction here: https://apidocs.pingidentity.com/pingone/native-sdks/v1/api/#integrate-your-app-with-pingone-1
     private static final String APPLICATION_ID = "";
 
     private static IdvHelper shared;
