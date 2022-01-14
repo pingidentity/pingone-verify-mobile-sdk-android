@@ -1,3 +1,7 @@
+## PingOneVerify UI Library Update - January 21st, 2021
+Bug fixes:
+- Fixed passport capture to return callbacks when used as a fragment without a DialogInterface
+
 ## PingOneVerify UI Library Update - December 17th, 2021
 Features:
 - New selfie capture flow
