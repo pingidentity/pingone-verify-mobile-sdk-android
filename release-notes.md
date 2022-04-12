@@ -1,4 +1,8 @@
-## PingOneVerify UI Library Update - January 21st, 2021
+## PingOneVerify UI Library Update - April 12th, 2022
+- Enhanced Document collection when capturing license with a barcode
+- Minor bug fixes
+
+## PingOneVerify UI Library Update - January 21st, 2022
 Bug fixes:
 - Fixed passport capture to return callbacks when used as a fragment without a DialogInterface
 

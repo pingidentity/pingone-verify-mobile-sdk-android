@@ -1,3 +1,3 @@
 # Android PingOne Verify Sample App
 
-Make sure you add `google-services.json` to the project to be able to build the app. You can refer to [this guide](https://apidocs.pingidentity.com/pingone/mobile-sdks/v1/api/#installation-and-configuration-1) for instructions.
+Make sure you add `google-services.json` to the project to be able to build the app. You can refer to [this guide](https://apidocs.pingidentity.com/pingone/native-sdks/v1/api/#installation-and-configuration-1) for instructions.
