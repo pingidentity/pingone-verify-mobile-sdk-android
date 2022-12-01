@@ -1,5 +1,3 @@
-# PingOne Verify Mobile SDK
+#  PingOne  Verify  Android  SDK
 
-The PingOne Verify Mobile SDK provides the ability to integrate PingOne ID Verification capabilities into your mobile applications. The SDK facilitates communication with the PingOne Verify service, handling incoming messages or requests from the service, and sending ID information for verification or other requests to the service. The SDK also persists the user keys and transaction information using the encrypted storage on the device. 
-
-For setup instructions and documentation, you can refer to [this guide](https://apidocs.pingidentity.com/pingone/native-sdks/v1/api/#pingone-verify-sdk-for-android).      
+PingOneVerify Android SDK provides a secure interface for an android app to use the PingOne Verify service for validating a user’s identity. Please refer to the documentation [here](https://apidocs.pingidentity.com/pingone/native-sdks/v1/api/#pingone-verify-sdk-for-android) for integration.

@@ -1,0 +1,12 @@
+<resources>
+    //Main
+    <string name="app_name">PingOneVerify</string>
+    <string name="button_configuration">Configuration</string>
+    <string name="button_verify">Begin Verification</string>
+    <string name="text_header">PingOne Verify Test App</string>
+    <string name="text_document_verification_requested">Document Verification Requested</string>
+    <string name="text_document_verification_snippet">We need to confirm your identity. This will require scanning your government issued ID such as a Driver License or Passport. Please have your ID ready before proceeding and in a well lit environment for best results.</string>
+    //Completed
+    <string name="text_verification_complete">Verification Complete</string>
+    <string name="text_verification_complete_snippet">We have gathered all the information required to continue the verification process.</string>
+</resources>
