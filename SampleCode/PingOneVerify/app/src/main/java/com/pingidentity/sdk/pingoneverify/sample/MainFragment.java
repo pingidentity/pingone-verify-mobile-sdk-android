@@ -1,6 +1,7 @@
 package com.pingidentity.sdk.pingoneverify.sample;
 
 import android.app.AlertDialog;
+import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -15,10 +16,13 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
 import com.pingidentity.sdk.pingoneverify.PingOneVerifyClient;
+import com.pingidentity.sdk.pingoneverify.documentcapture.utils.BitmapUtils;
 import com.pingidentity.sdk.pingoneverify.errors.DocumentSubmissionError;
 import com.pingidentity.sdk.pingoneverify.listeners.DocumentSubmissionListener;
 import com.pingidentity.sdk.pingoneverify.models.DocumentSubmissionResponse;
 import com.pingidentity.sdk.pingoneverify.models.DocumentSubmissionStatus;
+import com.pingidentity.sdk.pingoneverify.settings.ButtonAppearance;
+import com.pingidentity.sdk.pingoneverify.settings.UIAppearanceSettings;
 
 public class MainFragment extends Fragment implements DocumentSubmissionListener {
 
@@ -65,9 +69,10 @@ public class MainFragment extends Fragment implements DocumentSubmissionListener
     }
 
     private void initPingOneClient() {
-        new PingOneVerifyClient.Builder()
+        new PingOneVerifyClient.Builder(false)
                 .setRootActivity(getActivity())
                 .setListener(this)
+//                .setUIAppearance(this.getUiAppearanceSettings())
                 .startVerification(new PingOneVerifyClient.Builder.BuilderCallback() {
                     @Override
                     public void onSuccess(PingOneVerifyClient client) {
@@ -94,6 +99,12 @@ public class MainFragment extends Fragment implements DocumentSubmissionListener
     private void setInProgress(boolean inProgress) {
         mBtnVerify.setVisibility(inProgress ? View.INVISIBLE : View.VISIBLE);
         mProgress.setVisibility(inProgress ? View.VISIBLE : View.GONE);
+    }
+
+    private UIAppearanceSettings getUiAppearanceSettings() {
+        return new UIAppearanceSettings()
+                .setSolidButtonAppearance(new ButtonAppearance("#F1C40F","#F1C40F","#95A5A6"))
+                .setBorderedButtonAppearance(new ButtonAppearance("#00FFFFFF","#28B463","#28B463"));
     }
 
 }

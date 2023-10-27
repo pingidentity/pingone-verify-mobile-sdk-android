@@ -13,8 +13,7 @@ This release contains software written by Ping Identity plus software written by
 | okio | square | 3.0 |
 | okhttp | square | 4.0 |
 | glide | bumptech | 5.0 |
-| CountryCodePickerProject | Harsh B. Bhakta | 6.0 |
-| certificatetransparency | Appmattus | 7.0 |
+| certificatetransparency | Appmattus | 6.0 |
 
 **Notice**
 
@@ -393,25 +392,7 @@ sublicense, and/or sell copies of the Software, and to permit persons who
 receive copies from any such party to do so, with the only requirement being
 that this copyright notice remain intact.
 
-**6.0 CountryCodePickerProject**
-
-**Modifications:**
-
-None.
-
-**Copyright:**
-
-Copyright (C) 2016 Harsh Bhakta
-
-**License:**
-
-https://github.com/hbb20/CountryCodePickerProject/blob/master/License.txt
-
-**Software License**
-
-See a copy of license in [Section 1.0](#apache) above
-
-**7.0 certificatetransparency**
+**6.0 certificatetransparency**
 
 **Modifications:**
 
