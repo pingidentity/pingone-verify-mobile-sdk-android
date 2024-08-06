@@ -16,7 +16,6 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
 import com.pingidentity.sdk.pingoneverify.PingOneVerifyClient;
-import com.pingidentity.sdk.pingoneverify.documentcapture.utils.BitmapUtils;
 import com.pingidentity.sdk.pingoneverify.errors.DocumentSubmissionError;
 import com.pingidentity.sdk.pingoneverify.listeners.DocumentSubmissionListener;
 import com.pingidentity.sdk.pingoneverify.models.DocumentSubmissionResponse;
