@@ -14,6 +14,7 @@ public class MainActivity extends FragmentActivity {
         setContentView(R.layout.activity_main);
         FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
         fragmentTransaction.replace(R.id.frame_layout, new MainFragment());
+        fragmentTransaction.addToBackStack(null);
         fragmentTransaction.commit();
     }
 

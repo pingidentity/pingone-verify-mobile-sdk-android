@@ -9,7 +9,7 @@
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/Theme.PingOneVerify"
-        tools:targetApi="31">
+        tools:replace="android:allowBackup">
 
         <meta-data
             android:name="com.google.android.gms.vision.DEPENDENCIES"
