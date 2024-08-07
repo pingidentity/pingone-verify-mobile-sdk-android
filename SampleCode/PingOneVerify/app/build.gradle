@@ -1,26 +1,34 @@
 plugins {
     id 'com.android.application'
-    id 'com.google.android.gms.strict-version-matcher-plugin'
+    id 'kotlin-android'
+    id 'kotlin-kapt'
 }
 
 android {
-    compileSdk 33
-
-    buildFeatures {
-        dataBinding true
-    }
+    compileSdk 34
+    namespace 'com.pingidentity.sdk.pingoneverify.sample'
+    buildToolsVersion = '34.0.0'
 
     defaultConfig {
-
         applicationId "com.pingidentity.sdk.pingoneverify.sample"
-        minSdk 24
-        targetSdk 33
-        versionCode 1
-        versionName "1.0.0"
+        minSdkVersion 24
+        targetSdkVersion 34
+        versionCode 2
+        versionName "2.1.1"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
 
+    buildFeatures {
+        dataBinding true
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_17
+        targetCompatibility JavaVersion.VERSION_17
+    }
+    kotlinOptions {
+        jvmTarget = '17'
+    }
     buildTypes {
         debug {
             minifyEnabled true
@@ -31,17 +39,9 @@ android {
             proguardFiles 'proguard-rules.pro'
         }
     }
-
-    compileOptions {
-        sourceCompatibility JavaVersion.VERSION_1_8
-        targetCompatibility JavaVersion.VERSION_1_8
-    }
-    namespace 'com.pingidentity.sdk.pingoneverify.sample'
-
 }
 
 dependencies {
-
     implementation fileTree(dir: '../../../SDK/', include: ['*.aar'], exclude: [])
 
     implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
@@ -74,7 +74,6 @@ dependencies {
     implementation("androidx.fragment:fragment-ktx:1.6.1")
 
     implementation("com.appmattus.certificatetransparency:certificatetransparency-android:1.1.1")
-
 }
 
 configurations.implementation {

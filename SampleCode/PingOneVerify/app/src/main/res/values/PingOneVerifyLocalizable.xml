@@ -36,6 +36,11 @@
     <string name="idv_voice_try_again">Try Again</string>
     <string name="idv_voice_one_recording_text">You will record 1 time.</string>
     <string name="idv_voice_multi_recording_text">You will record %1$s times.</string>
+    <string name="idv_voice_cancel">Cancel</string>
+    <string name="idv_voice_speech_length_error">Recorded speech was too short to process.\nPlease try again</string>
+    <string name="idv_voice_speech_noisy_error">Too much noise in the background.\nPlease try again in a more quiet setting</string>
+    <string name="idv_voice_speech_reverberation_error">The audio recording has strong echo.\nPlease record in an another location</string>
+    <string name="idv_voice_speech_unknown_error">Undetermined Error.\nPlease try again</string>
 
     // Selfie
     <string name="idv_documentCapture_header_selfie">Capture Selfie</string>
@@ -64,8 +69,11 @@
     <string name="idv_otp_placeholder">Verification Code</string>
     <string name="idv_otp_resend">Resend Verification Code</string>
     <string name="idv_otp_button">Submit Passcode</string>
-    <string name="idv_otp_description">Please type the Verification Code sent to %s</string>
-    <string name="idv_otp_time">Verification Code expires in %s</string>
+    <string name="idv_otp_description">Please type the Verification Code sent to %1$s</string>
+    <string name="idv_otp_time">Verification Code expires in %1$s</string>
+    <string name="idv_time_min">%1$d min</string>
+    <string name="idv_time_sec">%1$d sec</string>
+
     <string name="idv_otp_default_email">your Email Address</string>
     <string name="idv_otp_default_phone">your Phone Number</string>
 
@@ -73,6 +81,7 @@
     <string name="idv_skip">Skip</string>
     <string name="idv_infoCapture_button">Submit</string>
     <string name="idv_next">Next</string>
+
     <string name="idv_permission_dialog_title">Permission not granted</string>
     <string name="idv_permission_dialog_message_camera">Access to the camera is required for scanning your IDs and taking pictures.\n\nPlease update the permissions for your app in device settings to be able to use this feature.</string>
     <string name="idv_permission_dialog_message_voice">Access to the microphone is required for voice verification.\n\nPlease update the permissions for your app in device settings to be able to use this feature.</string>
@@ -91,44 +100,51 @@
 
     <string name="phone_format">(%1$s)-%2$s</string>
 
-    <string name="speech_is_not_enough">Sorry, but the recorded speech is not enough for analysis</string>
-    <string name="speech_is_too_noisy">The audio recording has too much background noise. Please record in a quieter location</string>
-    <string name="speech_has_too_long_reverberation">The audio recording has strong echo. Please record in an another location</string>
     <string name="otp_incorrect">One Time Passcode is incorrect</string>
     <string name="error_confirming_your_verification_code">Error confirming your verification code</string>
 
     //BlinkId
-    <string name="mb_autofocus_fail">Camera cannot focus. Try scanning under different light.</string>
-    <string name="mb_blinkid_back_instructions">Scan the back side of the document</string>
+    <string name="blinkid_generic_message">Scan the front side of the document</string>
+
+    <string name="idv_selfie_preview_retake_button">Re-take</string>
+    <string name="idv_selfie_preview_submit_button">Submit</string>
+
+    <string name="idv_eyes_open">Make sure that both eyes are open</string>
+
+    <string name="idv_center_face">Center your face in the frame</string>
+    <string name="idv_face_too_small">Hold your phone closer to your face</string>
+    <string name="idv_face_too_big">Hold your phone further away from your face</string>
+    <string name="idv_face_forward">Face the camera</string>
+    <string name="idv_good_to_capture">Tap anywhere on the screen to capture image</string>
+    <string name="idv_face_tilted">Keep your head straight</string>
+    <string name="idv_mouth_opened">Close your mouth</string>
+
+    <string name="idv_error_dialog_title">Cannot capture selfie</string>
+    <string name="idv_error_dialog_message_capture_time_exceeded">Exceeded the Selfie Capture timeout limit. Please try again.</string>
+    <string name="idv_restart_error_message">Whoops, missed it. Please try again.</string>
+    <string name="idv_no_face_error_message">No Face Detected</string>
+    <string name="idv_multiple_faces_error_message">Multiple faces in the frame</string>
+    <string name="idv_different_face_error_message">Different face in the frame</string>
+
     <string name="mb_blinkid_back_instructions_barcode">Scan the barcode</string>
     <string name="mb_blinkid_camera_flip_document">Flip to the back side</string>
-    <string name="mb_blinkid_document_not_fully_visible">Keep the document fully visible</string>
+    <string name="mb_blinkid_camera_high">Move closer</string>
+    <string name="mb_blinkid_camera_near">Move farther</string>
     <string name="mb_blinkid_document_too_close_to_edge">Move the document from the edge</string>
-    <string name="mb_blinkid_front_instructions">Scan the front side of the document</string>
-    <string name="mb_camera_not_allowed">Camera not allowed by permission settings.</string>
-    <string name="mb_camera_not_ready">Camera not ready.</string>
-    <string name="mb_camera_permission_required">Camera permission is required.</string>
+    <string name="mb_blinkid_introduction_dialog_title">Keep all the details visible</string>
     <string name="mb_close">Close</string>
     <string name="mb_data_not_match_msg">Please start the scanning process over.</string>
-    <string name="mb_data_not_match_retry_button">Retry</string>
     <string name="mb_data_not_match_title">Sides don’t match</string>
-    <string name="mb_dismiss_error_dialog">Close</string>
-    <string name="mb_enable_camera">Enable camera</string>
-    <string name="mb_enable_permission_help">You will now be taken to permission settings where you need to give camera permission to the app.</string>
-    <string name="mb_enable_permission_help_instant_app">Please give the camera permission in the app permission settings.</string>
-    <string name="mb_error_camera_high">Move closer</string>
-    <string name="mb_error_camera_near">Move farther</string>
-    <string name="mb_error_initializing">Failed to initialize native library. Please check ADB error log for more details.</string>
-    <string name="mb_flashlight">Flashlight</string>
-    <string name="mb_flashlight_warning_message">Watch out for flashlight glare.\nGently move your ID around to avoid it.</string>
+    <string name="mb_error_mandatory_field_missing">Keep the document fully visible</string>
+    <string name="mb_flashlight_glare_tooltip">Watch out for flashlight glare.\nGently move your ID around to avoid it.</string>
     <string name="mb_recognition_timeout_dialog_message">Unable to read the document. Please try again.</string>
     <string name="mb_recognition_timeout_dialog_retry_button">Retry</string>
     <string name="mb_recognition_timeout_dialog_title">Scan unsuccessful</string>
+    <string name="mb_scanning_not_available">Scanning not available</string>
     <string name="mb_something_went_wrong">Something went wrong</string>
-    <string name="mb_splash_msg_id_back">ID card back side</string>
-    <string name="mb_splash_msg_id_front">ID card front side</string>
-    <string name="mb_unsupported_document_message">Scan the front side of a supported document.</string>
-    <string name="mb_unsupported_document_title">Document not recognized</string>
-    <string name="mb_warning_title">Warning</string>
-    
+    <string name="mb_tooltip_glare">Slightly move ID to eliminate glare.</string>
+    <string name="mb_try_scanning_again">It appears the information on the document is inconsistent. Please try scanning again.</string>
+    <string name="mb_unsupported_document_message">Please make sure you are scanning a supported ID.</string>
+    <string name="mb_unsupported_document_title">Invalid ID</string>
+    <string name="mb_unsupported_document_message_with_type">Please make sure you are scanning your %1$s.</string>
 </resources>

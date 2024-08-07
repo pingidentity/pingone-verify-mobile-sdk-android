@@ -99,6 +99,8 @@
 -dontwarn com.squareup.moshi.**
 -keep class com.google.code.gson.** { *; }
 -dontwarn com.google.code.gson.**
+-keep class net.idrnd.voicesdk.** { *; }
+-dontwarn net.idrnd.voicesdk.**
 -keep class com.appmattus.certificatetransparency.** {*;}
 -dontwarn com.appmattus.certificatetransparency.**
 
@@ -111,10 +113,3 @@
 
 -keep public class com.google.android.gms.* { public *; }
 -dontwarn com.google.android.gms.**
-
--ignorewarnings
-
-# gradle 8.0
--dontwarn android.test.**
--dontwarn junit.runner.**
--dontwarn junit.framework.**
