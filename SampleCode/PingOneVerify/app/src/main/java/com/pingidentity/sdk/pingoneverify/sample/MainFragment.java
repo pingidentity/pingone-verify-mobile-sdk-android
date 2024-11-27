@@ -50,9 +50,8 @@ public class MainFragment extends Fragment implements DocumentSubmissionListener
     @Override
     public void onSubmissionComplete(DocumentSubmissionStatus status) {
         setInProgress(false);
-        FragmentTransaction fragmentTransaction = getParentFragmentManager().beginTransaction();
-        CompletedFragment completedFragment = new CompletedFragment();
-        fragmentTransaction.replace(R.id.frame_layout, completedFragment)
+        getParentFragmentManager().beginTransaction()
+                .replace(R.id.frame_layout, new CompletedFragment())
                 .addToBackStack(null)
                 .commit();
     }

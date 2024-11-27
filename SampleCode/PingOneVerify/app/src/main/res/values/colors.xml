@@ -8,4 +8,5 @@
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
     <color name="app_color">#458EBF</color>
+    <color name="idv_progress_color">#4462ED</color>
 </resources>
