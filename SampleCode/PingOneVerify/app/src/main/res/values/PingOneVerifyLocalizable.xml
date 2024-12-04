@@ -103,13 +103,13 @@
     <string name="otp_incorrect">One Time Passcode is incorrect</string>
     <string name="error_confirming_your_verification_code">Error confirming your verification code</string>
 
-    //BlinkId
-    <string name="blinkid_generic_message">Scan the front side of the document</string>
-
     <string name="idv_selfie_preview_retake_button">Re-take</string>
     <string name="idv_selfie_preview_submit_button">Submit</string>
 
+    <!--    <string name="idv_smile">Smile!</string>-->
+    <!--    <string name="idv_straight_face">Hold a straight face</string>-->
     <string name="idv_eyes_open">Make sure that both eyes are open</string>
+    <!--    <string name="idv_eyes_closed">Blink both eyes</string>-->
 
     <string name="idv_center_face">Center your face in the frame</string>
     <string name="idv_face_too_small">Hold your phone closer to your face</string>
@@ -120,27 +120,38 @@
     <string name="idv_mouth_opened">Close your mouth</string>
 
     <string name="idv_error_dialog_title">Cannot capture selfie</string>
+    <!--    <string name="idv_error_dialog_message">We are unable to verify the presence of a person in front the camera. Would you like to try again?</string>-->
     <string name="idv_error_dialog_message_capture_time_exceeded">Exceeded the Selfie Capture timeout limit. Please try again.</string>
+
+    <!--    <string name="idv_face_moved_error">An error occurred while capturing the selfie.</string>-->
+    <!--    <string name="idv_post_selfie_open_eyes">Please make sure your eyes are open when taking the picture</string>-->
+    <!--    <string name="idv_post_selfie_close_mouth">Please make sure your mouth is not open when taking the picture</string>-->
+    <!--    <string name="idv_post_selfie_face_moved_out">Please make sure your face doesn\'t move out of the frame when taking the picture.</string>-->
+    <!--    <string name="idv_post_selfie_face_not_straight">Please make sure you\'re looking straight at the camera when taking the picture.</string>-->
+
     <string name="idv_restart_error_message">Whoops, missed it. Please try again.</string>
     <string name="idv_no_face_error_message">No Face Detected</string>
     <string name="idv_multiple_faces_error_message">Multiple faces in the frame</string>
     <string name="idv_different_face_error_message">Different face in the frame</string>
 
+
+    //Blink ID
+    <string name="mb_blinkid_front_instructions">Scan the front side of the document</string>
     <string name="mb_blinkid_back_instructions_barcode">Scan the barcode</string>
     <string name="mb_blinkid_camera_flip_document">Flip to the back side</string>
-    <string name="mb_blinkid_camera_high">Move closer</string>
-    <string name="mb_blinkid_camera_near">Move farther</string>
+    <string name="mb_error_camera_high">Move closer</string>
+    <string name="mb_error_camera_near">Move farther</string>
     <string name="mb_blinkid_document_too_close_to_edge">Move the document from the edge</string>
     <string name="mb_blinkid_introduction_dialog_title">Keep all the details visible</string>
     <string name="mb_close">Close</string>
     <string name="mb_data_not_match_msg">Please start the scanning process over.</string>
     <string name="mb_data_not_match_title">Sides don’t match</string>
-    <string name="mb_error_mandatory_field_missing">Keep the document fully visible</string>
-    <string name="mb_flashlight_glare_tooltip">Watch out for flashlight glare.\nGently move your ID around to avoid it.</string>
+    <string name="mb_blinkid_document_not_fully_visible">Keep the document fully visible</string>
+    <string name="mb_flashlight_warning_message">Watch out for flashlight glare.\nGently move your ID around to avoid it.</string>
     <string name="mb_recognition_timeout_dialog_message">Unable to read the document. Please try again.</string>
     <string name="mb_recognition_timeout_dialog_retry_button">Retry</string>
     <string name="mb_recognition_timeout_dialog_title">Scan unsuccessful</string>
-    <string name="mb_scanning_not_available">Scanning not available</string>
+    <string name="mb_licence_locked">Scanning not available</string>
     <string name="mb_something_went_wrong">Something went wrong</string>
     <string name="mb_tooltip_glare">Slightly move ID to eliminate glare.</string>
     <string name="mb_try_scanning_again">It appears the information on the document is inconsistent. Please try scanning again.</string>
