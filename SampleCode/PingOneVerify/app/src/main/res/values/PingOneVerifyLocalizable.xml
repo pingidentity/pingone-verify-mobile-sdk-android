@@ -43,7 +43,7 @@
     <string name="idv_voice_speech_unknown_error">Undetermined Error.\nPlease try again</string>
 
     // Selfie
-    <string name="idv_documentCapture_header_selfie">Capture Selfie</string>
+    <string name="idv_documentCapture_header_selfie">Take a Selfie</string>
     <string name="idv_documentCapture_description_selfie">Center your face in the oval. Tap the button or anywhere on the screen to capture your selfie.</string>
 
     // Email
