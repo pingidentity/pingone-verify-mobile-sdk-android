@@ -1,4 +1,4 @@
-## v2.2.0
+## v2.2.0 - May 15th, 2025
 - GeoLocation support implemented
 - Verify Retry support
 - Rate Limiting support
