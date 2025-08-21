@@ -1,3 +1,10 @@
+## v2.2.0 - April 18th, 2024
+- Retry flow for Government ID & Selfie capture failure
+- Support for GeoLocation in Verify flow
+- IDR&D FaceLive SDK updated to v2.3.0
+- BlinkID SDK updated to v6.3.0
+- Bug-fixes & enhancements
+
 ## v2.1.1 - August 7th, 2024
 - Updated vendor SDKs
 - Bug fixes and enhancements
