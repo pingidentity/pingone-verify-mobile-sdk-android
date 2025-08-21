@@ -9,5 +9,4 @@
     //Completed
     <string name="text_verification_complete">Verification Complete</string>
     <string name="text_verification_complete_snippet">We have gathered all the information required to continue the verification process. You can close this tab now.</string>
-    <string name="button_close">Close</string>
 </resources>

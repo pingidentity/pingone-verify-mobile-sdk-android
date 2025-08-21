@@ -113,3 +113,25 @@
 
 -keep public class com.google.android.gms.* { public *; }
 -dontwarn com.google.android.gms.**
+
+#Adding missing proguard rules from missing_rules.txt
+-dontwarn com.google.protobuf.AbstractMessageLite
+-dontwarn com.google.protobuf.ByteString
+-dontwarn com.google.protobuf.CodedInputStream
+-dontwarn com.google.protobuf.ExtensionRegistryLite
+-dontwarn com.google.protobuf.GeneratedMessageLite$Builder
+-dontwarn com.google.protobuf.GeneratedMessageLite$DefaultInstanceBasedParser
+-dontwarn com.google.protobuf.GeneratedMessageLite$MethodToInvoke
+-dontwarn com.google.protobuf.GeneratedMessageLite
+-dontwarn com.google.protobuf.Internal$EnumLite
+-dontwarn com.google.protobuf.Internal$EnumLiteMap
+-dontwarn com.google.protobuf.Internal$EnumVerifier
+-dontwarn com.google.protobuf.Internal$ProtobufList
+-dontwarn com.google.protobuf.InvalidProtocolBufferException
+-dontwarn com.google.protobuf.MessageLite
+-dontwarn com.google.protobuf.MessageLiteOrBuilder
+-dontwarn com.google.protobuf.Parser
+-dontwarn com.google.protobuf.kotlin.ByteStringsKt
+-dontwarn com.google.protobuf.kotlin.DslList
+-dontwarn com.google.protobuf.kotlin.DslProxy
+-dontwarn com.google.protobuf.kotlin.ProtoDslMarker
