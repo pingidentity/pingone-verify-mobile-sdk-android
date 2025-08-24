@@ -2,160 +2,136 @@
 <resources>
 
     //QrScanner
-    <string name="idv_qr_scan">Scan a PingOne QR Code</string>
-
-    //DocumentCapture
-    <string name="idv_documentCapture_start">Submit</string>
-    <string name="idv_documentCapture_step">Step %1$d/%2$d</string>
+    <string name="idv_qr_scan">Please scan the above QR code</string>
 
     //GovernmentID (Including both License and Passport)
     <string name="idv_documentCapture_header_governmentId">Scan your ID</string>
-    <string name="idv_documentCapture_description_governmentId">Grab your photo ID. This can be a passport, driver’s license or any other government issued ID. Ensure the edges of your ID are in the frame and clearly visible. Hold it in your hand to avoid any glare. Pay attention to the live feedback. For some ID’s you may need to scan the back as well.</string>
-
-    // License
-    <string name="idv_documentCapture_header_driverLicense">Capture Driver License</string>
-    <string name="idv_documentCapture_description_driverLicense">Verification requires a photo of the front and back of your government issued drivers license/ID.</string>
-
-    // Passport
-    <string name="idv_documentCapture_header_passport">Passport</string>
-    <string name="idv_documentCapture_description_passport">Verification requires a photo page of your passport.</string>
+    <string name="idv_documentCapture_description_governmentId">Scan your government-issued ID. Make sure your camera is clean and the ID is clearly visible.</string>
 
     // Voice
-    <string name="idv_documentCapture_header_voice">Record Your Voice</string>
-    <string name="idv_documentCapture_description_voice">Make sure to sit in a quiet environment and bring your device closer to your mouth for recording your voice.</string>
-    <string name="idv_get_started">Get Started</string>
-    <string name="idv_voiceCapture_instruction">Speak the following phrase into your device microphone:</string>
-    <string name="idv_voiceCapture_textDependent_placeholder">Use PingOneVerify for voice verification</string>
+    <string name="idv_documentCapture_header_voice">Verify By Voice</string>
+    <string name="idv_documentCapture_description_voice">Use your voice to verify your identity.</string>
+    <string name="idv_voiceCapture_instruction">Tap record and say the following text:</string>
+    <string name="idv_voiceCapture_textDependent_placeholder">Use your voice to verify your identity.</string>
     <string name="idv_voiceCapture_title">Record Your Voice</string>
     <string name="idv_voiceCapture_button">Tap to Record</string>
-    <string name="idv_voiceCapture_permission_error">Can’t continue without permission</string>
-    <string name="idv_voice_next_record">Next Recording</string>
+    <string name="idv_voiceCapture_permission_error">Can\'t continue without permission</string>
+    <string name="idv_voice_next_record">Next Record</string>
     <string name="idv_voice_complete">Voice Recording is Now Complete</string>
     <string name="idv_voiceCapture_error">Recording Error</string>
-    <string name="idv_voice_result">%1$d of %2$d Voice Sample Recording is Complete</string>
-    <string name="idv_voice_try_again">Try Again</string>
-    <string name="idv_voice_one_recording_text">You will record 1 time.</string>
-    <string name="idv_voice_multi_recording_text">You will record %1$s times.</string>
-    <string name="idv_voice_cancel">Cancel</string>
+    <string name="idv_voice_result">%1$d of %2$d</string>
+    <string name="idv_voice_step_complete">Complete</string>
     <string name="idv_voice_speech_length_error">Recorded speech was too short to process.\nPlease try again</string>
-    <string name="idv_voice_speech_noisy_error">Too much noise in the background.\nPlease try again in a more quiet setting</string>
-    <string name="idv_voice_speech_reverberation_error">The audio recording has strong echo.\nPlease record in an another location</string>
+    <string name="idv_voice_speech_noisy_error">Recording Unclear</string>
+    <string name="idv_voice_speech_reverberation_error">Recording Unclear</string>
     <string name="idv_voice_speech_unknown_error">Undetermined Error.\nPlease try again</string>
 
     // Selfie
     <string name="idv_documentCapture_header_selfie">Take a Selfie</string>
-    <string name="idv_documentCapture_description_selfie">Center your face in the oval. Tap the button or anywhere on the screen to capture your selfie.</string>
+    <string name="idv_documentCapture_description_selfie">Make sure you can see your face in the oval.</string>
 
     // Email
-    <string name="idv_emailCapture_title">Email Verification</string>
-    <string name="idv_emailCapture_description">"Please enter your email address"</string>
-    <string name="idv_emailCapture_description_option">"Please choose your email address"</string>
-    <string name="idv_emailCapture_description_value">"Email to be verified:"</string>
+    <string name="idv_emailCapture_title">Verify Your Email</string>
+    <string name="idv_emailCapture_description">Enter your email address.</string>
+    <string name="idv_emailCapture_description_option">Please choose your email address</string>
+    <string name="idv_emailCapture_description_value">Email to be verified</string>
     <string name="idv_emailCapture_placeholder">Email Address</string>
-    <string name="idv_emailCapture_button">Submit</string>
 
     // Phone
-    <string name="idv_phoneCapture_title">Phone Verification</string>
-    <string name="idv_phoneCapture_description">"Please enter your phone number"</string>
-    <string name="idv_phoneCapture_description_option">"Please choose your phone number"</string>
-    <string name="idv_phoneCapture_description_value">"Phone number to be verified:"</string>
-    <string name="idv_phoneCapture_placeholder">Phone number…</string>
+    <string name="idv_phoneCapture_title">Verify Your Phone</string>
+    <string name="idv_phoneCapture_description">Enter your phone number.</string>
+    <string name="idv_phoneCapture_description_option">Please choose your phone number</string>
+    <string name="idv_phoneCapture_description_value">Phone number to be verified</string>
+    <string name="idv_phoneCapture_placeholder">Enter phone number</string>
     <string name="idv_phoneCapture_code_picker_title">Select a country</string>
     <string name="idv_phoneCapture_code_picker_hint">Search</string>
-    <string name="idv_phoneCapture_button">Submit</string>
 
     //OTP
     <string name="idv_otp_title">Verification Code</string>
-    <string name="idv_otp_placeholder">Verification Code</string>
-    <string name="idv_otp_resend">Resend Verification Code</string>
-    <string name="idv_otp_button">Submit Passcode</string>
-    <string name="idv_otp_description">Please type the Verification Code sent to %1$s</string>
+    <string name="idv_otp_description">Enter the code sent to:</string>
     <string name="idv_otp_time">Verification Code expires in %1$s</string>
     <string name="idv_time_min">%1$d min</string>
     <string name="idv_time_sec">%1$d sec</string>
 
-    <string name="idv_otp_default_email">your Email Address</string>
-    <string name="idv_otp_default_phone">your Phone Number</string>
-
     //Buttons
     <string name="idv_skip">Skip</string>
+    <string name="idv_dataCapture_button">Continue</string>
     <string name="idv_infoCapture_button">Submit</string>
     <string name="idv_next">Next</string>
+    <string name="idv_data_retry">Retry</string>
+    <string name="idv_data_cancel">Cancel</string>
+    <string name="idv_otp_resend">Resend</string>
+    <string name="idv_data_check_confirm">Yes, Continue</string>
+    <string name="idv_data_check_retake">No, Retake</string>
 
     <string name="idv_permission_dialog_title">Permission not granted</string>
-    <string name="idv_permission_dialog_message_camera">Access to the camera is required for scanning your IDs and taking pictures.\n\nPlease update the permissions for your app in device settings to be able to use this feature.</string>
+    <string name="idv_permission_camera_title">Cannot access camera</string>
+    <string name="idv_permission_location_title">Location not enabled</string>
+    <string name="idv_permission_dialog_message_camera">Access to your camera is needed to scan your ID and take your selfie.</string>
     <string name="idv_permission_dialog_message_voice">Access to the microphone is required for voice verification.\n\nPlease update the permissions for your app in device settings to be able to use this feature.</string>
-    <string name="idv_permission_dialog_retry">Retry</string>
+    <string name="idv_permission_dialog_message_location">Enable location permission to proceed with your identity verification.</string>
     <string name="idv_permission_dialog_settings">Settings</string>
-    <string name="idv_permission_dialog_cancel">Cancel</string>
 
-    //Common
-    <string name="selfie">Selfie</string>
-    <string name="driverLicense">Driver License</string>
-    <string name="passport">Passport</string>
+    <string name="idv_data_fail">Verification Error</string>
+    <string name="idv_data_check_clear">Is it clear?</string>
+    <string name="idv_data_check_readable">Is it readable?</string>
+    <string name="idv_data_processing">Processing</string>
 
     <string name="idv_timer_label">Session expires in %1$s</string>
 
-    <string name="imageview_content_description">ImageView Content Description</string>
+    <string name="idv_otp_incorrect">You entered an incorrect code. Please try again.</string>
+    <string name="idv_otp_fail_error">Error confirming your verification code</string>
 
-    <string name="phone_format">(%1$s)-%2$s</string>
-
-    <string name="otp_incorrect">One Time Passcode is incorrect</string>
-    <string name="error_confirming_your_verification_code">Error confirming your verification code</string>
-
-    <string name="idv_selfie_preview_retake_button">Re-take</string>
-    <string name="idv_selfie_preview_submit_button">Submit</string>
-
-    <!--    <string name="idv_smile">Smile!</string>-->
-    <!--    <string name="idv_straight_face">Hold a straight face</string>-->
-    <string name="idv_eyes_open">Make sure that both eyes are open</string>
-    <!--    <string name="idv_eyes_closed">Blink both eyes</string>-->
-
-    <string name="idv_center_face">Center your face in the frame</string>
-    <string name="idv_face_too_small">Hold your phone closer to your face</string>
-    <string name="idv_face_too_big">Hold your phone further away from your face</string>
-    <string name="idv_face_forward">Face the camera</string>
-    <string name="idv_good_to_capture">Tap anywhere on the screen to capture image</string>
-    <string name="idv_face_tilted">Keep your head straight</string>
-    <string name="idv_mouth_opened">Close your mouth</string>
-
-    <string name="idv_error_dialog_title">Cannot capture selfie</string>
-    <!--    <string name="idv_error_dialog_message">We are unable to verify the presence of a person in front the camera. Would you like to try again?</string>-->
-    <string name="idv_error_dialog_message_capture_time_exceeded">Exceeded the Selfie Capture timeout limit. Please try again.</string>
-
-    <!--    <string name="idv_face_moved_error">An error occurred while capturing the selfie.</string>-->
-    <!--    <string name="idv_post_selfie_open_eyes">Please make sure your eyes are open when taking the picture</string>-->
-    <!--    <string name="idv_post_selfie_close_mouth">Please make sure your mouth is not open when taking the picture</string>-->
-    <!--    <string name="idv_post_selfie_face_moved_out">Please make sure your face doesn\'t move out of the frame when taking the picture.</string>-->
-    <!--    <string name="idv_post_selfie_face_not_straight">Please make sure you\'re looking straight at the camera when taking the picture.</string>-->
-
-    <string name="idv_restart_error_message">Whoops, missed it. Please try again.</string>
-    <string name="idv_no_face_error_message">No Face Detected</string>
-    <string name="idv_multiple_faces_error_message">Multiple faces in the frame</string>
-    <string name="idv_different_face_error_message">Different face in the frame</string>
-
+    //IDRnD FaceLive
+    <string name="idv_selfie_position_face">Make sure your face is clearly visible in the camera.</string>
+    <string name="idv_selfie_too_many_faces">Multiple faces detected</string>
+    <string name="idv_selfie_close_camera">Move camera closer</string>
+    <string name="idv_selfie_face_cropped">Center your face in the green oval and try again.</string>
+    <string name="idv_selfie_position_face_center">Center face in frame</string>
+    <string name="idv_selfie_turn_frontal_position">Position in front of face</string>
+    <string name="idv_selfie_move_farther_camera">Move the camera farther away from your face and try again.</string>
+    <string name="idv_selfie_hold_device_still">Please hold your device still</string>
+    <string name="idv_selfie_face_occluded">Remove any masks, hats, or anything covering your face from the camera.</string>
 
     //Blink ID
-    <string name="mb_blinkid_front_instructions">Scan the front side of the document</string>
+    <string name="mb_blinkid_front_instructions">Scan or upload an image of the front of your ID</string>
     <string name="mb_blinkid_back_instructions_barcode">Scan the barcode</string>
-    <string name="mb_blinkid_camera_flip_document">Flip to the back side</string>
+    <string name="mb_blinkid_camera_flip_document">Scan or upload an image of the back of your ID</string>
     <string name="mb_error_camera_high">Move closer</string>
     <string name="mb_error_camera_near">Move farther</string>
     <string name="mb_blinkid_document_too_close_to_edge">Move the document from the edge</string>
     <string name="mb_blinkid_introduction_dialog_title">Keep all the details visible</string>
     <string name="mb_close">Close</string>
     <string name="mb_data_not_match_msg">Please start the scanning process over.</string>
-    <string name="mb_data_not_match_title">Sides don’t match</string>
+    <string name="mb_data_not_match_title">Sides don\'t match</string>
     <string name="mb_blinkid_document_not_fully_visible">Keep the document fully visible</string>
     <string name="mb_flashlight_warning_message">Watch out for flashlight glare.\nGently move your ID around to avoid it.</string>
     <string name="mb_recognition_timeout_dialog_message">Unable to read the document. Please try again.</string>
     <string name="mb_recognition_timeout_dialog_retry_button">Retry</string>
     <string name="mb_recognition_timeout_dialog_title">Scan unsuccessful</string>
     <string name="mb_licence_locked">Scanning not available</string>
-    <string name="mb_something_went_wrong">Something went wrong</string>
-    <string name="mb_tooltip_glare">Slightly move ID to eliminate glare.</string>
+    <string name="mb_something_went_wrong">Something went wrong. Please refresh and try again.</string>
+    <string name="mb_tooltip_glare">Tilt or move document to remove reflections</string>
     <string name="mb_try_scanning_again">It appears the information on the document is inconsistent. Please try scanning again.</string>
     <string name="mb_unsupported_document_message">Please make sure you are scanning a supported ID.</string>
     <string name="mb_unsupported_document_title">Invalid ID</string>
     <string name="mb_unsupported_document_message_with_type">Please make sure you are scanning your %1$s.</string>
+    //MB Error Messages
+    <string name="mb_generic_image_quality">Make sure your camera lens is clean and all four corners of the ID are visible.</string>
+    <string name="mb_image_has_glare">Make sure the ID is not reflecting direct light and is in focus.</string>
+    <string name="mb_image_too_dark">Go to a well-lit environment. Make sure the ID is in focus, without glare, and then retry.</string>
+    <string name="mb_image_not_sharp">Make sure your camera lens is clean and all four corners of the ID are visible.</string>
+    <string name="mb_document_images_mismatch">Document images don\'t match.</string>
+    <string name="mb_image_too_small">Move the camera closer, making sure all four corners of the ID are visible.</string>
+    <string name="mb_resubmission_requested">Make sure your camera lens is clean and all four corners of the ID are visible</string>
+    <string name="mb_face_too_close">Move the camera farther away from your face and try again.</string>
+    <string name="mb_face_close_to_border">Center your face in the green oval and try again.</string>
+    <string name="mb_face_cropped">Center your face in the green oval and try again.</string>
+    <string name="mb_face_is_occluded">Remove any masks, hats, or anything covering your face from the camera.</string>
+    <string name="mb_face_not_found">Make sure your face is clearly visible in the camera.</string>
+    <string name="mb_failed_to_predict_landmarks">Make sure your face is clearly visible in the camera</string>
+    <string name="mb_too_many_faces">Make sure only your face appears in the camera and then retry.</string>
+    <string name="mb_face_too_small">Move the camera closer to your face and try again.</string>
+    <string name="mb_face_angle_too_large">Position the camera directly in front of your face and try again.</string>
+    <string name="mb_eyes_closed">Make sure your eyes are not closed and try again.</string>
 </resources>
