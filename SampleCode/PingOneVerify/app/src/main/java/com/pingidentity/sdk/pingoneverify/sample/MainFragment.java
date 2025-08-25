@@ -70,7 +70,7 @@ public class MainFragment extends Fragment implements DocumentSubmissionListener
      * @noinspection unused
      */ // UIAppearanceSettings example
     private UIAppearanceSettings getUiAppearanceSettings() {
-        Bitmap logoImage = BitmapUtils.getBitmap(requireContext(), R.drawable.ic_logo);
+        Bitmap logoImage = BitmapUtils.getBitmap(requireContext(), R.mipmap.ic_launcher);
 
         return new UIAppearanceSettings()
                 .setLogoImage(logoImage)
