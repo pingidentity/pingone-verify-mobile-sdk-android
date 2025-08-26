@@ -114,6 +114,9 @@
 -keep public class com.google.android.gms.* { public *; }
 -dontwarn com.google.android.gms.**
 
+-keep class org.jose4j.** { *; }
+-dontwarn org.jose4j.**
+
 #Adding missing proguard rules from missing_rules.txt
 -dontwarn com.google.protobuf.AbstractMessageLite
 -dontwarn com.google.protobuf.ByteString
@@ -135,3 +138,6 @@
 -dontwarn com.google.protobuf.kotlin.DslList
 -dontwarn com.google.protobuf.kotlin.DslProxy
 -dontwarn com.google.protobuf.kotlin.ProtoDslMarker
+-dontwarn org.slf4j.impl.StaticLoggerBinder
+-dontwarn org.slf4j.impl.StaticMDCBinder
+-dontwarn org.slf4j.impl.StaticMarkerBinder
