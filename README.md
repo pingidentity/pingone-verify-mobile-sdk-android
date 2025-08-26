@@ -1,42 +1,19 @@
-# PingOne Neo Native SDKs
-
-
-
-PingOne Neo is a decentralized identity solution that gives control of identity data back to users. PingOne Neo empowers businesses to give their users full control over how they securely store and share verified credentials without unnecessary friction.
-
-
-PingOne Neo provides enterprises with identity verification capabilities and the capability to issue identity claims for users to store in their wallet app and verify user data. Embed personal identity using these SDKs into a service to issue digital cards to users and let them store verifiable, shareable data in their wallet app.
-
-
-PingOne Neo has two components:
-
-
-* [PingOne Verify Native SDKs](https://apidocs.pingidentity.com/pingone/native-sdks/v1/api/#pingone-verify-native-sdks)
-* [PingOne Wallet Native SDKs](https://apidocs.pingidentity.com/pingone/native-sdks/v1/api/#pingone-wallet-native-sdks)
-
-## PingOne Verify Native SDKs
-
-PingOne Verify Native SDKs collect information required for verifying a user's identity and share the collected information with the PingOne Verify service. PingOne Verify Native SDKs are available in for two operating systems:
-
-
-* [PingOne Verify SDK for Android](https://apidocs.pingidentity.com/pingone/native-sdks/v1/api/#pingone-verify-sdk-for-android)
-
-### PingOne Verify SDK for Android
+# PingOne Verify SDK for Android
 
 
 PingOneVerify Android SDK provides a secure interface for an Android app to use the PingOne Verify service for validating a user's identity. The SDK also parses the responses received from the service for different operations and forwards the same to the app via callbacks.
 
-#### Running the Sample App
+### Running the Sample App
 
 
 [Download the Sample App](https://github.com/pingidentity/pingone-verify-mobile-sdk-android).
 
 
-#### Prerequisites
+### Prerequisites
 * Android Studio with Gradle
 * Android SDK 26 and up
 
-#### Set Up and Clone or Download
+### Set Up and Clone or Download
 
 The sample app can be run on a simulator but requires special set up and works much better on a device, because the app requires the camera to capture a selfie and and the related user ID documents. If you want to run the app on emulator you will need to use your PC's camera.
 
@@ -45,11 +22,11 @@ The sample app can be run on a simulator but requires special set up and works m
 
 2. To open the sample app as a project in Android Studio, go to File --> New --> Import Project. Choose the SampleCode/PingOneVerify folder as the project's root folder.
 
-#### Integrating PingOne Verify SDK with Your App
+### Integrating PingOne Verify SDK with Your App
 
 PingOneVerify Android SDK provides a secure interface for an Android app to use the PingOne Verify service for validating a user's identity. The SDK also parses the responses received from the service for different operations and forwards the same to the app via callbacks.
 
-#### Getting started
+### Getting started
 Add the dependencies needed for your application.
 
 If you haven't done so already, clone or download the [PingOne Verify SDK for Android](https://github.com/pingidentity/pingone-verify-mobile-sdk-android) sample app. You'll find the `.aar` dependencies required for the PingOne Verify Android SDK in the SDK directory.
@@ -113,7 +90,7 @@ dependencies {
     }
 ```
 
-#### Initializing PingOneVerifyClient
+### Initializing PingOneVerifyClient
 
 1. Import `com.pingidentity.sdk.pingoneverify.PingOneVerifyClient` in your desired Activity or Fragment
 ```
@@ -164,7 +141,7 @@ new PingOneVerifyClient.Builder(false)
     .setDocumentCaptureSettings(settings);
 ````
 
-#### DocumentSubmissionListener Callbacks
+### DocumentSubmissionListener Callbacks
 
 1. `onDocumentSubmitted(DocumentSubmissionResponse response)`
 
@@ -209,9 +186,9 @@ public void onSubmissionError(DocumentSubmissionError error) {
 
 ````
 
-#### Class Reference
+### Class Reference
 
-#### DocumentSubmissionResponse
+### DocumentSubmissionResponse
 `DocumentSubmissionResponse` object holds information pertaining to the document that was successfully submitted to the ID Verification service.
 
 
@@ -286,7 +263,7 @@ Data model of `document`
 | `profession` | Profession as shown on the document |
 
 
-#### DocumentStatus
+### DocumentStatus
 
 An enum describing the status of a particular document
 
@@ -301,7 +278,7 @@ public enum DocumentStatus {
 }
 ````
 
-#### DocumentSubmissionStatus
+### DocumentSubmissionStatus
 
 An enum describing the status of the verification transaction
 
@@ -314,7 +291,7 @@ public enum DocumentSubmissionStatus implements Serializable {
 }
 ````
 
-#### SelfieCaptureSettings
+### SelfieCaptureSettings
 
 A configurable object to customize selfie capture experience
 
@@ -326,12 +303,12 @@ public class SelfieCaptureSettings {
 
 ````
 
-#### PingOne Verify SDK Errors
-#### ClientBuilderError
+### PingOne Verify SDK Errors
+### ClientBuilderError
 `ClientBuilderError` is returned when *PingOneVerify SDK* is initialized **incorrectly**. It subclasses `BuilderError` and `QRError` and is returned during `Builder.startVerification()`
 
 
-#### BuilderError
+### BuilderError
 
 | Error | Description |
 | --- | --- |
@@ -339,7 +316,7 @@ public class SelfieCaptureSettings {
 | `"Must Set DocumentSubmissionListener"` | `DocumentSubmissionListener` was not set using `.setDocumentSubmissionListener(listener)` in the builder |
 
 
-#### QRError
+### QRError
 
 | Error | Description |
 | --- | --- |
@@ -348,7 +325,7 @@ public class SelfieCaptureSettings {
 | `"Missing TransactionId"` | QR Code is missing transactionId |
 
 
-#### DocumentSubmissionError
+### DocumentSubmissionError
 
 
 | Error | Description |
@@ -435,7 +412,7 @@ To customize resources such as icons/images, colors, localization strings, etc.:
 Include your custom resources such as drawables, colors, & strings in the respective `res` folder of your app
 
 
-#### Verify Policy
+### Verify Policy
 
 
 
