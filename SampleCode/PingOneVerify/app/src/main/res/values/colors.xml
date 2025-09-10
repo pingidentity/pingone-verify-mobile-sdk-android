@@ -8,6 +8,7 @@
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
     <color name="app_color">#458EBF</color>
+    <color name="wait_overlay_bg">#33D3D3D3</color>
 
     <color name="idv_progress_color">#4462ED</color>
     <color name="idv_document_upload_retry">#253746</color>
