@@ -66,8 +66,6 @@ dependencies {
     implementation 'androidx.fragment:fragment-ktx:1.5.7'
 
     implementation 'com.google.android.material:material:1.9.0'
-    implementation 'com.google.protobuf:protobuf-javalite:3.20.1'
-    implementation 'com.google.protobuf:protobuf-kotlin-lite:3.20.1'
     implementation 'com.google.code.gson:gson:2.9.0'
     implementation 'com.googlecode.libphonenumber:libphonenumber:8.13.7'
 
@@ -83,9 +81,14 @@ dependencies {
     implementation 'com.squareup.retrofit2:retrofit:2.9.0'
     implementation 'com.github.bumptech.glide:glide:4.16.0'
     kapt 'com.github.bumptech.glide:compiler:4.16.0'
-    implementation 'org.bitbucket.b_c:jose4j:0.9.5'
     implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-android:1.6.4'
     implementation 'org.jetbrains.kotlin:kotlin-stdlib-jdk8:1.8.10'
+
+    [//]: <> (IMPORTANT: Below dependencies must be defined for Selfie/Government ID document upload on S3)
+    implementation 'org.bitbucket.b_c:jose4j:0.9.5'
+    [//]: <> (IMPORTANT: Below dependencies should be defined for Selfie Liveness feature)
+    implementation 'com.google.protobuf:protobuf-javalite:3.20.1'
+    implementation 'com.google.protobuf:protobuf-kotlin-lite:3.20.1'
 
     }
 ```
@@ -167,7 +170,7 @@ public void onDocumentSubmitted(DocumentSubmissionResponse response)  {
 public void onSubmissionComplete(DocumentSubmissionStatus status) {
     //  present  a  basic  alert  to  indicate  completion
     new AlertDialog.Builder(getActivity())  
-        .setTitle("Document SubmissionCOMPLETE")  
+        .setTitle("Document Submission Complete")  
         .setMessage("All  documents  have  been  successfully  submitted")  
         .create()  
         .show();
