@@ -8,7 +8,7 @@
     <string name="idv_documentCapture_header_governmentId">Scan your ID</string>
     <string name="idv_documentCapture_description_governmentId">Scan your government-issued ID. Make sure your camera is clean and the ID is clearly visible.</string>
 
-    // Voice
+    //Voice
     <string name="idv_documentCapture_header_voice">Verify By Voice</string>
     <string name="idv_documentCapture_description_voice">Use your voice to verify your identity.</string>
     <string name="idv_voiceCapture_instruction">Tap record and say the following text:</string>
@@ -26,18 +26,18 @@
     <string name="idv_voice_speech_reverberation_error">Recording Unclear</string>
     <string name="idv_voice_speech_unknown_error">Undetermined Error.\nPlease try again</string>
 
-    // Selfie
+    //Selfie
     <string name="idv_documentCapture_header_selfie">Take a Selfie</string>
     <string name="idv_documentCapture_description_selfie">Make sure you can see your face in the oval.</string>
 
-    // Email
+    //Email
     <string name="idv_emailCapture_title">Verify Your Email</string>
     <string name="idv_emailCapture_description">Enter your email address.</string>
     <string name="idv_emailCapture_description_option">Please choose your email address</string>
     <string name="idv_emailCapture_description_value">Email to be verified</string>
     <string name="idv_emailCapture_placeholder">Email Address</string>
 
-    // Phone
+    //Phone
     <string name="idv_phoneCapture_title">Verify Your Phone</string>
     <string name="idv_phoneCapture_description">Enter your phone number.</string>
     <string name="idv_phoneCapture_description_option">Please choose your phone number</string>
@@ -134,4 +134,19 @@
     <string name="mb_face_too_small">Move the camera closer to your face and try again.</string>
     <string name="mb_face_angle_too_large">Position the camera directly in front of your face and try again.</string>
     <string name="mb_eyes_closed">Make sure your eyes are not closed and try again.</string>
+
+    //Indian Aadhaar
+    <string name="idv_documentCapture_header_aadhaar">Verify Aadhaar ID</string>
+    <string name="idv_documentCapture_description_aadhaar">Confirm or edit your Aadhaar ID.</string>
+    <string name="idv_documentCapture_hint_aadhaarId">Aadhaar ID.</string>
+    <string name="idv_documentCapture_header_aadhaarOtp">Enter OTP</string>
+    <string name="idv_documentCapture_description_aadhaarOtp">Enter the one-time password that was sent to the phone number associated with the Aadhaar ID.</string>
+    <string name="idv_documentCapture_header_type">Confirm ID Type</string>
+    <string name="idv_documentCapture_description_type">We couldn\'t identify your ID.\nSelect the ID type to continue.</string>
+    <string name="idv_documentCapture_option_aadhaar">Indian Aadhaar Card</string>
+    <string name="idv_documentCapture_option_license">Driver\'s License</string>
+    <string name="idv_documentCapture_option_passport">Passport</string>
+    <string name="idv_documentCapture_option_card">Passport Card</string>
+    <string name="idv_documentCapture_option_other">Other</string>
+    <string name="idv_documentCapture_aadhaar_retry">Incorrect password. Try again.</string>
 </resources>
