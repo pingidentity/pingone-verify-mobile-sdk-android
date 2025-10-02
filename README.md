@@ -365,6 +365,7 @@ UIAppearanceSettings
 |----------------------------------------------------------------------------------------|------------------------------------------------------------------|
 | `setLogoImage(Bitmap logoImage) -> UIAppearanceSetting`                                | Set logo image that is shown at the center of the navigation bar |
 | `setBackgroundColor(String backgroundColor) -> UIAppearanceSetting`                    | Set application background color                                 |
+| `setAppearanceProvider(AppearanceProvider appearanceProvider) -> UIAppearanceSetting`  | Customise appearance settings                                    |
 | `setBodyTextColor(String bodyTextColor) -> UIAppearanceSetting`                        | Set body text color                                              |
 | `setHeadingTextColor(String headingTextColor) -> UIAppearanceSetting`                  | Set heading text color                                           |
 | `setNavigationBarColor(String navigationBarColor) -> UIAppearanceSetting`              | Set navigation bar background color                              |
@@ -372,6 +373,11 @@ UIAppearanceSettings
 | `setIconTintColor(String iconTintColor) -> UIAppearanceSetting`                        | Set icon tint color                                              |
 | `setSolidButtonAppearance(ButtonAppearance solidButton) -> UIAppearanceSettings`       | Set solid button appearance                                      |
 | `setBorderedButtonAppearance(ButtonAppearance borderedButton) -> UIAppearanceSettings` | Set bordered button appearance                                   |
+
+### Customizing appearance settings
+Use `setShowSessionExpirationTimer(Boolean showTimer)` whether to show session timer, defaults to `true`
+Use `setNavigationTitle(SpannableString navigationTitle)` to customise title-text, works with `setLogoImage(null)`
+Use `setAttributedTexts(Map<String, SpannableString> values)` to use stylable texts for title & description texts for screens
 
 ### Customizing icon tint color
 If using custom image resources, set `PingOneVerifyClient.Builder(boolean isOverridingAssets)` to `true`.
