@@ -115,8 +115,8 @@
     <string name="mb_try_scanning_again">It appears the information on the document is inconsistent. Please try scanning again.</string>
     <string name="mb_unsupported_document_message">Please make sure you are scanning a supported ID.</string>
     <string name="mb_unsupported_document_title">Invalid ID</string>
-    <string name="mb_unsupported_document_message_with_type">Please make sure you are scanning your %1$s.</string>
     //MB Error Messages
+    <string name="mb_unsupported_document_message_with_type">Please make sure you are scanning your %1$s.</string>
     <string name="mb_generic_image_quality">Make sure your camera lens is clean and all four corners of the ID are visible.</string>
     <string name="mb_image_has_glare">Make sure the ID is not reflecting direct light and is in focus.</string>
     <string name="mb_image_too_dark">Go to a well-lit environment. Make sure the ID is in focus, without glare, and then retry.</string>
