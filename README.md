@@ -365,7 +365,7 @@ UIAppearanceSettings
 |----------------------------------------------------------------------------------------|------------------------------------------------------------------|
 | `setLogoImage(Bitmap logoImage) -> UIAppearanceSetting`                                | Set logo image that is shown at the center of the navigation bar |
 | `setBackgroundColor(String backgroundColor) -> UIAppearanceSetting`                    | Set application background color                                 |
-| `setAppearanceProvider(AppearanceProvider appearanceProvider) -> UIAppearanceSetting`  | Customise appearance settings                                    |
+| `setAppearanceProvider(AppearanceProvider appearanceProvider) -> UIAppearanceSetting`  | Customise appearance settings(See [AppearanceProvider](#appearanceprovider))|
 | `setBodyTextColor(String bodyTextColor) -> UIAppearanceSetting`                        | Set body text color                                              |
 | `setHeadingTextColor(String headingTextColor) -> UIAppearanceSetting`                  | Set heading text color                                           |
 | `setNavigationBarColor(String navigationBarColor) -> UIAppearanceSetting`              | Set navigation bar background color                              |
@@ -374,10 +374,14 @@ UIAppearanceSettings
 | `setSolidButtonAppearance(ButtonAppearance solidButton) -> UIAppearanceSettings`       | Set solid button appearance                                      |
 | `setBorderedButtonAppearance(ButtonAppearance borderedButton) -> UIAppearanceSettings` | Set bordered button appearance                                   |
 
-### Customizing appearance settings
-Use `setShowSessionExpirationTimer(Boolean showTimer)` whether to show session timer, defaults to `true`
-Use `setNavigationTitle(SpannableString navigationTitle)` to customise title-text, works with `setLogoImage(null)`
-Use `setAttributedTexts(Map<String, SpannableString> values)` to use stylable texts for title & description texts for screens
+### AppearanceProvider
+The `AppearanceProvider` can be customized with the following methods to make additional changes to the User Interface.
+
+| Method                                                                                 | Description                                                      |
+|----------------------------------------------------------------------------------------|------------------------------------------------------------------|
+| `setShowSessionExpirationTimer(Boolean showTimer)`                                     | Whether to show session timer, defaults to `true`                |
+| `setNavigationTitle(SpannableString navigationTitle)`                                  | Set custom title-text, works with `setLogoImage(null)`           |
+| `setAttributedTexts(Map<String, SpannableString> values)`                              | Use stylable texts for title & description texts for screens     |
 
 ### Customizing icon tint color
 If using custom image resources, set `PingOneVerifyClient.Builder(boolean isOverridingAssets)` to `true`.
