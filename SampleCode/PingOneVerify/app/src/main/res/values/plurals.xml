@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <plurals name="idv_voice_recording_text">
+        <item quantity="one">You will record %1$s time.</item>
+        <item quantity="other">You will record %1$s times.</item>
+    </plurals>
+</resources>
