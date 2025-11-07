@@ -123,7 +123,16 @@ import com.pingidentity.sdk.pingoneverify.PingOneVerifyClient;
         });
 ````
 
-4. Optionally, you can set an explicit **qrString** using the `PingOneVerifyClient.Builder`
+4. You can set its `backActionHandler` for handling callback when user clicks to exit the flow
+   Start the Verification Process
+````java
+    PingOneVerifyClient.Builder builder = new PingOneVerifyClient.Builder(false)
+        .setBackActionHandler(new BackActionHandler() {
+            @Override public void onBackAction(Consumer<Boolean> consumer) {}
+        });
+````
+
+5. Optionally, you can set an explicit **qrString** using the `PingOneVerifyClient.Builder`
 ````java
     new PingOneVerifyClient.Builder(false)
         .setListener(this)
@@ -131,7 +140,7 @@ import com.pingidentity.sdk.pingoneverify.PingOneVerifyClient;
         .setQrString(qrString: "https://api.pingone.com...")
 ````
 
-5. Optionally, you can set a [Selfie Capture Settings](#selfiecapturesettings) with your preference using the `PingOneVerifyClient.Builder.`
+6. Optionally, you can set a [Selfie Capture Settings](#selfiecapturesettings) with your preference using the `PingOneVerifyClient.Builder.`
 ````java
 // Default is 45 seconds for captureTime and true for shouldCaptureAfterTimeout
 SelfieCaptureSettings selfieCaptureSettings = new SelfieCaptureSettings(15, false)
@@ -419,7 +428,7 @@ You can customize the following color resources:
 | idv_selfie_error             | Text color for face recognition response for selfie verification  |
 
 ### Customizing localization (text)
-For localization and messages, you can replace the values found in [localizable_strings.xml](https://github.com/pingidentity/pingone-wallet-mobile-sdk-android/blob/master/SampleCode/app/src/main/res/values/strings.xml).
+For localization and messages, you can replace the values found in [PingOneVerifyLocalizable.xml](https://github.com/pingidentity/pingone-verify-mobile-sdk-android/blob/master/SampleCode/PingOneVerify/app/src/main/res/values/PingOneVerifyLocalizable.xml).
 
 To customize resources such as icons/images, colors, localization strings, etc.:
 Include your custom resources such as drawables, colors, & strings in the respective `res` folder of your app
