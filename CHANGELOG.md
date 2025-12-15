@@ -1,5 +1,11 @@
 # Changelog
 
+## v2.3.3 - October 29th, 2025
+
+### Fixed
+
+- Branding theme iconTint handling fixed
+
 ## v2.3.0 - August 25th, 2025
 
 ### Added
