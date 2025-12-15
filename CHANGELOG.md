@@ -9,9 +9,37 @@
 
 ### Fixed
 
-- Retry UI: Redundant cancel button causing DocumentSubmissionError has been removed 
+- Retry UI: Redundant cancel button causing DocumentSubmissionError has been removed
 - Support for the legacy selfieCaptureSettings has been discontinued.
 - UI/UX Improvements
+
+## v2.3.6 - November 29th, 2025
+
+### Fixed
+
+- App Navigation handling bug fixes
+- UI/UX Improvements
+
+## v2.3.5 - November 20th, 2025
+
+### Fixed
+
+- BackActionHandler null-check added
+
+## v2.3.4 - November 8th, 2025
+
+### Fixed
+
+- AppEvent missing events logged
+- Localization text issues fixed
+- Branding theme bug fixes
+- UI/UX Improvements
+
+## v2.3.3 - October 29th, 2025
+
+### Fixed
+
+- Branding theme iconTint handling fixed
 
 ## v2.3.0 - August 25th, 2025
 
