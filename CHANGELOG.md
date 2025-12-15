@@ -1,5 +1,12 @@
 # Changelog
 
+## v2.3.6 - November 29th, 2025
+
+### Fixed
+
+- App Navigation handling bug fixes
+- UI/UX Improvements
+
 ## v2.3.5 - November 20th, 2025
 
 ### Fixed
