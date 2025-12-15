@@ -140,19 +140,6 @@ import com.pingidentity.sdk.pingoneverify.PingOneVerifyClient;
         .setQrString(qrString: "https://api.pingone.com...")
 ````
 
-6. Optionally, you can set a [Selfie Capture Settings](#selfiecapturesettings) with your preference using the `PingOneVerifyClient.Builder.`
-````java
-// Default is 45 seconds for captureTime and true for shouldCaptureAfterTimeout
-SelfieCaptureSettings selfieCaptureSettings = new SelfieCaptureSettings(15, false)
-List<CaptureSettings> settings = new ArrayList<>();
-settings.add(selfieCaptureSettings);
-
-new PingOneVerifyClient.Builder(false)
-    .setRootActivity(getActivity())
-    .setListener(this)
-    .setDocumentCaptureSettings(settings);
-````
-
 ### DocumentSubmissionListener Callbacks
 
 1. `onDocumentSubmitted(DocumentSubmissionResponse response)`
