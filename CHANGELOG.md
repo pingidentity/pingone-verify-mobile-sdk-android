@@ -1,5 +1,11 @@
 # Changelog
 
+## v3.0.1 - January 14th, 2026
+
+### Fixed
+
+- Indonesian Government ID expiry-date bug fixed
+
 ## v3.0.0 - December 15th, 2025
 
 ### Added
