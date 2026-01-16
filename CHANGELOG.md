@@ -1,8 +1,14 @@
 # Changelog
 
-## v3.1.0 - December 20th, 2025
+## v3.1.1 - January 13th, 2026
 
-### Added
+### Fixed
+
+- BlinkID License key updated
+
+## v3.1.0 - January 15th, 2026
+
+### Fixed
 
 - BlinkID Version changed to 7.6.1
 
