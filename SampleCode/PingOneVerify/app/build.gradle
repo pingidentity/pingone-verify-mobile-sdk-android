@@ -13,8 +13,8 @@ android {
         applicationId "com.pingidentity.sdk.pingoneverify.sample"
         minSdkVersion 26
         targetSdkVersion 34
-        versionCode 4
-        versionName "2.2.0"
+        versionCode 5
+        versionName "2.3.0"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
@@ -55,14 +55,13 @@ dependencies {
 
     implementation 'com.github.bumptech.glide:glide:4.13.0'
     annotationProcessor 'com.github.bumptech.glide:compiler:4.13.0'
-
     implementation 'com.google.android.material:material:1.12.0'
     implementation 'com.google.android.gms:play-services-mlkit-barcode-scanning:18.3.1'
     implementation 'com.google.android.gms:play-services-mlkit-face-detection:17.1.0'
     implementation 'com.google.code.gson:gson:2.10.1'
-    implementation 'com.google.protobuf:protobuf-kotlin-lite:3.20.1'
     implementation group: 'com.googlecode.libphonenumber', name: 'libphonenumber', version: '8.13.7'
 
+    implementation 'com.appmattus.certificatetransparency:certificatetransparency-android:1.1.1'
     implementation 'com.squareup.retrofit2:converter-moshi:2.7.2'
     implementation 'com.squareup.retrofit2:retrofit:2.9.0'
     implementation 'com.squareup.okhttp3:okhttp:4.9.3'
@@ -71,7 +70,11 @@ dependencies {
     implementation 'com.squareup.moshi:moshi-kotlin:1.14.0'
     implementation group: 'com.squareup.okhttp3', name: 'okhttp-urlconnection', version: '4.9.3'
 
-    implementation("com.appmattus.certificatetransparency:certificatetransparency-android:1.1.1")
+    //Important: Below dependencies must be defined for Selfie/Government ID document upload on S3
+    implementation 'org.bitbucket.b_c:jose4j:0.9.5'
+    //Important: Below dependencies should be defined for Selfie Liveness feature
+    implementation 'com.google.protobuf:protobuf-javalite:3.20.1'
+    implementation 'com.google.protobuf:protobuf-kotlin-lite:3.20.1'
 }
 
 configurations.implementation {
