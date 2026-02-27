@@ -35,10 +35,6 @@ If you haven't done so already, clone or download the [PingOne Verify SDK for An
 
     * PingOneVerify-3.1.4.aar
 
-    * blinkid-core.aar
-
-    * blinkid-ux.aar
-
     * iad.aar
 
 2. Add the following to your module level `build.gradle` file to include the dependencies in your module:
@@ -52,6 +48,8 @@ dependencies {
 3. Because these components are loaded locally, you must also include the SDK's dependencies in the configuration to compile and run it.
 ```
 dependencies {
+    implementation 'com.microblink:blinkid-core:7.6.1'
+    implementation 'com.microblink:blinkid-ux:7.6.1'
 
     implementation 'androidx.activity:activity-ktx:1.7.0'
     implementation 'androidx.fragment:fragment-ktx:1.5.6'

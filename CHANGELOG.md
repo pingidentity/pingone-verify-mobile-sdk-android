@@ -1,5 +1,14 @@
 # Changelog
 
+## v3.1.4 - February 26th, 2026
+
+### Fixed
+
+- Microblink document payload handling fixes
+- Microblink SDK defined in build.gradle instead of .aar dependency
+
+# Changelog
+
 ## v3.1.3 - February 24th, 2026
 
 ### Fixed
