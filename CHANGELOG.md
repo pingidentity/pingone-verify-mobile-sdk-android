@@ -1,5 +1,13 @@
 # Changelog
 
+## v3.1.5 - March 19th, 2026
+
+### Fixed
+
+- NavigationBar color handling fixed
+
+# Changelog
+
 ## v3.1.4 - February 26th, 2026
 
 ### Fixed
