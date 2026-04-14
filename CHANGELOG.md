@@ -1,5 +1,13 @@
 # Changelog
 
+## v3.1.6 - April 15th, 2026
+
+### Fixed
+
+- License updated to restore selfie capture functionality
+
+# Changelog
+
 ## v3.1.5 - March 19th, 2026
 
 ### Fixed
