@@ -1,5 +1,14 @@
 # Changelog
 
+## v2.3.4 - November 8th, 2025
+
+### Fixed
+
+- AppEvent missing events logged
+- Localization text issues fixed
+- Branding theme bug fixes
+- UI/UX Improvements
+
 ## v2.3.3 - October 29th, 2025
 
 ### Fixed
