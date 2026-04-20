@@ -1,8 +1,14 @@
 # Changelog
 
+## v3.1.0 - December 20th, 2025
+
+### Added
+
+- BlinkID Version changed to 7.6.1
+
 ## v3.0.1 - January 14th, 2026
 
-### Fixed
+### Hotfix
 
 - Indonesian Government ID expiry-date bug fixed
 
@@ -18,6 +24,16 @@
 - Retry UI: Redundant cancel button causing DocumentSubmissionError has been removed
 - Support for the legacy selfieCaptureSettings has been discontinued.
 - UI/UX Improvements
+
+## v2.3.7 - April 15th, 2026
+
+### Hotfix
+
+- License updated to restore selfie capture functionality
+
+### Fixed
+
+- Crash due to license issue in Selfie capture is fixed
 
 ## v2.3.6 - November 29th, 2025
 
