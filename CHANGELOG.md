@@ -2,9 +2,13 @@
 
 ## v2.3.7 - April 15th, 2026
 
-### Fixed
+### Hotfix
 
 - License updated to restore selfie capture functionality
+
+### Fixed
+
+- Crash due to license issue in Selfie capture is fixed
 
 ## v2.3.6 - November 29th, 2025
 
