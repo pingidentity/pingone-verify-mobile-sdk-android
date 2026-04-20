@@ -1,11 +1,5 @@
 # Changelog
 
-## v3.0.1 - January 14th, 2026
-
-### Fixed
-
-- Indonesian Government ID expiry-date bug fixed
-
 ## v3.0.0 - December 15th, 2025
 
 ### Added
@@ -18,6 +12,12 @@
 - Retry UI: Redundant cancel button causing DocumentSubmissionError has been removed
 - Support for the legacy selfieCaptureSettings has been discontinued.
 - UI/UX Improvements
+
+## v2.3.7 - April 15th, 2026
+
+### Fixed
+
+- License updated to restore selfie capture functionality
 
 ## v2.3.6 - November 29th, 2025
 
