@@ -1,5 +1,16 @@
 # Changelog
 
+## v3.1.2 - February 12th, 2026
+
+### Fixed
+
+- MicroBlink payload updated
+- Document upload retry UX improvements
+- Bug-fixes & stability improvements
+- Removed redundant certificate dependency
+
+# Changelog
+
 ## v3.1.1 - January 13th, 2026
 
 ### Fixed
