@@ -1,8 +1,18 @@
 # Changelog
 
-## v3.0.1 - January 14th, 2026
+## v3.0.2 - April 21st, 2026
+
+### Hotfix
+
+- License updated to restore selfie capture functionality
 
 ### Fixed
+
+- Crash due to license issue in Selfie capture is fixed
+
+## v3.0.1 - January 14th, 2026
+
+### Hotfix
 
 - Indonesian Government ID expiry-date bug fixed
 
