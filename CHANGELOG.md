@@ -1,5 +1,13 @@
 # Changelog
 
+## v3.1.3 - February 24th, 2026
+
+### Fixed
+
+- IDR&D selfie optional-checks handled 
+
+# Changelog
+
 ## v3.1.2 - February 12th, 2026
 
 ### Fixed
