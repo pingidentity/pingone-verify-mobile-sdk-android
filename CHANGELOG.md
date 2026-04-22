@@ -1,5 +1,11 @@
 # Changelog
 
+## v3.1.6 - April 15th, 2026
+
+### Fixed
+
+- License updated to restore selfie capture functionality
+
 ## v3.1.4 - February 26th, 2026
 
 ### Fixed
@@ -7,15 +13,11 @@
 - Microblink document payload handling fixes
 - Microblink SDK defined in build.gradle instead of .aar dependency
 
-# Changelog
-
 ## v3.1.3 - February 24th, 2026
 
 ### Fixed
 
 - IDR&D selfie optional-checks handled 
-
-# Changelog
 
 ## v3.1.2 - February 12th, 2026
 
@@ -25,8 +27,6 @@
 - Document upload retry UX improvements
 - Bug-fixes & stability improvements
 - Removed redundant certificate dependency
-
-# Changelog
 
 ## v3.1.1 - January 13th, 2026
 
