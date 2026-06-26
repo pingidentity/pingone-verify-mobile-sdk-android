@@ -1,0 +1,192 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <import type="android.view.View" />
+
+        <import type="com.pingidentity.sdk.pingoneverify.sample.R" />
+
+        <variable
+            name="theme"
+            type="com.pingidentity.sdk.pingoneverify.neo.models.AppThemeResponse" />
+
+        <variable
+            name="languageProvider"
+            type="com.pingidentity.sdk.provider.language.LanguagePackProviderContract" />
+    </data>
+
+    <androidx.coordinatorlayout.widget.CoordinatorLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@{theme.cardColor}"
+            android:orientation="vertical">
+
+            <com.google.android.material.appbar.AppBarLayout
+                android:id="@+id/appBarLayout"
+                android:layout_width="match_parent"
+                android:layout_height="?attr/actionBarSize"
+                android:background="@{theme.navigationBarColor}"
+                app:elevation="0dp">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal"
+                    android:paddingHorizontal="16dp"
+                    app:image_url="@{theme.logo}">
+
+                    <ImageButton
+                        android:id="@+id/btn_cancel"
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        android:background="@null"
+                        android:src="@drawable/idv_back"
+                        app:icon_tint="@{theme}"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <TextView
+                        android:id="@+id/heading_text"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="@{theme.headingTextColor}"
+                        android:textSize="@dimen/text_size_navigation"
+                        android:visibility="gone"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        tools:visibility="visible" />
+
+                    <ImageView
+                        android:id="@+id/heading_logo"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        app:layout_constraintDimensionRatio="1:1"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+            </com.google.android.material.appbar.AppBarLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/title_divider_thickness"
+                android:background="@color/title_divider"
+                android:visibility="@{(theme.navigationBarColorRaw == theme.cardColorRaw) ? View.GONE : View.VISIBLE}" />
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/root_view"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@{theme.cardColor}"
+                android:paddingHorizontal="16dp"
+                android:visibility="gone"
+                tools:visibility="visible">
+
+                <TextView
+                    android:id="@+id/tv_check_clear"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="32dp"
+                    android:textColor="@{theme.bodyTextColor}"
+                    android:textSize="@dimen/text_size_title"
+                    app:languageProvider="@{languageProvider}"
+                    app:resourceId="@{R.string.sdk_data_check_clear}"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent" />
+
+                <TextView
+                    android:id="@+id/tv_check_readable"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@{theme.bodyTextColor}"
+                    android:textSize="@dimen/text_size_title"
+                    app:languageProvider="@{languageProvider}"
+                    app:resourceId="@{R.string.sdk_data_check_readable}"
+                    app:layout_constraintTop_toBottomOf="@id/tv_check_clear"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_horizontal"
+                    android:orientation="vertical"
+                    android:padding="16dp"
+                    app:layout_constrainedHeight="true"
+                    app:layout_constraintTop_toBottomOf="@+id/tv_check_readable"
+                    app:layout_constraintBottom_toTopOf="@+id/btn_check_confirm"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent">
+
+                    <ImageView
+                        android:id="@+id/iv_document_front"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:maxHeight="@dimen/upload_image_height" />
+
+                    <ImageView
+                        android:id="@+id/iv_document_back"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:layout_marginTop="8dp"
+                        android:maxHeight="@dimen/upload_image_height"
+                        android:visibility="gone"
+                        tools:visibility="visible" />
+
+                </LinearLayout>
+
+                <com.pingidentity.sdk.pingoneverify.ui.views.IDVButton
+                    android:id="@+id/btn_check_confirm"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:languageProvider="@{languageProvider}"
+                    app:resourceId="@{R.string.sdk_data_check_confirm}"
+                    android:textAllCaps="false"
+                    android:textSize="@dimen/text_size_button"
+                    android:layout_marginBottom="16dp"
+                    app:background_appearance="@{theme.solidButtonAppearance.backgroundColor}"
+                    app:border_appearance="@{theme.solidButtonAppearance.borderColor}"
+                    app:text_appearance="@{theme.solidButtonAppearance.textColor}"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintBottom_toTopOf="@+id/btn_check_retry" />
+
+                <com.pingidentity.sdk.pingoneverify.ui.views.IDVButton
+                    android:id="@+id/btn_check_retry"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="8dp"
+                    app:languageProvider="@{languageProvider}"
+                    app:resourceId="@{R.string.sdk_data_check_retake}"
+                    android:textAllCaps="false"
+                    android:textSize="@dimen/text_size_button"
+                    app:background_appearance="@{theme.borderedButtonAppearance.backgroundColor}"
+                    app:border_appearance="@{theme.borderedButtonAppearance.borderColor}"
+                    app:text_appearance="@{theme.borderedButtonAppearance.textColor}"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintVertical_bias="0.99" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </LinearLayout>
+
+    </androidx.coordinatorlayout.widget.CoordinatorLayout>
+</layout>

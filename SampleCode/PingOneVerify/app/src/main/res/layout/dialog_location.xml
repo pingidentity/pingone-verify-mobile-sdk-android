@@ -1,0 +1,191 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <import type="android.view.View" />
+
+        <import type="com.pingidentity.sdk.pingoneverify.sample.R" />
+
+        <variable
+            name="theme"
+            type="com.pingidentity.sdk.pingoneverify.neo.models.AppThemeResponse" />
+
+        <variable
+            name="languageProvider"
+            type="com.pingidentity.sdk.provider.language.LanguagePackProviderContract" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@{theme.cardColor}">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@{theme.cardColor}"
+            android:orientation="vertical">
+
+            <com.google.android.material.appbar.AppBarLayout
+                android:id="@+id/appBarLayout"
+                android:layout_width="match_parent"
+                android:layout_height="?attr/actionBarSize"
+                android:background="@{theme.navigationBarColor}"
+                app:elevation="0dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    app:image_url="@{theme.logo}">
+
+                    <ImageButton
+                        android:id="@+id/btn_cancel"
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        android:background="@null"
+                        android:src="@drawable/idv_cancel"
+                        app:icon_tint="@{theme}"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <TextView
+                        android:id="@+id/heading_text"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="@{theme.headingTextColor}"
+                        android:textSize="@dimen/text_size_navigation"
+                        android:visibility="gone"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        tools:visibility="visible" />
+
+                    <ImageView
+                        android:id="@+id/heading_logo"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        app:layout_constraintDimensionRatio="1:1"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+            </com.google.android.material.appbar.AppBarLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/title_divider_thickness"
+                android:background="@color/title_divider"
+                android:visibility="@{(theme.navigationBarColorRaw == theme.cardColorRaw) ? View.GONE : View.VISIBLE}" />
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/view_layout"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:orientation="vertical"
+                android:paddingHorizontal="36dp"
+                android:paddingBottom="36dp">
+
+                <ImageView
+                    android:id="@+id/layout_ic_container"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="32dp"
+                    android:gravity="center"
+                    android:orientation="horizontal"
+                    android:scaleType="fitCenter"
+                    android:src="@drawable/idv_location"
+                    app:logo_tint="@{theme}"
+                    app:layout_constraintBottom_toTopOf="@+id/txt_title"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHeight_max="250dp"
+                    app:layout_constraintHeight_min="200dp"
+                    app:layout_constraintHeight_percent=".1"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/txt_time_remaining" />
+
+                <TextView
+                    android:id="@+id/txt_title"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="36dp"
+                    android:layout_marginBottom="8dp"
+                    android:textColor="@{theme.headingTextColor}"
+                    android:textSize="@dimen/text_size_title"
+                    android:text="@string/sdk_locationCapture_header_location"
+                    app:layout_constraintBottom_toTopOf="@+id/txt_instruction"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHeight_percent=".05"
+                    app:layout_constraintStart_toStartOf="parent" />
+
+                <TextView
+                    android:id="@+id/txt_instruction"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="32dp"
+                    android:textColor="@{theme.bodyTextColor}"
+                    android:textSize="@dimen/text_size_subtitle"
+                    android:text="@string/sdk_locationCapture_description_location"
+                    app:layout_constraintBottom_toTopOf="@+id/btn_capture"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent" />
+
+                <com.pingidentity.sdk.pingoneverify.ui.views.IDVButton
+                    android:id="@+id/btn_capture"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="8dp"
+                    app:languageProvider="@{languageProvider}"
+                    app:resourceId="@{R.string.sdk_dataCapture_button}"
+                    android:textAllCaps="false"
+                    android:textSize="@dimen/text_size_button"
+                    app:background_appearance="@{theme.solidButtonAppearance.backgroundColor}"
+                    app:border_appearance="@{theme.solidButtonAppearance.borderColor}"
+                    app:layout_constraintBottom_toTopOf="@+id/btn_skip"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:text_appearance="@{theme.solidButtonAppearance.textColor}" />
+
+                <com.pingidentity.sdk.pingoneverify.ui.views.IDVButton
+                    android:id="@+id/btn_skip"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:languageProvider="@{languageProvider}"
+                    app:resourceId="@{R.string.sdk_skip}"
+                    android:textAllCaps="false"
+                    android:textSize="@dimen/text_size_button"
+                    app:background_appearance="@{theme.borderedButtonAppearance.backgroundColor}"
+                    app:border_appearance="@{theme.borderedButtonAppearance.borderColor}"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/txt_instruction"
+                    app:layout_constraintVertical_bias="1.0"
+                    app:text_appearance="@{theme.borderedButtonAppearance.textColor}" />
+
+                <TextView
+                    android:id="@+id/txt_time_remaining"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@{theme.bodyTextColor}"
+                    android:layout_marginTop="@dimen/timer_marginT"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </LinearLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>

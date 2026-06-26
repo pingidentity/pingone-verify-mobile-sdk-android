@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <import type="com.pingidentity.sdk.pingoneverify.sample.R" />
+
+        <variable
+            name="theme"
+            type="com.pingidentity.sdk.pingoneverify.neo.models.AppThemeResponse" />
+
+        <variable
+            name="languageProvider"
+            type="com.pingidentity.sdk.provider.language.LanguagePackProviderContract" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@{theme.cardColor}"
+        android:paddingHorizontal="16dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@{theme.bodyTextColor}"
+            android:textSize="@dimen/text_size_subtitle"
+            android:layout_marginBottom="8dp"
+            app:languageProvider="@{languageProvider}"
+            app:resourceId="@{R.string.sdk_data_processing}"
+            app:layout_constraintBottom_toTopOf="@+id/guideline"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_percent="0.5" />
+
+        <View
+            android:id="@+id/progress1"
+            android:layout_width="@dimen/upload_progress_dot"
+            android:layout_height="@dimen/upload_progress_dot"
+            android:background="@drawable/shape_progress"
+            android:backgroundTint="@{theme.solidButtonAppearance.backgroundColor}"
+            android:layout_marginRight="8dp"
+            app:layout_constraintTop_toTopOf="@+id/progress2"
+            app:layout_constraintRight_toLeftOf="@+id/progress2"
+            tools:alpha="0.2" />
+
+        <View
+            android:id="@+id/progress2"
+            android:layout_width="@dimen/upload_progress_dot"
+            android:layout_height="@dimen/upload_progress_dot"
+            android:background="@drawable/shape_progress"
+            android:backgroundTint="@{theme.solidButtonAppearance.backgroundColor}"
+            android:layout_marginTop="8dp"
+            app:layout_constraintTop_toBottomOf="@+id/guideline"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            tools:alpha="0.5" />
+
+        <View
+            android:id="@+id/progress3"
+            android:layout_width="@dimen/upload_progress_dot"
+            android:layout_height="@dimen/upload_progress_dot"
+            android:background="@drawable/shape_progress"
+            android:backgroundTint="@{theme.solidButtonAppearance.backgroundColor}"
+            android:layout_marginLeft="8dp"
+            app:layout_constraintTop_toTopOf="@+id/progress2"
+            app:layout_constraintLeft_toRightOf="@+id/progress2" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

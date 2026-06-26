@@ -99,8 +99,8 @@
 -dontwarn com.squareup.moshi.**
 -keep class com.google.code.gson.** { *; }
 -dontwarn com.google.code.gson.**
--keep class net.idrnd.voicesdk.** { *; }
--dontwarn net.idrnd.voicesdk.**
+-keep class com.appmattus.certificatetransparency.** {*;}
+-dontwarn com.appmattus.certificatetransparency.**
 -dontwarn org.conscrypt.**
 -dontwarn org.bouncycastle.**
 -dontwarn org.openjsse.**

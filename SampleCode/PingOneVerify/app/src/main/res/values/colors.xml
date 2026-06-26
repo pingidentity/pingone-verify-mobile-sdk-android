@@ -1,19 +1,44 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+
+    <color name="colorPrimary">#008577</color>
+    <color name="colorPrimaryDark">#00574B</color>
+    <color name="colorAccent">#D81B60</color>
+
     <color name="purple_200">#FFBB86FC</color>
     <color name="purple_500">#FF6200EE</color>
     <color name="purple_700">#FF3700B3</color>
     <color name="teal_200">#FF03DAC5</color>
     <color name="teal_700">#FF018786</color>
-    <color name="black">#FF000000</color>
-    <color name="white">#FFFFFFFF</color>
-    <color name="app_color">#458EBF</color>
-    <color name="wait_overlay_bg">#33D3D3D3</color>
+    <color name="app_color">#008577</color>
 
-    <color name="idv_progress_color">#4462ED</color>
-    <color name="idv_document_upload_retry">#253746</color>
-    <color name="idv_document_upload_error">#A31300</color>
-    <color name="idv_selfie_guideline_default">#88888888</color>
-    <color name="idv_selfie_guideline_success">#00FF00</color>
-    <color name="idv_selfie_guideline_error">#A31300</color>
+    <color name="black">@android:color/black</color>
+    <color name="white">@android:color/white</color>
+    <color name="transparent">@android:color/transparent</color>
+
+    <color name="alpha_red">#CCFF0000</color>
+    <color name="alpha_grey">#88888888</color>
+    <color name="error_toast_background_color">#FFEBE7</color>
+    <color name="green">#00FF00</color>
+
+    <color name="idv_document_upload_retry">@color/alpha_grey</color>
+    <color name="idv_document_upload_error">@color/alpha_red</color>
+
+    <color name="button_green_disabled">#7FAB7E</color>
+    <color name="button_green_tapped">#204B19</color>
+    <color name="button_green">#2CB822</color>
+
+    <color name="button_blue_disabled">#BEBEBE</color>
+    <color name="button_blue_tapped">#0960FE</color>
+    <color name="button_blue">#3376AB</color>
+
+    <color name="button_confirm">@color/button_green</color>
+    <color name="button_confirm_disabled">@color/button_green_disabled</color>
+    <color name="button_confirm_tapped">@color/button_green_tapped</color>
+    <color name="button_capture_blue">#448bbe</color>
+    <color name="wait_overlay_bg">#33D3D3D3</color>
+    <color name="permission_error">#E86900</color>
+    <color name="title_divider">@color/alpha_grey</color>
+    <color name="idv_selfie_close">@color/white</color>
+
 </resources>

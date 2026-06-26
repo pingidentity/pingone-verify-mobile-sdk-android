@@ -8,24 +8,6 @@
     <string name="idv_documentCapture_header_governmentId">Scan your ID</string>
     <string name="idv_documentCapture_description_governmentId">Scan your government-issued ID. Make sure your camera is clean and the ID is clearly visible.</string>
 
-    //Voice
-    <string name="idv_documentCapture_header_voice">Verify By Voice</string>
-    <string name="idv_documentCapture_description_voice">Use your voice to verify your identity.</string>
-    <string name="idv_voiceCapture_instruction">Tap record and say the following text:</string>
-    <string name="idv_voiceCapture_textDependent_placeholder">Use your voice to verify your identity.</string>
-    <string name="idv_voiceCapture_title">Record Your Voice</string>
-    <string name="idv_voiceCapture_button">Tap to Record</string>
-    <string name="idv_voiceCapture_permission_error">Can\'t continue without permission</string>
-    <string name="idv_voice_next_record">Next Record</string>
-    <string name="idv_voice_complete">Voice Recording is Now Complete</string>
-    <string name="idv_voiceCapture_error">Recording Error</string>
-    <string name="idv_voice_result">%1$d of %2$d</string>
-    <string name="idv_voice_step_complete">Complete</string>
-    <string name="idv_voice_speech_length_error">Recorded speech was too short to process.\nPlease try again</string>
-    <string name="idv_voice_speech_noisy_error">Recording Unclear</string>
-    <string name="idv_voice_speech_reverberation_error">Recording Unclear</string>
-    <string name="idv_voice_speech_unknown_error">Undetermined Error.\nPlease try again</string>
-
     //Selfie
     <string name="idv_documentCapture_header_selfie">Take a Selfie</string>
     <string name="idv_documentCapture_description_selfie">Make sure you can see your face in the oval.</string>
@@ -80,6 +62,7 @@
 
     <string name="idv_otp_incorrect">You entered an incorrect code. Please try again.</string>
     <string name="idv_otp_fail_error">Error confirming your verification code</string>
+    <string name="idv_internet_error">Unable to connect to internet.\nPlease try again</string>
 
     //IDRnD FaceLive
     <string name="idv_selfie_position_face">Make sure your face is clearly visible in the camera.</string>
@@ -91,6 +74,11 @@
     <string name="idv_selfie_move_farther_camera">Move the camera farther away from your face and try again.</string>
     <string name="idv_selfie_hold_device_still">Please hold your device still</string>
     <string name="idv_selfie_face_occluded">Remove any masks, hats, or anything covering your face from the camera.</string>
+    <string name="idv_selfie_dark_image">Move to brighter lighting</string>
+    <string name="idv_selfie_eyes_closed">Keep eyes open</string>
+    <string name="idv_selfie_face_blurry">Hold camera steady</string>
+    <string name="idv_selfie_mouth_open">Keep mouth closed</string>
+    <string name="idv_selfie_sunglasses_detected">Remove glasses</string>
 
     //Blink ID
     <string name="mb_blinkid_front_instructions">Scan or upload an image of the front of your ID</string>

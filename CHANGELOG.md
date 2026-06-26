@@ -1,5 +1,13 @@
 # Changelog
 
+## v4.0.0 - June 27th, 2026
+
+Major release with a redesigned public API and open-source VerifyUI. Contains breaking changes.
+
+- For integration guides and quick starts, see [`README.md`](./README.md).
+- For a full list of API changes and upgrade steps, see [`MIGRATION.md`](./MIGRATION.md).
+- For a complete public API reference, see [`Class Reference.md`](./Class%20Reference.md).
+
 ## v3.2.0 - April 28th, 2026
 
 ### Added
