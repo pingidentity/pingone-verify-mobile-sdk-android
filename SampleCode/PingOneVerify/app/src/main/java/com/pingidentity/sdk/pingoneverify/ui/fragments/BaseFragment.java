@@ -38,7 +38,7 @@ import com.pingidentity.sdk.pingoneverify.neo.models.DocumentClass;
 import com.pingidentity.sdk.pingoneverify.sample.R;
 import com.pingidentity.sdk.pingoneverify.ui.utils.DateFormatter;
 import com.pingidentity.sdk.pingoneverify.ui.utils.UiUtil;
-import com.pingidentity.sdk.pingoneverify.utils.DocumentSubmissionTimer;
+import com.pingidentity.sdk.pingoneverify.utils.VerifySessionTimer;
 import com.pingidentity.sdk.pingoneverify.utils.PingOneVerifyClientUtils;
 import com.pingidentity.sdk.provider.language.LanguagePackProviderContract;
 import com.pingidentity.sdk.provider.language.ext.FormatArgs;
@@ -121,7 +121,7 @@ public class BaseFragment extends Fragment {
         if (PingOneVerifyClientUtils.isInternetAvailable()) {
             return true;
         }
-        Toast.makeText(requireContext(), getLanguageString(R.string.sdk_internet_error), Toast.LENGTH_SHORT).show();
+        Toast.makeText(requireContext(), getLanguageString(R.string.idv_internet_error), Toast.LENGTH_SHORT).show();
         return false;
     }
 
@@ -162,17 +162,17 @@ public class BaseFragment extends Fragment {
         AlertDialog.Builder builder = new AlertDialog.Builder(requireContext());
         switch (type) {
             case CAMERA:
-                builder.setTitle(getLanguageString(R.string.sdk_permission_camera_title));
-                builder.setMessage(getLanguageString(R.string.sdk_permission_dialog_message_camera));
+                builder.setTitle(getLanguageString(R.string.idv_permission_camera_title));
+                builder.setMessage(getLanguageString(R.string.idv_permission_dialog_message_camera));
                 break;
             case LOCATION:
-                builder.setTitle(getLanguageString(R.string.sdk_permission_location_title));
-                builder.setMessage(getLanguageString(R.string.sdk_permission_dialog_message_location));
+                builder.setTitle(getLanguageString(R.string.idv_permission_location_title));
+                builder.setMessage(getLanguageString(R.string.idv_permission_dialog_message_location));
                 break;
         }
         builder.setCancelable(false);
-        builder.setNegativeButton(getLanguageString(R.string.sdk_data_cancel), (d, i) -> mPermissionListener.onPermissionDenied());
-        int positiveTextId = canRetry ? R.string.sdk_data_retry : R.string.sdk_permission_dialog_settings;
+        builder.setNegativeButton(getLanguageString(R.string.idv_data_cancel), (d, i) -> mPermissionListener.onPermissionDenied());
+        int positiveTextId = canRetry ? R.string.idv_data_retry : R.string.idv_permission_dialog_settings;
         builder.setPositiveButton(getLanguageString(positiveTextId), (d, i) -> {
             if (canRetry) {
                 launchPermission(type);
@@ -228,7 +228,7 @@ public class BaseFragment extends Fragment {
 
     private void cancelAndClose() {
         if (mCoordinator != null) mCoordinator.endVerification();
-        DocumentSubmissionTimer.getInstance().stop();
+        VerifySessionTimer.getInstance().getSessionTimer().stop();
     }
 
     // --- Document type ---
@@ -252,8 +252,8 @@ public class BaseFragment extends Fragment {
 
     public String getTimeRemainingString(Integer time, Integer label) {
         if (time == null) return "";
-        String minLabel = DateFormatter.INSTANCE.getMinutes(requireContext(), mLanguageProvider, time, R.string.sdk_time_min);
-        String secLabel = DateFormatter.INSTANCE.getSeconds(requireContext(), mLanguageProvider, time, R.string.sdk_time_sec);
+        String minLabel = DateFormatter.INSTANCE.getMinutes(requireContext(), mLanguageProvider, time, R.string.idv_time_min);
+        String secLabel = DateFormatter.INSTANCE.getSeconds(requireContext(), mLanguageProvider, time, R.string.idv_time_sec);
         return DateFormatter.INSTANCE.getTimeDifferenceFormatted(requireContext(), mLanguageProvider, minLabel, secLabel, label);
     }
 

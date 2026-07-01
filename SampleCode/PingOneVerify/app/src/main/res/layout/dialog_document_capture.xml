@@ -130,7 +130,7 @@
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintHeight_percent=".05"
                         app:layout_constraintStart_toStartOf="parent"
-                        tools:text="@string/sdk_documentCapture_header_selfie" />
+                        tools:text="@string/idv_documentCapture_header_selfie" />
 
                     <TextView
                         android:id="@+id/txt_instruction"
@@ -142,7 +142,7 @@
                         app:layout_constraintBottom_toTopOf="@+id/btn_capture"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
-                        tools:text="@string/sdk_documentCapture_description_selfie" />
+                        tools:text="@string/idv_documentCapture_description_selfie" />
 
                     <com.pingidentity.sdk.pingoneverify.ui.views.IDVButton
                         android:id="@+id/btn_capture"
@@ -150,7 +150,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginBottom="8dp"
                         app:languageProvider="@{languageProvider}"
-                        app:resourceId="@{R.string.sdk_dataCapture_button}"
+                        app:resourceId="@{R.string.idv_dataCapture_button}"
                         android:textAllCaps="false"
                         android:textSize="@dimen/text_size_button"
                         app:background_appearance="@{theme.solidButtonAppearance.backgroundColor}"
@@ -165,7 +165,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         app:languageProvider="@{languageProvider}"
-                        app:resourceId="@{R.string.sdk_skip}"
+                        app:resourceId="@{R.string.idv_skip}"
                         android:textAllCaps="false"
                         android:textSize="@dimen/text_size_button"
                         app:background_appearance="@{theme.borderedButtonAppearance.backgroundColor}"

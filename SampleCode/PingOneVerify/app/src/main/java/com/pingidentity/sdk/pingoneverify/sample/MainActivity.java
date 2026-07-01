@@ -1,6 +1,8 @@
 package com.pingidentity.sdk.pingoneverify.sample;
 
 import android.app.AlertDialog;
+import com.pingidentity.sdk.pingoneverify.neo.errors.DocumentSubmissionError;
+import com.pingidentity.sdk.pingoneverify.ui.providers.VerifyHelperCallback;
 import android.os.Bundle;
 
 import androidx.annotation.Nullable;
@@ -13,7 +15,7 @@ import com.pingidentity.sdk.pingoneverify.sample.fragments.MainFragment;
 import java.util.List;
 import java.util.stream.Collectors;
 
-public class MainActivity extends FragmentActivity {
+public class MainActivity extends FragmentActivity implements VerifyHelperCallback {
 
     public static final String TAG = MainActivity.class.getName();
 
@@ -46,17 +48,30 @@ public class MainActivity extends FragmentActivity {
                 .commit();
     }
 
-    public void showCompletedScreen() {
+    @Override
+    public void onVerificationCompleted() {
         getSupportFragmentManager().beginTransaction().replace(R.id.frame_layout, new CompletedFragment())
                 .addToBackStack(null)
                 .commit();
     }
 
-    public void showError(String message) {
+    @Override
+    public void onVerificationFailed(DocumentSubmissionError error) {
+        moveToMainFragment();
+        if (error instanceof DocumentSubmissionError.UserCanceledError) {
+            // Skip showing error
+        } else {
+            showError((error != null) ? error.getLocalizedMessage() : null);
+        }
+    }
+
+    public void showError(@Nullable String message) {
+        String errorTitle = "Verification Failed";
         runOnUiThread(() -> new AlertDialog.Builder(this)
-                .setTitle("Verification Failed")
-                .setMessage(message)
+                .setTitle(errorTitle)
+                .setMessage((message != null) ? errorTitle : errorTitle)
                 .setPositiveButton(android.R.string.ok, (d, w) -> moveToMainFragment())
                 .show());
     }
+
 }

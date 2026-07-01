@@ -12,7 +12,6 @@ import com.pingidentity.sdk.pingoneverify.neo.contracts.VerifyTransactionCoordin
 import com.pingidentity.sdk.pingoneverify.neo.contracts.VerifyTransactionCoordinatorDelegate;
 import com.pingidentity.sdk.pingoneverify.neo.errors.DocumentSubmissionError;
 import com.pingidentity.sdk.pingoneverify.neo.settings.OtpCaptureSettings;
-import com.pingidentity.sdk.pingoneverify.sample.MainActivity;
 import com.pingidentity.sdk.pingoneverify.neo.errors.IdvError;
 import com.pingidentity.sdk.pingoneverify.neo.models.AppThemeResponse;
 import com.pingidentity.sdk.pingoneverify.neo.models.RetryFeedback;
@@ -37,7 +36,8 @@ import java.lang.ref.WeakReference;
  */
 public class PingOneVerifyHelper implements VerifyTransactionCoordinatorDelegate {
 
-    private WeakReference<FragmentActivity> mActivityRef = new WeakReference<>(null);
+    private WeakReference<FragmentActivity> mActivityRef;
+    private WeakReference<VerifyHelperCallback> mCallbackRef;
     private final DocumentCapturePresenter documentCapturePresenter = new DocumentCapturePresenter();
     private PingOneVerifyClient mClient;
 
@@ -45,8 +45,9 @@ public class PingOneVerifyHelper implements VerifyTransactionCoordinatorDelegate
      * Constructs the helper and begins async initialisation (URL fetch, language pack, app theme).
      * Call {@link #start()} once {@code onSuccess} has fired and the activity UI is ready.
      */
-    public PingOneVerifyHelper(MainActivity activity, String verificationUrl) {
+    public PingOneVerifyHelper(FragmentActivity activity, String verificationUrl, VerifyHelperCallback callback) {
         mActivityRef = new WeakReference<>(activity);
+        mCallbackRef = new WeakReference<>(callback);
         documentCapturePresenter.attach(activity);
         new PingOneVerifyClient.Builder(verificationUrl, this)
                 .setContext(activity)
@@ -150,12 +151,11 @@ public class PingOneVerifyHelper implements VerifyTransactionCoordinatorDelegate
     public void shouldCaptureDocument(VerifyTransactionCoordinator coordinator,
                                       DocumentCaptureSettings settings) {
         runOnMainThread(() -> {
-            documentCapturePresenter.hideWaitOverlay(coordinator);
+            documentCapturePresenter.hideWaitOverlay();
             switch (settings.getDocumentType()) {
                 case GEOLOCATION -> documentCapturePresenter.captureLocation(coordinator, (LocationCaptureSettings) settings);
                 case OTP -> documentCapturePresenter.captureOtp(coordinator, (OtpCaptureSettings) settings);
-                case EMAIL, PHONE -> documentCapturePresenter.captureDocument(coordinator, settings);
-                case SELFIE, GOVERNMENT_ID -> documentCapturePresenter.captureDocument(coordinator, settings);
+                case EMAIL, PHONE, SELFIE, GOVERNMENT_ID -> documentCapturePresenter.captureDocument(coordinator, settings);
                 default -> { if (coordinator instanceof CaptureResultReceiver) {
                     ((CaptureResultReceiver) coordinator).captureError(
                         new DocumentSubmissionError.DocumentCaptureError("unsupported_type",
@@ -173,7 +173,7 @@ public class PingOneVerifyHelper implements VerifyTransactionCoordinatorDelegate
                 documentCapturePresenter.showGeolocationRetry(coordinator);
                 return;
             }
-            documentCapturePresenter.hideWaitOverlay(coordinator);
+            documentCapturePresenter.hideWaitOverlay();
             documentCapturePresenter.onShowUploadRetry(
                 coordinator,
                 message,
@@ -200,24 +200,22 @@ public class PingOneVerifyHelper implements VerifyTransactionCoordinatorDelegate
     @Override
     public void didCompleteSubmission(VerifyTransactionCoordinator coordinator) {
         FragmentActivity activity = mActivityRef.get();
+        VerifyHelperCallback callback = mCallbackRef != null ? mCallbackRef.get() : null;
         if (activity == null) return;
         activity.runOnUiThread(() -> {
             closeNavigation();
-            if (activity instanceof MainActivity) {
-                ((MainActivity) activity).showCompletedScreen();
-            }
+            if (callback != null) callback.onVerificationCompleted();
         });
     }
 
     @Override
     public void didFailWith(@Nullable VerifyTransactionCoordinator coordinator, DocumentSubmissionError error) {
         FragmentActivity activity = mActivityRef.get();
+        VerifyHelperCallback callback = mCallbackRef != null ? mCallbackRef.get() : null;
         if (activity == null) return;
         activity.runOnUiThread(() -> {
             closeNavigation();
-            if (!(activity instanceof MainActivity)) return;
-            MainActivity mainActivity = (MainActivity) activity;
-            mainActivity.showError(error != null ? error.getLocalizedMessage() : "Verification failed");
+            if (callback != null) callback.onVerificationFailed(error);
         });
     }
 }

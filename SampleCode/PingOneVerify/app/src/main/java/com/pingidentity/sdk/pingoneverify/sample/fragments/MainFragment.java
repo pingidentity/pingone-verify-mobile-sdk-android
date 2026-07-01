@@ -59,7 +59,8 @@ public class MainFragment extends Fragment {
     private void startVerification(String verificationUrl) {
         setInProgress(true);
         if (!(getActivity() instanceof MainActivity)) return;
-        new PingOneVerifyHelper((MainActivity) getActivity(), verificationUrl);
+        MainActivity activity = (MainActivity) getActivity();
+        new PingOneVerifyHelper(activity, verificationUrl, activity);
     }
 
     /*

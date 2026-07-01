@@ -1,5 +1,12 @@
 # Changelog
 
+## v4.0.1 - July 1st, 2026
+
+### Fixed
+
+- Verify v4 SDK bug-fixes
+- IdCapture SDK dependency .pom file added
+
 ## v4.0.0 - June 27th, 2026
 
 Major release with a redesigned public API and open-source VerifyUI. Contains breaking changes.

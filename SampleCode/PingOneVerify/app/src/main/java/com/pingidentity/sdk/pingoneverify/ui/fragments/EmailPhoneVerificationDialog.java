@@ -30,7 +30,7 @@ import com.pingidentity.sdk.pingoneverify.neo.settings.EmailCaptureSettings;
 import com.pingidentity.sdk.pingoneverify.neo.settings.PhoneCaptureSettings;
 import com.pingidentity.sdk.pingoneverify.ui.UiConstants;
 import com.pingidentity.sdk.pingoneverify.ui.utils.BindingAdapters;
-import com.pingidentity.sdk.pingoneverify.utils.DocumentSubmissionTimer;
+import com.pingidentity.sdk.pingoneverify.utils.VerifySessionTimer;
 import com.pingidentity.sdk.pingoneverify.ui.utils.CountryUtil;
 import com.pingidentity.sdk.pingoneverify.utils.PingOneVerifyClientUtils;
 import com.pingidentity.sdk.provider.language.LanguagePackProviderContract;
@@ -59,10 +59,10 @@ public class EmailPhoneVerificationDialog extends BaseFragment {
 
     private Consumer<String> mOnSubmit;
 
-    private final DocumentSubmissionTimer.TimerObserver mTimerObserver =
-            new DocumentSubmissionTimer.TimerObserver() {
+    private final VerifySessionTimer.Timer.TimerObserver mTimerObserver =
+            new VerifySessionTimer.Timer.TimerObserver() {
                 @Override public void onTick(int millisRemaining) {
-                    if (mBinding != null) mBinding.txtTimeRemaining.setText(getTimeRemainingString(millisRemaining, R.string.sdk_timer_label));
+                    if (mBinding != null) mBinding.txtTimeRemaining.setText(getTimeRemainingString(millisRemaining, R.string.idv_timer_label));
                 }
                 @Override public void onFinish() {}
             };
@@ -85,7 +85,7 @@ public class EmailPhoneVerificationDialog extends BaseFragment {
         // Be sure to add the theme to the view
         mBinding.setTheme(mAppTheme);
         mBinding.setLanguageProvider(mLanguageProvider);
-        DocumentSubmissionTimer.getInstance().addObserver(mTimerObserver);
+        VerifySessionTimer.getInstance().getSessionTimer().addObserver(mTimerObserver);
         addAppEvents();
 
         setDocumentClass(mDocument);
@@ -111,7 +111,7 @@ public class EmailPhoneVerificationDialog extends BaseFragment {
     @Override
     public void onDestroyView() {
         super.onDestroyView();
-        DocumentSubmissionTimer.getInstance().removeObserver(mTimerObserver);
+        VerifySessionTimer.getInstance().getSessionTimer().removeObserver(mTimerObserver);
         // TODO: analytics — core concern, remove from ui
         // AppEvent stopAppEvent = new AppEvent(DATA_CAPTURE_STOP, mDocument.toString() + "_" + DateUtil.getCurrentDate());
         // TODO: analytics — core concern, remove from ui
@@ -194,8 +194,8 @@ public class EmailPhoneVerificationDialog extends BaseFragment {
     }
 
     private void setStateEmail() {
-        BindingAdapters.INSTANCE.setProviderText(mBinding.txtTitle, mLanguageProvider, R.string.sdk_emailCapture_title);
-        mBinding.btnCapture.setText(getLanguageString(R.string.sdk_emailCapture_button));
+        BindingAdapters.INSTANCE.setProviderText(mBinding.txtTitle, mLanguageProvider, R.string.idv_emailCapture_title);
+        mBinding.btnCapture.setText(getLanguageString(R.string.idv_emailCapture_button));
         mBinding.layoutIcContainer.setImageDrawable(AppCompatResources.getDrawable(requireContext(), R.drawable.idv_email));
         EmailCaptureSettings emailSettings = (EmailCaptureSettings) mSettings;
         String emailRequirementValue = emailSettings.getRequirementValue();
@@ -204,15 +204,15 @@ public class EmailPhoneVerificationDialog extends BaseFragment {
             mBinding.viewEmail.setVisibility(View.GONE);
             if (emailRequirementValue != null) {
                 setupTextType(emailRequirementValue);
-                mBinding.txtInstruction.setText(getLanguageString(R.string.sdk_emailCapture_description_value));
+                mBinding.txtInstruction.setText(getLanguageString(R.string.idv_emailCapture_description_value));
             } else if (emailRequirementOptions != null && !emailRequirementOptions.isEmpty()) {
                 setupSpinnerType(emailRequirementOptions);
-                mBinding.txtInstruction.setText(getLanguageString(R.string.sdk_emailCapture_description_option));
+                mBinding.txtInstruction.setText(getLanguageString(R.string.idv_emailCapture_description_option));
             }
         } else {
             setEditTypeEmail();
             setValidationListener(mBinding.edtDestination);
-            mBinding.txtInstruction.setText(getLanguageString(R.string.sdk_emailCapture_description));
+            mBinding.txtInstruction.setText(getLanguageString(R.string.idv_emailCapture_description));
         }
     }
 
@@ -221,8 +221,8 @@ public class EmailPhoneVerificationDialog extends BaseFragment {
         mCountriesList.stream().filter(
                 country -> country.getCode().equals(Constants.COUNTRY_CODE_DEFAULT)
         ).findFirst().ifPresent(this::updateCountry);
-        BindingAdapters.INSTANCE.setProviderText(mBinding.txtTitle, mLanguageProvider, R.string.sdk_phoneCapture_title);
-        mBinding.btnCapture.setText(getLanguageString(R.string.sdk_phoneCapture_button));
+        BindingAdapters.INSTANCE.setProviderText(mBinding.txtTitle, mLanguageProvider, R.string.idv_phoneCapture_title);
+        mBinding.btnCapture.setText(getLanguageString(R.string.idv_phoneCapture_button));
         mBinding.layoutIcContainer.setImageDrawable(AppCompatResources.getDrawable(requireContext(), R.drawable.idv_phone));
         mBinding.txtCountryCode.setOnClickListener(view -> {
             mCountryDialog = CountryPickerDialog.newInstance(mAppTheme, mLanguageProvider, mCountriesList, country -> {
@@ -239,15 +239,15 @@ public class EmailPhoneVerificationDialog extends BaseFragment {
             mBinding.viewEmail.setVisibility(View.GONE);
             if (phoneRequirementValue != null) {
                 setupTextType(phoneRequirementValue);
-                mBinding.txtInstruction.setText(getLanguageString(R.string.sdk_phoneCapture_description_value));
+                mBinding.txtInstruction.setText(getLanguageString(R.string.idv_phoneCapture_description_value));
             } else if (phoneRequirementOptions != null && !phoneRequirementOptions.isEmpty()) {
                 setupSpinnerType(phoneRequirementOptions);
-                mBinding.txtInstruction.setText(getLanguageString(R.string.sdk_phoneCapture_description_option));
+                mBinding.txtInstruction.setText(getLanguageString(R.string.idv_phoneCapture_description_option));
             }
         } else {
             setEditTypePhone();
             setValidationListener(mBinding.edtPhoneNumber);
-            mBinding.txtInstruction.setText(getLanguageString(R.string.sdk_phoneCapture_description));
+            mBinding.txtInstruction.setText(getLanguageString(R.string.idv_phoneCapture_description));
         }
     }
 

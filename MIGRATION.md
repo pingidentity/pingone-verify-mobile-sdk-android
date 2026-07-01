@@ -94,17 +94,45 @@ That's it for the built-in UI. The helper:
 
 ---
 
-## Module changes
+## Module / AAR changes
 
-| Module | Status |
-|---|---|
-| `:verify-core` | Required (no change) |
-| `:neo-interfaces` | Required (transitive via `:verify-core`, no change) |
-| `:language-provider` | Removed. Language pack fetching is now handled by this module automatically — no manual wiring needed. |
-| `:id-capture` | Depends on `blinkid-core.aar`. Required for government-ID capture steps. |
-| `:selfie-capture` | Depends on `iad.aar`. Required for selfie steps. |
-| `:location-provider` | Optional (unchanged). Required only for geolocation steps. |
-| `:geo-location` | **Removed.** Renamed to `:location-provider` — update your `build.gradle` dependency. |
+| Module | AAR | Status |
+|---|---|---|
+| `:verify-core` | `PingOneVerify-4.0.1.aar` | Required (no change) |
+| `:neo-interfaces` | `NeoInterfaces-4.0.1.aar` | Required (no change) |
+| `:language-provider` | — | Removed. Language pack fetching is now built into `PingOneVerify.aar` — no separate AAR or manual wiring needed. |
+| `:id-capture` | `IdCaptureProvider-4.0.1` (maven coordinates) | Required for government-ID capture. Must be declared via maven coordinates — see [AAR-based integration — dependency declaration change](#aar-based-integration--dependency-declaration-change). |
+| `:selfie-capture` | `SelfieCaptureProvider-4.0.1.aar` | Required for selfie steps. |
+| `:location-provider` | `GeoLocationProvider-4.0.1.aar` | Optional. Required only for geolocation steps. |
+| `:geo-location` | — | **Removed.** Replaced by `GeoLocationProvider.aar` — remove any reference to the old AAR. |
+
+---
+
+## AAR-based integration — dependency declaration change
+
+If you integrate via prebuilt AARs, the `IdCaptureProvider` dependency declaration has changed.
+
+**Before:**
+```groovy
+implementation files('path/to/SDK/IdCaptureProvider-4.0.0.aar')
+```
+
+**After:**
+```groovy
+// In root build.gradle — add the local maven repository
+allprojects {
+    repositories {
+        maven { url 'path/to/SDK/maven' }
+        google()
+        mavenCentral()
+    }
+}
+
+// In app build.gradle — use maven coordinates instead of files(...)
+implementation 'com.pingidentity.sdk.pingoneverify:IdCaptureProvider:4.0.1'
+```
+
+**Why this change is required:** `IdCaptureProvider` has transitive runtime dependencies (`blinkid-ux`, `microblink-ux`, Compose, `camera-video`, etc.) that cannot be bundled inside the AAR itself. The `.pom` file shipped alongside the AAR in `SDK/maven/` declares these dependencies so Gradle can resolve them automatically. Using `files(...)` bypasses POM resolution entirely and will cause a runtime crash (`BlinkID SDK not available`) when document scanning is initiated.
 
 ---
 
@@ -136,5 +164,6 @@ The default UI layer (previously shipped as a prebuilt AAR) is now compiled dire
 1. Replace `PingOneVerifyClient.Builder().setRootActivity(...).setQrString(...).build().startVerification(...)` with `new PingOneVerifyHelper(activity, verificationUrl)`. The helper starts the flow automatically.
 2. Implementations for `DocumentSubmissionListener`, `BackActionListener`, `DocumentCaptureListener` can be removed. For built-in UI, no new interface implementations are required — it is handled in `PingOneVerifyHelper`.
 3. Remove `.setUIAppearance(_)` if it was used. Configure the theme in the PingOne Admin Console. The SDK applies the server theme automatically.
-4. Update `:geo-location` to `:location-provider` in your `build.gradle`.
-5. Add `implementation project(':language-provider')` to enable remote language pack fetching.
+4. Replace any reference to the old geolocation AAR with `GeoLocationProvider-4.0.1.aar`.
+5. Remove any `language-provider` AAR or dependency — language pack fetching is now built into `PingOneVerify.aar`.
+6. Update `IdCaptureProvider` from a `files(...)` reference to maven coordinates — see [AAR-based integration — dependency declaration change](#aar-based-integration--dependency-declaration-change).

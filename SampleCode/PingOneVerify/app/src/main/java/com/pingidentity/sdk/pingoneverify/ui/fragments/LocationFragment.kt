@@ -11,7 +11,7 @@ import com.pingidentity.sdk.pingoneverify.neo.models.DocumentClass
 import com.pingidentity.sdk.pingoneverify.sample.R
 import com.pingidentity.sdk.pingoneverify.sample.databinding.DialogLocationBinding
 import com.pingidentity.sdk.pingoneverify.neo.settings.LocationCaptureSettings
-import com.pingidentity.sdk.pingoneverify.utils.DocumentSubmissionTimer
+import com.pingidentity.sdk.pingoneverify.utils.VerifySessionTimer
 import com.pingidentity.sdk.provider.language.LanguagePackProviderContract
 
 /**
@@ -28,16 +28,16 @@ class LocationFragment(
     private lateinit var binding: DialogLocationBinding
 
 
-    private val mTimerObserver = object : DocumentSubmissionTimer.TimerObserver {
+    private val mTimerObserver = object : VerifySessionTimer.Timer.TimerObserver {
         override fun onTick(millisRemaining: Int) {
-            binding?.txtTimeRemaining?.text = getTimeRemainingString(millisRemaining, R.string.sdk_timer_label)
+            binding?.txtTimeRemaining?.text = getTimeRemainingString(millisRemaining, R.string.idv_timer_label)
         }
         override fun onFinish() {}
     }
 
     override fun onDestroyView() {
         super.onDestroyView()
-        DocumentSubmissionTimer.getInstance().removeObserver(mTimerObserver)
+        VerifySessionTimer.getInstance().getSessionTimer().removeObserver(mTimerObserver)
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
@@ -49,7 +49,7 @@ class LocationFragment(
             btnCancel.setOnClickListener(this@LocationFragment)
             btnSkip.setOnClickListener(this@LocationFragment)
             btnSkip.visibility = if (captureSettings.isOptional) View.VISIBLE else View.GONE
-            DocumentSubmissionTimer.getInstance().addObserver(mTimerObserver)
+            VerifySessionTimer.getInstance().getSessionTimer().addObserver(mTimerObserver)
         }
         return binding.root
     }

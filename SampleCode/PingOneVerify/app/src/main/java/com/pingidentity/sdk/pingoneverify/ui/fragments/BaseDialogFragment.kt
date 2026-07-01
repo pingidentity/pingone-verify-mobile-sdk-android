@@ -69,8 +69,8 @@ open class BaseDialogFragment(
 
     protected fun getTimeRemainingString(time: Int?, label: Int?): String {
         if (time == null || label == null) return ""
-        val minLabel = DateFormatter.getMinutes(requireContext(), mLanguageProvider, time, R.string.sdk_time_min)
-        val secLabel = DateFormatter.getSeconds(requireContext(), mLanguageProvider, time, R.string.sdk_time_sec)
+        val minLabel = DateFormatter.getMinutes(requireContext(), mLanguageProvider, time, R.string.idv_time_min)
+        val secLabel = DateFormatter.getSeconds(requireContext(), mLanguageProvider, time, R.string.idv_time_sec)
         return DateFormatter.getTimeDifferenceFormatted(requireContext(), mLanguageProvider, minLabel, secLabel, label)
     }
 

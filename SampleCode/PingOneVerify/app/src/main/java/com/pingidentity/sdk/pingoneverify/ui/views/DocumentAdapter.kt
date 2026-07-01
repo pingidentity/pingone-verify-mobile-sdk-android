@@ -45,10 +45,10 @@ class DocumentAdapter(
         @JvmStatic
         fun getDocumentTypes(): List<DocumentModel> {
             return listOf(
-                DocumentModel(DocumentClass.DRIVER_LICENSE, R.string.sdk_documentCapture_option_license),
-                DocumentModel(DocumentClass.PASSPORT, R.string.sdk_documentCapture_option_passport),
-                DocumentModel(DocumentClass.PASSPORT_CARD, R.string.sdk_documentCapture_option_card),
-                DocumentModel(DocumentClass.OTHER, R.string.sdk_documentCapture_option_other)
+                DocumentModel(DocumentClass.DRIVER_LICENSE, R.string.idv_documentCapture_option_license),
+                DocumentModel(DocumentClass.PASSPORT, R.string.idv_documentCapture_option_passport),
+                DocumentModel(DocumentClass.PASSPORT_CARD, R.string.idv_documentCapture_option_card),
+                DocumentModel(DocumentClass.OTHER, R.string.idv_documentCapture_option_other)
             )
         }
     }

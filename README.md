@@ -84,33 +84,62 @@ Requests the device's current location. If the user grants permission the coordi
 
 ## Installation
 
-### Built-in UI (use open-source verify-ui source)
+### AAR-based Integration
 
-1. Add to your app's `build.gradle`:
+Use this approach when integrating the SDK as prebuilt AARs (e.g. from the `SDK/` folder shipped alongside this repository).
+
+1. Add the local maven repository to your **root** `build.gradle`:
 
 ```groovy
-dependencies {
-    implementation project(path: ':verify-core')
-    implementation project(path: ':language-provider')
-
-    runtimeOnly project(path: ':selfie-capture')    // required for selfie capture
-    runtimeOnly project(path: ':id-capture')         // required for government ID capture
-    runtimeOnly project(path: ':location-provider')  // required for geolocation
+allprojects {
+    repositories {
+        maven { url 'path/to/SDK/maven' }  // required for IdCaptureProvider POM resolution
+        google()
+        mavenCentral()
+    }
 }
 ```
 
-2. Copy vendor AARs into their module `libs/` directories:
+2. Add to your **app** `build.gradle`:
 
-| AAR | Module |
-|-----|--------|
-| `iad.aar` | `selfie-capture/libs/` |
-| `blinkid-core.aar` | `id-capture/libs/` |
+```groovy
+dependencies {
+    // Core
+    implementation files('path/to/SDK/PingOneVerify-4.0.1.aar')
+    implementation files('path/to/SDK/NeoInterfaces-4.0.1.aar')
 
-Provider modules (`:selfie-capture`, `:id-capture`, `:location-provider`) depend on `:neo-interfaces`.
+    // Geolocation capture
+    implementation files('path/to/SDK/GeoLocationProvider-4.0.1.aar')
 
-> **Language pack:** Override string values in your app's `res/values/strings.xml` using same keys.
+    // Selfie / liveness capture
+    implementation files('path/to/SDK/SelfieCaptureProvider-4.0.1.aar')
+    implementation files('path/to/SDK/iad-2.4.0.aar')
 
-3. The verify-ui source code in `:app/src/main/java/.../ui/` is compiled directly into your app target — no separate module import needed.
+    // Government ID capture — declared via maven coordinates so transitive deps resolve automatically
+    implementation 'com.pingidentity.sdk.pingoneverify:IdCaptureProvider:4.0.1'
+    implementation files('path/to/SDK/blinkid-core-7.6.1.aar')  // local proprietary AAR, not on Maven Central
+
+    // Camera — required for QR scanning
+    implementation 'androidx.camera:camera-camera2:1.4.2'
+    implementation 'androidx.camera:camera-core:1.4.2'
+    implementation 'androidx.camera:camera-lifecycle:1.4.2'
+    implementation 'androidx.camera:camera-view:1.4.2'
+}
+```
+
+> **Why `IdCaptureProvider` uses maven coordinates instead of `files(...)`:** `IdCaptureProvider` depends on several libraries (`blinkid-ux`, `microblink-ux`, Compose, etc.) that cannot be bundled inside the AAR. Declaring it via maven coordinates allows Gradle to read the accompanying `.pom` file and resolve those transitive dependencies automatically from `google()` / `mavenCentral()`. Declaring it via `files(...)` will ignore the `.pom` and result in a runtime crash.
+
+---
+
+### Using the open-source UI (SampleCode)
+
+The `SampleCode/PingOneVerify/` directory ships the full open-source UI layer (`PingOneVerifyHelper`, all capture fragments, dialogs, and utilities) alongside the sample app entry point. You can copy this UI source directly into your own project and modify it freely.
+
+1. Copy the UI source from `SampleCode/PingOneVerify/app/src/main/java/.../ui/` into your project.
+
+2. Use the same AAR-based dependencies listed in the [AAR-based Integration](#aar-based-integration) section above.
+
+> **Language pack:** Override string values in your app's `res/values/strings.xml` using the same keys defined in the UI source.
 
 ---
 
