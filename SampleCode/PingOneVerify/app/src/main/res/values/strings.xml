@@ -6,6 +6,7 @@
     <string name="idv_btn_verify">Verify Now</string>
     <string name="idv_complete_title">Verification Complete</string>
     <string name="idv_complete_subtitle">Your identity has been verified successfully.</string>
+    <string name="idv_error_ok">Okay</string>
 
     //QrScanner
     <string name="idv_qr_scan">Please scan the above QR code</string>

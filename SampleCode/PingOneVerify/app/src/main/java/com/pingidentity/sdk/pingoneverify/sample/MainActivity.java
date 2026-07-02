@@ -69,8 +69,8 @@ public class MainActivity extends FragmentActivity implements VerifyHelperCallba
         String errorTitle = "Verification Failed";
         runOnUiThread(() -> new AlertDialog.Builder(this)
                 .setTitle(errorTitle)
-                .setMessage((message != null) ? errorTitle : errorTitle)
-                .setPositiveButton(android.R.string.ok, (d, w) -> moveToMainFragment())
+                .setMessage((message != null) ? message : errorTitle)
+                .setPositiveButton(R.string.idv_error_ok, (d, w) -> moveToMainFragment())
                 .show());
     }
 
