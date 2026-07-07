@@ -1,5 +1,11 @@
 # Changelog
 
+## v3.1.7 - June 5th, 2026
+
+### Fixed
+
+- Barcode handling fixed for Government IDs
+
 ## v3.1.6 - April 15th, 2026
 
 ### Fixed
