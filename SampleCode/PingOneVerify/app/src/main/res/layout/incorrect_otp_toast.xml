@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout>
+
+    <data>
+
+        <import type="com.pingidentity.sdk.pingoneverify.sample.R" />
+
+        <variable
+            name="maximumTriesReached"
+            type="boolean" />
+
+        <variable
+            name="languageProvider"
+            type="com.pingidentity.sdk.provider.language.LanguagePackProviderContract" />
+    </data>
+
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/shape_button_bordered">
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:cardBackgroundColor="@color/error_toast_background_color">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_margin="16dp">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:src="@drawable/check_error" />
+
+                <TextView
+                    android:id="@+id/otp_error_textview"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@{languageProvider.getStringForResource(maximumTriesReached ? R.string.sdk_otp_fail_error : R.string.sdk_otp_incorrect)}"
+                    android:textColor="@color/alpha_red" />
+
+            </LinearLayout>
+        </androidx.cardview.widget.CardView>
+    </LinearLayout>
+</layout>

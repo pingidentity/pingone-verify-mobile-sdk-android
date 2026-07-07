@@ -1,0 +1,226 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <import type="android.view.View" />
+
+        <import type="com.pingidentity.sdk.pingoneverify.sample.R" />
+
+        <variable
+            name="theme"
+            type="com.pingidentity.sdk.pingoneverify.neo.models.AppThemeResponse" />
+
+        <variable
+            name="languageProvider"
+            type="com.pingidentity.sdk.provider.language.LanguagePackProviderContract" />
+    </data>
+
+    <androidx.coordinatorlayout.widget.CoordinatorLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@{theme.cardColor}"
+            android:orientation="vertical">
+
+            <com.google.android.material.appbar.AppBarLayout
+                android:id="@+id/appBarLayout"
+                android:layout_width="match_parent"
+                android:layout_height="?attr/actionBarSize"
+                android:background="@{theme.navigationBarColor}"
+                app:elevation="0dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    app:image_url="@{theme.logo}">
+
+                    <ImageButton
+                        android:id="@+id/btn_cancel"
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        android:background="@null"
+                        android:src="@drawable/idv_cancel"
+                        app:icon_tint="@{theme}"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <TextView
+                        android:id="@+id/heading_text"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="@{theme.headingTextColor}"
+                        android:textSize="@dimen/text_size_navigation"
+                        android:visibility="gone"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        tools:visibility="visible" />
+
+                    <ImageView
+                        android:id="@+id/heading_logo"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        app:layout_constraintDimensionRatio="1:1"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+            </com.google.android.material.appbar.AppBarLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/title_divider_thickness"
+                android:background="@color/title_divider"
+                android:visibility="@{(theme.navigationBarColorRaw == theme.cardColorRaw) ? View.GONE : View.VISIBLE}" />
+
+            <ScrollView
+                android:id="@+id/scrollView"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:fillViewport="true"
+                android:focusable="true"
+                android:focusableInTouchMode="true">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/view_layout"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:gravity="center"
+                    android:orientation="vertical"
+                    android:padding="36dp">
+
+                    <TextView
+                        android:id="@+id/txt_heading"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="16dp"
+                        app:languageProvider="@{languageProvider}"
+                        app:resourceId="@{R.string.sdk_otp_title}"
+                        android:textColor="@{theme.headingTextColor}"
+                        android:textSize="24sp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <TextView
+                        android:id="@+id/txt_title"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
+                        android:textColor="@{theme.bodyTextColor}"
+                        android:textSize="18sp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/txt_heading" />
+
+                    <TextView
+                        android:id="@+id/txt_value"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="4dp"
+                        android:textColor="@{theme.bodyTextColor}"
+                        android:textSize="18sp"
+                        android:visibility="gone"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/txt_title" />
+
+                    <FrameLayout
+                        android:id="@+id/view_verification_code"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="16dp"
+                        android:background="@drawable/shape_edit_back"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/txt_value">
+
+                        <EditText
+                            android:id="@+id/edt_verification_code"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:background="@drawable/shape_edit_field"
+                            android:backgroundTint="@{theme.solidButtonAppearance.backgroundColor}"
+                            app:languageProviderHint="@{languageProvider}"
+                            app:hintResourceId="@{R.string.sdk_otp_title}"
+                            android:textColorHint="@color/alpha_grey"
+                            android:imeOptions="actionDone"
+                            android:inputType="number"
+                            android:maxLength="6"
+                            android:paddingStart="16dp"
+                            android:textColor="@{theme.bodyTextColor}"
+                            android:textCursorDrawable="@null"
+                            android:textIsSelectable="false"
+                            android:textSize="20sp" />
+
+                    </FrameLayout>
+
+                    <TextView
+                        android:id="@+id/txt_timer"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
+                        android:gravity="start"
+                        android:textColor="@{theme.headingTextColor}"
+                        android:textSize="14sp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/view_verification_code"
+                        tools:text="@string/sdk_otp_time" />
+
+                    <com.pingidentity.sdk.pingoneverify.ui.views.IDVButton
+                        android:id="@+id/btn_send_verification_code"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:alpha="0.5"
+                        android:enabled="false"
+                        app:languageProvider="@{languageProvider}"
+                        app:resourceId="@{R.string.sdk_infoCapture_button}"
+                        android:textAllCaps="false"
+                        android:textSize="18sp"
+                        app:background_appearance="@{theme.solidButtonAppearance.backgroundColor}"
+                        app:border_appearance="@{theme.solidButtonAppearance.borderColor}"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintVertical_bias="0.777"
+                        app:text_appearance="@{theme.solidButtonAppearance.textColor}" />
+
+                    <Button
+                        android:id="@+id/btn_resend"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
+                        android:background="@color/transparent"
+                        android:clickable="false"
+                        android:enabled="false"
+                        android:gravity="center"
+                        app:languageProvider="@{languageProvider}"
+                        app:resourceId="@{R.string.sdk_otp_resend}"
+                        android:textAllCaps="false"
+                        android:textColor="@drawable/selector_resend_button"
+                        android:textSize="12sp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/txt_timer" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+            </ScrollView>
+
+        </LinearLayout>
+
+    </androidx.coordinatorlayout.widget.CoordinatorLayout>
+</layout>

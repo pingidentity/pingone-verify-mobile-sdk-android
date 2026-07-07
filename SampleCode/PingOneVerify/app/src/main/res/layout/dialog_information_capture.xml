@@ -1,0 +1,359 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <import type="android.view.View" />
+
+        <import type="com.pingidentity.sdk.pingoneverify.sample.R" />
+
+        <variable
+            name="theme"
+            type="com.pingidentity.sdk.pingoneverify.neo.models.AppThemeResponse" />
+
+        <variable
+            name="languageProvider"
+            type="com.pingidentity.sdk.provider.language.LanguagePackProviderContract" />
+    </data>
+
+    <androidx.coordinatorlayout.widget.CoordinatorLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@{theme.cardColor}"
+            android:orientation="vertical">
+
+            <com.google.android.material.appbar.AppBarLayout
+                android:id="@+id/appBarLayout"
+                android:layout_width="match_parent"
+                android:layout_height="?attr/actionBarSize"
+                android:background="@{theme.navigationBarColor}"
+                app:elevation="0dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    app:image_url="@{theme.logo}">
+
+                    <ImageButton
+                        android:id="@+id/btn_cancel"
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        android:background="@null"
+                        android:src="@drawable/idv_cancel"
+                        app:icon_tint="@{theme}"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <TextView
+                        android:id="@+id/heading_text"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="@{theme.headingTextColor}"
+                        android:textSize="@dimen/text_size_navigation"
+                        android:visibility="gone"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        tools:visibility="visible" />
+
+                    <ImageView
+                        android:id="@+id/heading_logo"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        app:layout_constraintDimensionRatio="1:1"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+            </com.google.android.material.appbar.AppBarLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/title_divider_thickness"
+                android:background="@color/title_divider"
+                android:visibility="@{(theme.navigationBarColorRaw == theme.cardColorRaw) ? View.GONE : View.VISIBLE}" />
+
+            <ScrollView
+                android:id="@+id/scrollView"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:fillViewport="true"
+                android:focusable="true"
+                android:focusableInTouchMode="true">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/view_layout"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical"
+                    android:paddingHorizontal="36dp"
+                    android:paddingBottom="36dp">
+
+                    <TextView
+                        android:id="@+id/txt_time_remaining"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="@{theme.bodyTextColor}"
+                        android:layout_marginTop="@dimen/timer_marginT"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <ImageView
+                        android:id="@+id/layout_ic_container"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="32dp"
+                        android:gravity="center"
+                        android:orientation="horizontal"
+                        android:scaleType="fitCenter"
+                        app:logo_tint="@{theme}"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHeight_max="250dp"
+                        app:layout_constraintHeight_min="200dp"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/txt_time_remaining"
+                        tools:src="@drawable/idv_email" />
+
+                    <TextView
+                        android:id="@+id/txt_title"
+                        android:layout_width="0dp"
+                        android:layout_height="0dp"
+                        android:layout_marginTop="36dp"
+                        android:autoSizeTextType="uniform"
+                        android:textColor="@{theme.headingTextColor}"
+                        android:textSize="@dimen/text_size_title"
+                        android:textStyle="bold"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHeight_percent=".05"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/layout_ic_container"
+                        tools:text="Email Verification" />
+
+                    <TextView
+                        android:id="@+id/txt_instruction"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
+                        android:textColor="@{theme.bodyTextColor}"
+                        android:textSize="@dimen/text_size_subtitle"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHeight_percent=".05"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/txt_title" />
+
+                    <LinearLayout
+                        android:id="@+id/email_or_phone_selection"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:visibility="gone"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/txt_instruction">
+
+                        <Spinner
+                            android:id="@+id/spinner_email"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/layout_data_entry"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/txt_instruction">
+
+                        <FrameLayout
+                            android:id="@+id/view_phone_number"
+                            android:layout_width="match_parent"
+                            android:layout_height="50dp"
+                            android:layout_marginTop="16dp"
+                            android:background="@drawable/shape_edit_back"
+                            android:visibility="gone">
+
+                            <androidx.constraintlayout.widget.ConstraintLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:background="@drawable/shape_edit_field"
+                                android:backgroundTint="@{theme.solidButtonAppearance.backgroundColor}">
+
+                                <TextView
+                                    android:id="@+id/txt_country_code"
+                                    android:layout_width="0dp"
+                                    android:layout_height="0dp"
+                                    android:layout_marginHorizontal="10dp"
+                                    android:drawableRight="@drawable/ic_dropdown"
+                                    android:drawableTint="@color/alpha_grey"
+                                    android:gravity="center"
+                                    android:textColor="@{theme.bodyTextColor}"
+                                    android:textSize="16sp"
+                                    app:layout_constraintBottom_toBottomOf="parent"
+                                    app:layout_constraintEnd_toStartOf="@+id/guideline"
+                                    app:layout_constraintStart_toStartOf="parent"
+                                    app:layout_constraintTop_toTopOf="parent" />
+
+                                <androidx.constraintlayout.widget.Guideline
+                                    android:id="@+id/guideline"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:orientation="vertical"
+                                    app:layout_constraintGuide_percent="0.3" />
+
+                                <View
+                                    android:id="@+id/divider"
+                                    android:layout_width="2dp"
+                                    android:layout_height="65dp"
+                                    android:background="@{theme.solidButtonAppearance.backgroundColor}"
+                                    app:layout_constraintBottom_toBottomOf="parent"
+                                    app:layout_constraintStart_toStartOf="@+id/guideline"
+                                    app:layout_constraintTop_toTopOf="parent" />
+
+                                <EditText
+                                    android:id="@+id/edt_phone_number"
+                                    android:layout_width="0dp"
+                                    android:layout_height="0dp"
+                                    android:layout_marginHorizontal="8dp"
+                                    android:background="@null"
+                                    android:backgroundTint="@{theme.solidButtonAppearance.backgroundColor}"
+                                    app:languageProviderHint="@{languageProvider}"
+                                    app:hintResourceId="@{R.string.sdk_phoneCapture_placeholder}"
+                                    android:imeOptions="actionDone"
+                                    android:inputType="phone"
+                                    android:textColor="@{theme.bodyTextColor}"
+                                    android:textColorHint="@color/alpha_grey"
+                                    android:textCursorDrawable="@null"
+                                    app:layout_constraintBottom_toBottomOf="parent"
+                                    app:layout_constraintEnd_toEndOf="parent"
+                                    app:layout_constraintStart_toStartOf="@+id/guideline"
+                                    app:layout_constraintTop_toTopOf="parent" />
+
+                            </androidx.constraintlayout.widget.ConstraintLayout>
+
+                        </FrameLayout>
+
+                        <FrameLayout
+                            android:id="@+id/view_email"
+                            android:layout_width="match_parent"
+                            android:layout_height="50dp"
+                            android:layout_marginTop="16dp"
+                            android:background="@drawable/shape_edit_back">
+
+                            <EditText
+                                android:id="@+id/edt_destination"
+                                android:layout_width="match_parent"
+                                android:layout_height="50dp"
+                                android:background="@drawable/shape_edit_field"
+                                android:backgroundTint="@{theme.solidButtonAppearance.backgroundColor}"
+                                app:languageProviderHint="@{languageProvider}"
+                                app:hintResourceId="@{R.string.sdk_emailCapture_placeholder}"
+                                android:imeOptions="actionDone"
+                                android:inputType="textEmailAddress"
+                                android:maxLines="1"
+                                android:padding="8dp"
+                                android:paddingStart="16dp"
+                                android:textColor="@{theme.bodyTextColor}"
+                                android:textColorHint="@color/alpha_grey"
+                                android:textCursorDrawable="@null"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintStart_toStartOf="parent" />
+
+                        </FrameLayout>
+
+                        <TextView
+                            android:id="@+id/txt_destination"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:gravity="center"
+                            android:textColor="@{theme.bodyTextColor}"
+                            android:textSize="18sp" />
+
+                        <FrameLayout
+                            android:id="@+id/view_spinner_destination"
+                            android:layout_width="match_parent"
+                            android:layout_height="50dp"
+                            android:layout_marginTop="8dp"
+                            android:background="@drawable/shape_edit_back">
+
+                            <FrameLayout
+                                android:id="@+id/layout_spinner_destination"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:background="@drawable/shape_edit_field"
+                                android:backgroundTint="@{theme.solidButtonAppearance.backgroundColor}"
+                                android:padding="6dp">
+
+                                <Spinner
+                                    android:id="@+id/spinner_destination"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_gravity="center_vertical"
+                                    android:textSize="18sp" />
+
+                            </FrameLayout>
+
+                        </FrameLayout>
+
+                    </LinearLayout>
+
+                    <com.pingidentity.sdk.pingoneverify.ui.views.IDVButton
+                        android:id="@+id/btn_capture"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="16dp"
+                        android:layout_marginBottom="8dp"
+                        android:textAllCaps="false"
+                        android:textSize="@dimen/text_size_button"
+                        app:background_appearance="@{theme.solidButtonAppearance.backgroundColor}"
+                        app:border_appearance="@{theme.solidButtonAppearance.borderColor}"
+                        app:layout_constraintBottom_toTopOf="@id/btn_skip"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/layout_data_entry"
+                        app:layout_constraintVertical_bias="0.99"
+                        app:text_appearance="@{theme.solidButtonAppearance.textColor}"
+                        tools:text="@string/sdk_infoCapture_button" />
+
+                    <com.pingidentity.sdk.pingoneverify.ui.views.IDVButton
+                        android:id="@+id/btn_skip"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="0dp"
+                        app:languageProvider="@{languageProvider}"
+                        app:resourceId="@{R.string.sdk_skip}"
+                        android:textAllCaps="false"
+                        android:textSize="@dimen/text_size_button"
+                        android:visibility="gone"
+                        app:background_appearance="@{theme.borderedButtonAppearance.backgroundColor}"
+                        app:border_appearance="@{theme.borderedButtonAppearance.borderColor}"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:text_appearance="@{theme.borderedButtonAppearance.textColor}" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+            </ScrollView>
+
+        </LinearLayout>
+
+    </androidx.coordinatorlayout.widget.CoordinatorLayout>
+</layout>

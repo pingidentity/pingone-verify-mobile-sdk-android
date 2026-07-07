@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <import type="com.pingidentity.sdk.pingoneverify.sample.R" />
+
+        <variable
+            name="theme"
+            type="com.pingidentity.sdk.pingoneverify.neo.models.AppThemeResponse" />
+
+        <variable
+            name="languageProvider"
+            type="com.pingidentity.sdk.provider.language.LanguagePackProviderContract" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/view_photo"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:background="@{theme.backgroundColor}"
+            android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <ImageView
+                android:id="@+id/img_captured_photo"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:scaleType="centerCrop"
+                app:layout_constraintBottom_toTopOf="@+id/bottom_view"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <LinearLayout
+                android:id="@+id/bottom_view"
+                android:layout_width="match_parent"
+                android:layout_height="160dp"
+                android:gravity="center"
+                android:orientation="vertical"
+                android:padding="25dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent">
+
+                <com.pingidentity.sdk.pingoneverify.ui.views.IDVButton
+                    android:id="@+id/btn_next"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:width="0dp"
+                    app:languageProvider="@{languageProvider}"
+                    app:resourceId="@{R.string.sdk_data_check_confirm}"
+                    android:textAllCaps="false"
+                    android:textSize="@dimen/text_size_button"
+                    app:background_appearance="@{theme.solidButtonAppearance.backgroundColor}"
+                    app:border_appearance="@{theme.solidButtonAppearance.borderColor}"
+                    app:text_appearance="@{theme.solidButtonAppearance.textColor}" />
+
+                <FrameLayout
+                    android:id="@+id/view_retake"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:layout_marginTop="10dp">
+
+                    <com.pingidentity.sdk.pingoneverify.ui.views.IDVButton
+                        android:id="@+id/btn_retake"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        app:languageProvider="@{languageProvider}"
+                        app:resourceId="@{R.string.sdk_data_check_retake}"
+                        android:textAllCaps="false"
+                        android:textSize="@dimen/text_size_button"
+                        app:background_appearance="@{theme.borderedButtonAppearance.backgroundColor}"
+                        app:border_appearance="@{theme.borderedButtonAppearance.borderColor}"
+                        app:text_appearance="@{theme.borderedButtonAppearance.textColor}" />
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:background="@drawable/shape_button_retake" />
+
+                </FrameLayout>
+
+            </LinearLayout>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/btn_cancel"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:padding="12dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:src="@drawable/idv_cancel"
+            android:tint="@color/idv_selfie_close"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>
