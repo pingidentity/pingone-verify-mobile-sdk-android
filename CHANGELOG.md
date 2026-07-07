@@ -1,5 +1,15 @@
 # Changelog
 
+## v3.2.0 - April 28th, 2026
+
+### Added
+
+- Location collection UX handled in verification flow for GeoLocation enabled verify policy
+
+### Fixed
+
+- Crash fixes during document capture retry flow
+
 ## v3.1.7 - June 5th, 2026
 
 ### Fixed

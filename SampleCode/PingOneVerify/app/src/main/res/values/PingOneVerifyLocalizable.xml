@@ -66,10 +66,9 @@
 
     <string name="idv_permission_dialog_title">Permission not granted</string>
     <string name="idv_permission_camera_title">Cannot access camera</string>
-    <string name="idv_permission_location_title">Location not enabled</string>
+    <string name="idv_permission_location_title">Location Access is Required</string>
     <string name="idv_permission_dialog_message_camera">Access to your camera is needed to scan your ID and take your selfie.</string>
-    <string name="idv_permission_dialog_message_voice">Access to the microphone is required for voice verification.\n\nPlease update the permissions for your app in device settings to be able to use this feature.</string>
-    <string name="idv_permission_dialog_message_location">Enable location permission to proceed with your identity verification.</string>
+    <string name="idv_permission_dialog_message_location">You must share your location to complete identity verification.</string>
     <string name="idv_permission_dialog_settings">Settings</string>
 
     <string name="idv_data_fail">Verification Error</string>
