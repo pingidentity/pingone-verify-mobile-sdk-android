@@ -25,6 +25,12 @@ Major release with a redesigned public API and open-source VerifyUI. Contains br
 
 - Crash fixes during document capture retry flow
 
+## v3.1.7 - June 5th, 2026
+
+### Fixed
+
+- Barcode handling fixed for Government IDs
+
 ## v3.1.6 - April 15th, 2026
 
 ### Fixed
