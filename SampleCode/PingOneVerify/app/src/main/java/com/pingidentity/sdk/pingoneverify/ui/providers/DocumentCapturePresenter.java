@@ -10,7 +10,7 @@ import androidx.fragment.app.FragmentManager;
 
 import com.pingidentity.sdk.pingoneverify.contracts.DocumentCaptureContract;
 import com.pingidentity.sdk.pingoneverify.neo.settings.OtpCaptureSettings;
-import com.pingidentity.sdk.pingoneverify.utils.VerifySessionTimer;
+import com.pingidentity.sdk.pingoneverify.utils.DocumentSubmissionTimer;
 import com.pingidentity.sdk.pingoneverify.neo.contracts.VerifyTransactionCoordinator;
 import com.pingidentity.sdk.pingoneverify.neo.models.AppThemeResponse;
 import com.pingidentity.sdk.pingoneverify.neo.models.RetryFeedback;
@@ -103,7 +103,7 @@ public class DocumentCapturePresenter implements DocumentCaptureContract {
     public void closeNavigation() {
         FragmentActivity activity = mActivityRef.get();
         if (activity == null) return;
-        VerifySessionTimer.getInstance().getSessionTimer().stop();
+        DocumentSubmissionTimer.getInstance().stop();
         clearBackStack();
         mActiveOtpDialog = null;
     }

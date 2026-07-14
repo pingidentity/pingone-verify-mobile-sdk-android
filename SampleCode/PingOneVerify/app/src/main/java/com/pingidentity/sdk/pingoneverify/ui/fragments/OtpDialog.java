@@ -25,13 +25,10 @@ import com.pingidentity.sdk.pingoneverify.sample.R;
 import com.pingidentity.sdk.pingoneverify.sample.databinding.DialogOtpBinding;
 import com.pingidentity.sdk.pingoneverify.sample.databinding.IncorrectOtpToastBinding;
 import com.pingidentity.sdk.pingoneverify.ui.UiConstants;
-import com.pingidentity.sdk.pingoneverify.utils.DateUtil;
-import com.pingidentity.sdk.pingoneverify.utils.VerifySessionTimer;
-import com.pingidentity.sdk.pingoneverify.utils.PingOneVerifyClientUtils;
+import com.pingidentity.sdk.pingoneverify.neo.utils.OtpTicker;
 import com.pingidentity.sdk.provider.language.LanguagePackProviderContract;
 
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 public class OtpDialog extends BaseFragment {
@@ -41,11 +38,12 @@ public class OtpDialog extends BaseFragment {
 
     private DocumentClass mDocument;
     private boolean mCanResend;
-    private String mResendCooldown;
+    private long mResendCooldown;
     private String mOtpDestination;
+    private OtpTicker mOtpSessionTimer;
     private final Handler mResendHandler = new Handler(Looper.getMainLooper());
     private Runnable mResendRunnable;
-    private final VerifySessionTimer.Timer.TimerObserver mOtpTimerObserver = new VerifySessionTimer.Timer.TimerObserver() {
+    private final OtpTicker.Observer mOtpTickerObserver = new OtpTicker.Observer() {
         @Override
         public void onTick(int millisRemaining) {
             if (mBinding != null) mBinding.txtTimer.setText(getTimeRemainingString(millisRemaining, R.string.idv_otp_time));
@@ -76,8 +74,9 @@ public class OtpDialog extends BaseFragment {
             OtpCaptureSettings otpSettings = (OtpCaptureSettings) settings;
             otpDialog.mDocument = otpSettings.getChannel();
             otpDialog.mCanResend = otpSettings.getCanResend();
-                otpDialog.mResendCooldown = otpSettings.getResendCooldown();
+            otpDialog.mResendCooldown = otpSettings.getResendCooldown();
             otpDialog.mOtpDestination = otpSettings.getOtpDestination();
+            otpDialog.mOtpSessionTimer = otpSettings.getOtpSessionTimer();
         } else {
             otpDialog.mDocument = settings.getDocumentType();
         }
@@ -117,9 +116,6 @@ public class OtpDialog extends BaseFragment {
 
         mBinding.btnCancel.setOnClickListener(this::onCancel);
 
-        if (!mCanResend) {
-            mBinding.btnResend.setVisibility(View.GONE);
-        }
         mBinding.scrollView.getViewTreeObserver().addOnGlobalLayoutListener(() -> mBinding.scrollView.post(() -> mBinding.scrollView.fullScroll(View.FOCUS_DOWN)));
         mBinding.scrollView.setOnTouchListener((v, event) -> {
             hideKeyboard();
@@ -154,7 +150,7 @@ public class OtpDialog extends BaseFragment {
     @Override
     public void onDestroyView() {
         super.onDestroyView();
-        VerifySessionTimer.getInstance().getOtpTimer().removeObserver(mOtpTimerObserver);
+        if (mOtpSessionTimer != null) mOtpSessionTimer.removeObserver(mOtpTickerObserver);
         if (mResendRunnable != null) mResendHandler.removeCallbacks(mResendRunnable);
 
         List<AppEvent> events = new ArrayList<>();
@@ -183,19 +179,16 @@ public class OtpDialog extends BaseFragment {
         } else {
             mBinding.txtValue.setVisibility(View.GONE);
         }
-        VerifySessionTimer.getInstance().getOtpTimer().addObserver(mOtpTimerObserver);
+        if (mOtpSessionTimer != null) mOtpSessionTimer.addObserver(mOtpTickerObserver);
+        setResendButton(mCanResend && mResendCooldown == 0);
         setResendTimer();
     }
 
     private void setResendTimer() {
         if (mResendRunnable != null) mResendHandler.removeCallbacks(mResendRunnable);
-        Date date = DateUtil.getDateFromSting(mResendCooldown);
-        if (date != null) {
-            int time = PingOneVerifyClientUtils.getRemainingDocumentSubmissionTime(date);
-            if (time > 0) {
-                mResendRunnable = this::setResendAvailable;
-                mResendHandler.postDelayed(mResendRunnable, time);
-            }
+        if (mResendCooldown > 0) {
+            mResendRunnable = () -> setResendButton(true);
+            mResendHandler.postDelayed(mResendRunnable, mResendCooldown);
         }
     }
 
@@ -204,13 +197,9 @@ public class OtpDialog extends BaseFragment {
         mCoordinator.resendOtp(mDocument);
     }
 
-    private void setResendAvailable() {
-        mBinding.btnResend.setEnabled(true);
-    }
-
-    protected void setResendDisabled() {
-        mBinding.btnResend.setEnabled(false);
-        setResendTimer();
+    private void setResendButton(boolean available) {
+        mBinding.btnResend.setVisibility(available ? View.VISIBLE : View.GONE);
+        mBinding.btnResend.setEnabled(available);
     }
 
     void showErrorToast() {
@@ -263,11 +252,15 @@ public class OtpDialog extends BaseFragment {
                 OtpCaptureSettings otpSettings = (OtpCaptureSettings) settings;
                 mCanResend = otpSettings.getCanResend();
                 mResendCooldown = otpSettings.getResendCooldown();
+                if (mOtpSessionTimer != null) {
+                    mOtpSessionTimer.removeObserver(mOtpTickerObserver);
+                    mOtpSessionTimer.stop();
+                }
+                mOtpSessionTimer = otpSettings.getOtpSessionTimer();
+                mOtpSessionTimer.addObserver(mOtpTickerObserver);
             }
-            setResendDisabled();
-            if (!mCanResend) {
-                mBinding.btnResend.setVisibility(View.GONE);
-            }
+            setResendButton(false);
+            setResendTimer();
         });
     }
 

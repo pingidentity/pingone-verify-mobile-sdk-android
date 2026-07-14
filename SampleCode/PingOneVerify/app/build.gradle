@@ -13,7 +13,7 @@ android {
         applicationId "com.pingidentity.sdk.pingoneverify.sample"
         minSdkVersion 26
         targetSdkVersion 35
-        versionCode 101
+        versionCode 102
         versionName "4.0.1"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
@@ -50,15 +50,11 @@ dependencies {
     implementation files('../../../SDK/GeoLocationProvider-4.0.1.aar')
 
     // Dependencies - needed for Selfie Verification (liveness)
-    implementation files('../../../SDK/SelfieCaptureProvider-4.0.1.aar')
+    implementation 'com.pingidentity.sdk.pingoneverify:SelfieCaptureProvider:4.0.1'
     implementation files('../../../SDK/iad-2.4.0.aar')
-    // Important: Below dependencies should be defined for Selfie Liveness feature
-    implementation 'com.google.protobuf:protobuf-javalite:3.20.1'
-    implementation 'com.google.protobuf:protobuf-kotlin-lite:3.20.1'
 
     // Dependencies - needed for Government ID Verification
     implementation 'com.pingidentity.sdk.pingoneverify:IdCaptureProvider:4.0.1'
-    implementation files('../../../SDK/blinkid-core-7.6.1.aar')
 
     // Dependencies - needed for QR Scanner Camera functionality in Sample App
     implementation 'androidx.camera:camera-camera2:1.4.2'

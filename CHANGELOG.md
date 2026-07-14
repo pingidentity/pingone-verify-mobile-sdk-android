@@ -5,7 +5,8 @@
 ### Fixed
 
 - Verify v4 SDK bug-fixes
-- IdCapture SDK dependency .pom file added
+- SessionTimer handled via DocumentSubmissionTimer
+- id-capture & selfie-capture dependencies .pom file added
 
 ## v4.0.0 - June 27th, 2026
 

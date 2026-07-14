@@ -13,7 +13,7 @@ import com.pingidentity.sdk.pingoneverify.neo.settings.DocumentCaptureSettings
 import com.pingidentity.sdk.pingoneverify.sample.R
 import com.pingidentity.sdk.pingoneverify.sample.databinding.DialogUploadFailureBinding
 import com.pingidentity.sdk.pingoneverify.ui.UiConstants
-import com.pingidentity.sdk.pingoneverify.utils.VerifySessionTimer
+import com.pingidentity.sdk.pingoneverify.utils.DocumentSubmissionTimer
 import com.pingidentity.sdk.provider.language.LanguagePackProviderContract
 import java.util.function.Consumer
 
@@ -30,7 +30,7 @@ class UploadFailureDialog(
         get() = DocumentClass.permissiveValueOf(settings.documentType?.toString())
 
 
-    private val mTimerObserver = object : VerifySessionTimer.Timer.TimerObserver {
+    private val mTimerObserver = object : DocumentSubmissionTimer.Observer {
         override fun onTick(millisRemaining: Int) {
             binding?.txtTimeRemaining?.text = getTimeRemainingString(millisRemaining, R.string.idv_timer_label)
         }
@@ -39,7 +39,7 @@ class UploadFailureDialog(
 
     override fun onDestroyView() {
         super.onDestroyView()
-        VerifySessionTimer.getInstance().getSessionTimer().removeObserver(mTimerObserver)
+        DocumentSubmissionTimer.getInstance().removeObserver(mTimerObserver)
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
@@ -59,7 +59,7 @@ class UploadFailureDialog(
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        VerifySessionTimer.getInstance().getSessionTimer().addObserver(mTimerObserver)
+        DocumentSubmissionTimer.getInstance().addObserver(mTimerObserver)
         var infoTitle: String? = null
         when (documentClass) {
             DocumentClass.GEOLOCATION -> {

@@ -111,13 +111,12 @@ dependencies {
     // Geolocation capture
     implementation files('path/to/SDK/GeoLocationProvider-4.0.1.aar')
 
-    // Selfie / liveness capture
-    implementation files('path/to/SDK/SelfieCaptureProvider-4.0.1.aar')
+    // Selfie / liveness capture — declared via maven coordinates so transitive deps resolve automatically
+    implementation 'com.pingidentity.sdk.pingoneverify:SelfieCaptureProvider:4.0.1'
     implementation files('path/to/SDK/iad-2.4.0.aar')
 
     // Government ID capture — declared via maven coordinates so transitive deps resolve automatically
     implementation 'com.pingidentity.sdk.pingoneverify:IdCaptureProvider:4.0.1'
-    implementation files('path/to/SDK/blinkid-core-7.6.1.aar')  // local proprietary AAR, not on Maven Central
 
     // Camera — required for QR scanning
     implementation 'androidx.camera:camera-camera2:1.4.2'
@@ -127,7 +126,7 @@ dependencies {
 }
 ```
 
-> **Why `IdCaptureProvider` uses maven coordinates instead of `files(...)`:** `IdCaptureProvider` depends on several libraries (`blinkid-ux`, `microblink-ux`, Compose, etc.) that cannot be bundled inside the AAR. Declaring it via maven coordinates allows Gradle to read the accompanying `.pom` file and resolve those transitive dependencies automatically from `google()` / `mavenCentral()`. Declaring it via `files(...)` will ignore the `.pom` and result in a runtime crash.
+> **Why `IdCaptureProvider` and `SelfieCaptureProvider` use maven coordinates instead of `files(...)`:** Both modules have transitive runtime dependencies that cannot be bundled inside the AAR. Declaring them via maven coordinates allows Gradle to read the accompanying `.pom` files and resolve those transitive dependencies automatically from `google()` / `mavenCentral()`. Declaring them via `files(...)` will bypass POM resolution and result in a runtime crash.
 
 ---
 

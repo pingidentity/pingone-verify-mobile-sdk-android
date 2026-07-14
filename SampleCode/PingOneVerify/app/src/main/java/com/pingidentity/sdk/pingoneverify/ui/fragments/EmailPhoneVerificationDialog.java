@@ -30,7 +30,7 @@ import com.pingidentity.sdk.pingoneverify.neo.settings.EmailCaptureSettings;
 import com.pingidentity.sdk.pingoneverify.neo.settings.PhoneCaptureSettings;
 import com.pingidentity.sdk.pingoneverify.ui.UiConstants;
 import com.pingidentity.sdk.pingoneverify.ui.utils.BindingAdapters;
-import com.pingidentity.sdk.pingoneverify.utils.VerifySessionTimer;
+import com.pingidentity.sdk.pingoneverify.utils.DocumentSubmissionTimer;
 import com.pingidentity.sdk.pingoneverify.ui.utils.CountryUtil;
 import com.pingidentity.sdk.pingoneverify.utils.PingOneVerifyClientUtils;
 import com.pingidentity.sdk.provider.language.LanguagePackProviderContract;
@@ -59,8 +59,8 @@ public class EmailPhoneVerificationDialog extends BaseFragment {
 
     private Consumer<String> mOnSubmit;
 
-    private final VerifySessionTimer.Timer.TimerObserver mTimerObserver =
-            new VerifySessionTimer.Timer.TimerObserver() {
+    private final DocumentSubmissionTimer.Observer mTimerObserver =
+            new DocumentSubmissionTimer.Observer() {
                 @Override public void onTick(int millisRemaining) {
                     if (mBinding != null) mBinding.txtTimeRemaining.setText(getTimeRemainingString(millisRemaining, R.string.idv_timer_label));
                 }
@@ -85,7 +85,7 @@ public class EmailPhoneVerificationDialog extends BaseFragment {
         // Be sure to add the theme to the view
         mBinding.setTheme(mAppTheme);
         mBinding.setLanguageProvider(mLanguageProvider);
-        VerifySessionTimer.getInstance().getSessionTimer().addObserver(mTimerObserver);
+        DocumentSubmissionTimer.getInstance().addObserver(mTimerObserver);
         addAppEvents();
 
         setDocumentClass(mDocument);
@@ -111,7 +111,7 @@ public class EmailPhoneVerificationDialog extends BaseFragment {
     @Override
     public void onDestroyView() {
         super.onDestroyView();
-        VerifySessionTimer.getInstance().getSessionTimer().removeObserver(mTimerObserver);
+        DocumentSubmissionTimer.getInstance().removeObserver(mTimerObserver);
         // TODO: analytics — core concern, remove from ui
         // AppEvent stopAppEvent = new AppEvent(DATA_CAPTURE_STOP, mDocument.toString() + "_" + DateUtil.getCurrentDate());
         // TODO: analytics — core concern, remove from ui

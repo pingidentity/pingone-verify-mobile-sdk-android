@@ -38,7 +38,7 @@ import com.pingidentity.sdk.pingoneverify.neo.models.DocumentClass;
 import com.pingidentity.sdk.pingoneverify.sample.R;
 import com.pingidentity.sdk.pingoneverify.ui.utils.DateFormatter;
 import com.pingidentity.sdk.pingoneverify.ui.utils.UiUtil;
-import com.pingidentity.sdk.pingoneverify.utils.VerifySessionTimer;
+import com.pingidentity.sdk.pingoneverify.utils.DocumentSubmissionTimer;
 import com.pingidentity.sdk.pingoneverify.utils.PingOneVerifyClientUtils;
 import com.pingidentity.sdk.provider.language.LanguagePackProviderContract;
 import com.pingidentity.sdk.provider.language.ext.FormatArgs;
@@ -228,7 +228,7 @@ public class BaseFragment extends Fragment {
 
     private void cancelAndClose() {
         if (mCoordinator != null) mCoordinator.endVerification();
-        VerifySessionTimer.getInstance().getSessionTimer().stop();
+        DocumentSubmissionTimer.getInstance().stop();
     }
 
     // --- Document type ---
