@@ -1,97 +1,94 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">IDV SDK</string>
-    <string name="text_document_verification_requested">Document Verification Requested</string>
-    <string name="text_document_verification_snippet">Your identity needs to be verified. Please tap below to begin.</string>
-    <string name="button_verify">Verify Now</string>
-    <string name="text_verification_complete">Verification Complete</string>
-    <string name="text_verification_complete_snippet">Your identity has been verified successfully.</string>
-    <string name="exit_transaction">Exit Verification</string>
-    <string name="exit_the_transaction_prompt">Are you sure you want to exit the verification?</string>
-    <string name="exit_action_yes">Yes</string>
-    <string name="exit_action_no">No</string>
+    <string name="idv_app_name">IDV SDK</string>
+    <string name="idv_verification_title">Document Verification Requested</string>
+    <string name="idv_verification_subtitle">Your identity needs to be verified. Please tap below to begin.</string>
+    <string name="idv_btn_verify">Verify Now</string>
+    <string name="idv_complete_title">Verification Complete</string>
+    <string name="idv_complete_subtitle">Your identity has been verified successfully.</string>
+    <string name="idv_error_ok">Okay</string>
 
     //QrScanner
-    <string name="sdk_qr_scan">Please scan the above QR code</string>
+    <string name="idv_qr_scan">Please scan the above QR code</string>
 
     //GovernmentID (Including both License and Passport)
-    <string name="sdk_documentCapture_header_governmentId">Scan your ID</string>
-    <string name="sdk_documentCapture_description_governmentId">Scan your government-issued ID. Make sure your camera is clean and the ID is clearly visible.</string>
-    <string name="sdk_documentCapture_header_type">Confirm ID Type</string>
-    <string name="sdk_documentCapture_description_type">We couldn\'t identify your ID.\nSelect the ID type to continue.</string>
-    <string name="sdk_documentCapture_option_license">Driver\'s License</string>
-    <string name="sdk_documentCapture_option_passport">Passport</string>
-    <string name="sdk_documentCapture_option_card">Passport Card</string>
-    <string name="sdk_documentCapture_option_other">Other</string>
+    <string name="idv_documentCapture_header_governmentId">Scan your ID</string>
+    <string name="idv_documentCapture_description_governmentId">Scan your government-issued ID. Make sure your camera is clean and the ID is clearly visible.</string>
+    <string name="idv_documentCapture_header_type">Confirm ID Type</string>
+    <string name="idv_documentCapture_description_type">We couldn\'t identify your ID.\nSelect the ID type to continue.</string>
+    <string name="idv_documentCapture_option_license">Driver\'s License</string>
+    <string name="idv_documentCapture_option_passport">Passport</string>
+    <string name="idv_documentCapture_option_card">Passport Card</string>
+    <string name="idv_documentCapture_option_other">Other</string>
 
     //Location
-    <string name="sdk_locationCapture_header_location">Share your Location</string>
-    <string name="sdk_locationCapture_description_location">Your location is needed to complete identity verification.</string>
-    <string name="sdk_locationCapture_retry">Try Again</string>
+    <string name="idv_locationCapture_header_location">Share your Location</string>
+    <string name="idv_locationCapture_description_location">Your location is needed to complete identity verification.</string>
+    <string name="idv_locationCapture_retry">Try Again</string>
 
     //Selfie
-    <string name="sdk_documentCapture_header_selfie">Take a Selfie</string>
-    <string name="sdk_documentCapture_description_selfie">Make sure you can see your face in the oval.</string>
+    <string name="idv_documentCapture_header_selfie">Take a Selfie</string>
+    <string name="idv_documentCapture_description_selfie">Make sure you can see your face in the oval.</string>
 
     //Email
-    <string name="sdk_emailCapture_title">Verify Your Email</string>
-    <string name="sdk_emailCapture_description">Enter your email address.</string>
-    <string name="sdk_emailCapture_description_option">Please choose your email address</string>
-    <string name="sdk_emailCapture_description_value">Email to be verified</string>
-    <string name="sdk_emailCapture_placeholder">Email Address</string>
+    <string name="idv_emailCapture_title">Verify Your Email</string>
+    <string name="idv_emailCapture_description">Enter your email address.</string>
+    <string name="idv_emailCapture_description_option">Please choose your email address</string>
+    <string name="idv_emailCapture_description_value">Email to be verified</string>
+    <string name="idv_emailCapture_placeholder">Email Address</string>
 
     //Phone
-    <string name="sdk_phoneCapture_title">Verify Your Phone</string>
-    <string name="sdk_phoneCapture_description">Enter your phone number.</string>
-    <string name="sdk_phoneCapture_description_option">Please choose your phone number</string>
-    <string name="sdk_phoneCapture_description_value">Phone number to be verified</string>
-    <string name="sdk_phoneCapture_placeholder">Enter phone number</string>
-    <string name="sdk_phoneCapture_code_picker_title">Select a country</string>
-    <string name="sdk_phoneCapture_code_picker_hint">Search</string>
+    <string name="idv_phoneCapture_title">Verify Your Phone</string>
+    <string name="idv_phoneCapture_description">Enter your phone number.</string>
+    <string name="idv_phoneCapture_description_option">Please choose your phone number</string>
+    <string name="idv_phoneCapture_description_value">Phone number to be verified</string>
+    <string name="idv_phoneCapture_placeholder">Enter phone number</string>
+    <string name="idv_phoneCapture_code_picker_title">Select a country</string>
+    <string name="idv_phoneCapture_code_picker_hint">Search</string>
 
     //OTP
-    <string name="sdk_otp_title">Verification Code</string>
-    <string name="sdk_otp_description">Enter the code sent to:</string>
-    <string name="sdk_otp_time">Verification Code expires in %1$s</string>
+    <string name="idv_otp_title">Verification Code</string>
+    <string name="idv_otp_description">Enter the code sent to:</string>
+    <string name="idv_otp_time">Verification Code expires in %1$s</string>
 
     //Buttons
-    <string name="sdk_skip">Skip</string>
-    <string name="sdk_dataCapture_button">Continue</string>
-    <string name="sdk_infoCapture_button">Submit</string>
-    <string name="sdk_next">Next</string>
-    <string name="sdk_data_retry">Retry</string>
-    <string name="sdk_data_cancel">Cancel</string>
-    <string name="sdk_otp_resend">Resend</string>
-    <string name="sdk_data_check_confirm">Yes, Continue</string>
-    <string name="sdk_data_check_retake">No, Retake</string>
+    <string name="idv_skip">Skip</string>
+    <string name="idv_dataCapture_button">Continue</string>
+    <string name="idv_infoCapture_button">Submit</string>
+    <string name="idv_next">Next</string>
+    <string name="idv_data_retry">Retry</string>
+    <string name="idv_data_cancel">Cancel</string>
+    <string name="idv_otp_resend">Resend</string>
+    <string name="idv_data_check_confirm">Yes, Continue</string>
+    <string name="idv_data_check_retake">No, Retake</string>
 
-    <string name="sdk_time_min">%1$d min</string>
-    <string name="sdk_time_sec">%1$d sec</string>
-    <string name="sdk_timer_label">Session expires in %1$s</string>
-    <string name="sdk_permission_location_title">Location Access is Required</string>
-    <string name="sdk_permission_dialog_message_location">You must share your location to complete identity verification.</string>
+    <string name="idv_time_min">%1$d min</string>
+    <string name="idv_time_sec">%1$d sec</string>
+    <string name="idv_timer_label">Session expires in %1$s</string>
+    <string name="idv_permission_location_title">Location Access is Required</string>
+    <string name="idv_permission_dialog_message_location">You must share your location to complete identity verification.</string>
 
     //Legacy Texts
-    <string name="sdk_emailCapture_button">Continue</string>
-    <string name="sdk_phoneCapture_button">Continue</string>
-    <string name="sdk_otp_button">Submit</string>
-    <string name="sdk_permission_dialog_retry">Retry</string>
-    <string name="sdk_permission_dialog_cancel">Cancel</string>
-    <string name="sdk_selfie_preview_submit_button">Submit</string>
-    <string name="sdk_selfie_preview_retake_button">No, Retake</string>
-    <string name="sdk_get_started">Next Record</string>
+    <string name="idv_emailCapture_button">Continue</string>
+    <string name="idv_phoneCapture_button">Continue</string>
+    <string name="idv_otp_button">Submit</string>
+    <string name="idv_permission_dialog_retry">Retry</string>
+    <string name="idv_permission_dialog_cancel">Cancel</string>
+    <string name="idv_selfie_preview_submit_button">Submit</string>
+    <string name="idv_selfie_preview_retake_button">No, Retake</string>
+    <string name="idv_get_started">Next Record</string>
 
-    <string name="sdk_permission_dialog_title">Permission not granted</string>
-    <string name="sdk_permission_camera_title">Cannot access camera</string>
-    <string name="sdk_permission_dialog_message_camera">Access to your camera is needed to scan your ID and take your selfie.</string>
-    <string name="sdk_permission_dialog_settings">Settings</string>
+    <string name="idv_permission_dialog_title">Permission not granted</string>
+    <string name="idv_permission_camera_title">Cannot access camera</string>
+    <string name="idv_permission_dialog_message_camera">Access to your camera is needed to scan your ID and take your selfie.</string>
+    <string name="idv_permission_dialog_settings">Settings</string>
 
-    <string name="sdk_data_fail">Verification Error</string>
-    <string name="sdk_data_check_clear">Is it clear?</string>
-    <string name="sdk_data_check_readable">Is it readable?</string>
-    <string name="sdk_data_processing">Processing</string>
+    <string name="idv_data_fail">Verification Error</string>
+    <string name="idv_data_check_clear">Is it clear?</string>
+    <string name="idv_data_check_readable">Is it readable?</string>
+    <string name="idv_data_processing">Processing</string>
 
-    <string name="sdk_internet_error">Unable to connect to internet.\nPlease try again</string>
-    <string name="sdk_otp_incorrect">You entered an incorrect code. Please try again.</string>
-    <string name="sdk_otp_fail_error">Error confirming your verification code</string>
+    <string name="idv_internet_error">Unable to connect to internet.\nPlease try again</string>
+    <string name="idv_otp_incorrect">You entered an incorrect code. Please try again.</string>
+    <string name="idv_otp_fail_error">Error confirming your verification code</string>
 </resources>

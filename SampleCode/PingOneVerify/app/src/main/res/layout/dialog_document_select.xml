@@ -112,7 +112,7 @@
                     android:textSize="@dimen/text_size_title"
                     android:textStyle="bold"
                     app:languageProvider="@{languageProvider}"
-                    app:resourceId="@{R.string.sdk_documentCapture_header_type}"
+                    app:resourceId="@{R.string.idv_documentCapture_header_type}"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHeight_percent=".05"
                     app:layout_constraintStart_toStartOf="parent"
@@ -125,7 +125,7 @@
                     android:textColor="@{theme.bodyTextColor}"
                     android:textSize="@dimen/text_size_subtitle"
                     app:languageProvider="@{languageProvider}"
-                    app:resourceId="@{R.string.sdk_documentCapture_description_type}"
+                    app:resourceId="@{R.string.idv_documentCapture_description_type}"
                     app:layout_constraintTop_toBottomOf="@+id/txt_title"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent" />

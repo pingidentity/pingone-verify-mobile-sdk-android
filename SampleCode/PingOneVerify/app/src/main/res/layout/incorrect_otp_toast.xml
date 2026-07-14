@@ -6,10 +6,6 @@
         <import type="com.pingidentity.sdk.pingoneverify.sample.R" />
 
         <variable
-            name="maximumTriesReached"
-            type="boolean" />
-
-        <variable
             name="languageProvider"
             type="com.pingidentity.sdk.provider.language.LanguagePackProviderContract" />
     </data>
@@ -41,7 +37,8 @@
                     android:id="@+id/otp_error_textview"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@{languageProvider.getStringForResource(maximumTriesReached ? R.string.sdk_otp_fail_error : R.string.sdk_otp_incorrect)}"
+                    android:gravity="center_horizontal"
+                    android:text="@{languageProvider.getStringForResource(R.string.idv_otp_incorrect)}"
                     android:textColor="@color/alpha_red" />
 
             </LinearLayout>

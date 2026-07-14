@@ -30,9 +30,9 @@ class UploadFailureDialog(
         get() = DocumentClass.permissiveValueOf(settings.documentType?.toString())
 
 
-    private val mTimerObserver = object : DocumentSubmissionTimer.TimerObserver {
+    private val mTimerObserver = object : DocumentSubmissionTimer.Observer {
         override fun onTick(millisRemaining: Int) {
-            binding?.txtTimeRemaining?.text = getTimeRemainingString(millisRemaining, R.string.sdk_timer_label)
+            binding?.txtTimeRemaining?.text = getTimeRemainingString(millisRemaining, R.string.idv_timer_label)
         }
         override fun onFinish() {}
     }
@@ -65,9 +65,9 @@ class UploadFailureDialog(
             DocumentClass.GEOLOCATION -> {
                 binding.ivInfoImage.setImageResource(R.drawable.idv_upload_error)
                 binding.ivInfoImage.setColorFilter(requireContext().getColor(R.color.permission_error))
-                infoTitle = getLanguageString(R.string.sdk_permission_location_title)
-                binding.tvFailMessage.text = getLanguageString(R.string.sdk_permission_dialog_message_location)
-                binding.btnRetry.text = getLanguageString(R.string.sdk_locationCapture_retry)
+                infoTitle = getLanguageString(R.string.idv_permission_location_title)
+                binding.tvFailMessage.text = getLanguageString(R.string.idv_permission_dialog_message_location)
+                binding.btnRetry.text = getLanguageString(R.string.idv_locationCapture_retry)
             }
             else -> {
                 val key = message.languagePackKey
@@ -79,9 +79,9 @@ class UploadFailureDialog(
             }
         }
         if (infoTitle == null) {
-            infoTitle = getLanguageString(if (retryable) R.string.sdk_data_retry else R.string.sdk_data_fail)
+            infoTitle = getLanguageString(if (retryable) R.string.idv_data_retry else R.string.idv_data_fail)
             binding.ivInfoImage.setImageResource(if (retryable) R.drawable.idv_upload_retry else R.drawable.idv_upload_error)
-            binding.btnRetry.text = getLanguageString(if (retryable) R.string.sdk_data_retry else R.string.sdk_dataCapture_button)
+            binding.btnRetry.text = getLanguageString(if (retryable) R.string.idv_data_retry else R.string.idv_dataCapture_button)
         }
         binding.tvFailTitle.text = infoTitle
         binding.ivInfoImage.contentDescription = infoTitle

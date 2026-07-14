@@ -105,6 +105,7 @@ public class DocumentCapturePresenter implements DocumentCaptureContract {
         if (activity == null) return;
         DocumentSubmissionTimer.getInstance().stop();
         clearBackStack();
+        mActiveOtpDialog = null;
     }
 
     private void clearBackStack() {
@@ -175,7 +176,7 @@ public class DocumentCapturePresenter implements DocumentCaptureContract {
         ProcessingDialog processingDialog = ProcessingDialog.newInstance(mAppTheme, mLanguageProvider);
         startFragment(activity, processingDialog, UiConstants.Tags.PROCESSING_DIALOG);
         postDelayedOnMain(() -> {
-            hideWaitOverlay(coordinator);
+            hideWaitOverlay();
             FragmentActivity a = mActivityRef.get();
             if (a == null) return;
             GeolocationRetryFragment fragment = GeolocationRetryFragment.newInstance(mAppTheme, coordinator, mLanguageProvider);
@@ -208,9 +209,9 @@ public class DocumentCapturePresenter implements DocumentCaptureContract {
     }
 
     public void notifyOtpResult(boolean success) {
+        hideWaitOverlay();
         if (mActiveOtpDialog != null) {
-            if (success) mActiveOtpDialog.onOtpSuccess();
-            else mActiveOtpDialog.onOtpIncorrect();
+            mActiveOtpDialog.onOtpResponse(success);
         }
     }
 
@@ -260,7 +261,7 @@ public class DocumentCapturePresenter implements DocumentCaptureContract {
     }
 
     @Override
-    public void hideWaitOverlay(VerifyTransactionCoordinator coordinator) {
+    public void hideWaitOverlay() {
         removeFragmentByTag(UiConstants.Tags.PROCESSING_DIALOG);
     }
 
@@ -280,11 +281,8 @@ public class DocumentCapturePresenter implements DocumentCaptureContract {
         FragmentActivity activity = mActivityRef.get();
         if (activity == null) return;
         if (tagSet.contains(tag)) {
-            Fragment fragment = activity.getSupportFragmentManager().findFragmentByTag(tag);
-            if (fragment != null) {
-                activity.getSupportFragmentManager().beginTransaction().remove(fragment).commitAllowingStateLoss();
-                tagSet.remove(tag);
-            }
+            activity.getSupportFragmentManager().popBackStackImmediate(tag, FragmentManager.POP_BACK_STACK_INCLUSIVE);
+            tagSet.remove(tag);
         }
     }
 

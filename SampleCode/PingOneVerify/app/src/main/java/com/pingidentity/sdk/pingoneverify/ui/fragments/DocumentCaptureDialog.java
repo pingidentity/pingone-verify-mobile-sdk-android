@@ -45,13 +45,13 @@ public class DocumentCaptureDialog extends BaseFragment {
     }
 
     @Nullable
-    private final DocumentSubmissionTimer.TimerObserver mTimerObserver =
-            new DocumentSubmissionTimer.TimerObserver() {
+    private final DocumentSubmissionTimer.Observer mTimerObserver =
+            new DocumentSubmissionTimer.Observer() {
                 @Override public void onTick(int millisRemaining) {
-                    if (mBinding != null) mBinding.txtTimeRemaining.setText(getTimeRemainingString(millisRemaining, R.string.sdk_timer_label));
+                    if (mBinding != null) mBinding.txtTimeRemaining.setText(getTimeRemainingString(millisRemaining, R.string.idv_timer_label));
                 }
                 @Override public void onFinish() {
-                    if (mBinding != null) mBinding.txtTimeRemaining.setText(getTimeRemainingString(null, R.string.sdk_timer_label));
+                    if (mBinding != null) mBinding.txtTimeRemaining.setText(getTimeRemainingString(null, R.string.idv_timer_label));
                 }
             };
 
@@ -79,15 +79,15 @@ public class DocumentCaptureDialog extends BaseFragment {
     private void setScreenContent(DialogDocumentCaptureBinding binding) {
         switch (mDocument) {
             case GOVERNMENT_ID:
-                BindingAdapters.INSTANCE.setProviderText(binding.txtTitle, mLanguageProvider, R.string.sdk_documentCapture_header_governmentId);
-                binding.txtInstruction.setText(getLanguageString(R.string.sdk_documentCapture_description_governmentId));
-                binding.btnCapture.setText(getLanguageString(R.string.sdk_dataCapture_button));
+                BindingAdapters.INSTANCE.setProviderText(binding.txtTitle, mLanguageProvider, R.string.idv_documentCapture_header_governmentId);
+                binding.txtInstruction.setText(getLanguageString(R.string.idv_documentCapture_description_governmentId));
+                binding.btnCapture.setText(getLanguageString(R.string.idv_dataCapture_button));
                 break;
             case SELFIE:
-                BindingAdapters.INSTANCE.setProviderText(binding.txtTitle, mLanguageProvider, R.string.sdk_documentCapture_header_selfie);
-                binding.txtInstruction.setText(getLanguageString(R.string.sdk_documentCapture_description_selfie));
+                BindingAdapters.INSTANCE.setProviderText(binding.txtTitle, mLanguageProvider, R.string.idv_documentCapture_header_selfie);
+                binding.txtInstruction.setText(getLanguageString(R.string.idv_documentCapture_description_selfie));
                 binding.layoutIcContainer.setImageDrawable(AppCompatResources.getDrawable(requireContext(), R.drawable.idv_selfie));
-                binding.btnCapture.setText(getLanguageString(R.string.sdk_dataCapture_button));
+                binding.btnCapture.setText(getLanguageString(R.string.idv_dataCapture_button));
                 break;
         }
         binding.btnSkip.setVisibility(mCaptureSettings.isOptional() ? View.VISIBLE : View.GONE);

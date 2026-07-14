@@ -94,7 +94,7 @@ public class SelfieCaptureFragment extends BaseFragment implements View.OnClickL
     public void onClick(View v) {
         if (v == null || skipClickEvent()) return;
         if (R.id.btn_cancel == v.getId()) {
-            mCoordinator.endVerification();
+            closeFragment();
         } else if (R.id.btn_retake == v.getId()) {
             mCapturedPayload = null;
             mCapturedPhotoBytes = null;

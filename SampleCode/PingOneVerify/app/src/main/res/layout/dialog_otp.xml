@@ -108,7 +108,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="16dp"
                         app:languageProvider="@{languageProvider}"
-                        app:resourceId="@{R.string.sdk_otp_title}"
+                        app:resourceId="@{R.string.idv_otp_title}"
                         android:textColor="@{theme.headingTextColor}"
                         android:textSize="24sp"
                         app:layout_constraintEnd_toEndOf="parent"
@@ -155,7 +155,7 @@
                             android:background="@drawable/shape_edit_field"
                             android:backgroundTint="@{theme.solidButtonAppearance.backgroundColor}"
                             app:languageProviderHint="@{languageProvider}"
-                            app:hintResourceId="@{R.string.sdk_otp_title}"
+                            app:hintResourceId="@{R.string.idv_otp_title}"
                             android:textColorHint="@color/alpha_grey"
                             android:imeOptions="actionDone"
                             android:inputType="number"
@@ -179,7 +179,7 @@
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@+id/view_verification_code"
-                        tools:text="@string/sdk_otp_time" />
+                        tools:text="@string/idv_otp_time" />
 
                     <com.pingidentity.sdk.pingoneverify.ui.views.IDVButton
                         android:id="@+id/btn_send_verification_code"
@@ -188,7 +188,7 @@
                         android:alpha="0.5"
                         android:enabled="false"
                         app:languageProvider="@{languageProvider}"
-                        app:resourceId="@{R.string.sdk_infoCapture_button}"
+                        app:resourceId="@{R.string.idv_infoCapture_button}"
                         android:textAllCaps="false"
                         android:textSize="18sp"
                         app:background_appearance="@{theme.solidButtonAppearance.backgroundColor}"
@@ -209,7 +209,7 @@
                         android:enabled="false"
                         android:gravity="center"
                         app:languageProvider="@{languageProvider}"
-                        app:resourceId="@{R.string.sdk_otp_resend}"
+                        app:resourceId="@{R.string.idv_otp_resend}"
                         android:textAllCaps="false"
                         android:textColor="@drawable/selector_resend_button"
                         android:textSize="12sp"

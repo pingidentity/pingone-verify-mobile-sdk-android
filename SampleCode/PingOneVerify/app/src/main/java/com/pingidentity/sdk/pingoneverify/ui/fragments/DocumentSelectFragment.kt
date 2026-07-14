@@ -22,9 +22,9 @@ class DocumentSelectFragment(
     private lateinit var binding: DialogDocumentSelectBinding
 
 
-    private val mTimerObserver = object : DocumentSubmissionTimer.TimerObserver {
+    private val mTimerObserver = object : DocumentSubmissionTimer.Observer {
         override fun onTick(millisRemaining: Int) {
-            binding?.txtTimeRemaining?.text = getTimeRemainingString(millisRemaining, R.string.sdk_timer_label)
+            binding?.txtTimeRemaining?.text = getTimeRemainingString(millisRemaining, R.string.idv_timer_label)
         }
         override fun onFinish() {}
     }
