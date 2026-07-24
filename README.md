@@ -33,7 +33,7 @@ If you haven't done so already, clone or download the [PingOne Verify SDK for An
 
 1. Create a `libs` folder, if it doesn't exist under your module, and copy the downloaded `.aar` dependencies:
 
-    * PingOneVerify-3.2.0.aar
+    * PingOneVerify-3.3.0.aar
 
     * iad.aar
 
@@ -48,20 +48,26 @@ dependencies {
 3. Because these components are loaded locally, you must also include the SDK's dependencies in the configuration to compile and run it.
 ```
 dependencies {
-    implementation 'com.microblink:blinkid-core:7.6.1'
-    implementation 'com.microblink:blinkid-ux:7.6.1'
+    implementation 'com.microblink:blinkid-ux:8000.0.0'
 
-    implementation 'androidx.activity:activity-ktx:1.7.0'
-    implementation 'androidx.fragment:fragment-ktx:1.5.6'
+    // Compose BOM + explicit ui/ui-graphics overrides to match blinkid-ux:8000.0.0 compile target
+    implementation platform('androidx.compose:compose-bom:2025.08.01')
+    implementation 'androidx.compose.ui:ui'
+    implementation 'androidx.compose.ui:ui-android:1.11.2'
+    implementation 'androidx.compose.ui:ui-graphics:1.11.2'
+    implementation 'androidx.compose.ui:ui-graphics-android:1.11.2'
+    implementation 'androidx.compose.foundation:foundation'
+    implementation 'androidx.compose.runtime:runtime'
+    implementation 'androidx.compose.material3:material3'
+    implementation 'androidx.activity:activity-compose:1.13.0'
+    implementation 'androidx.lifecycle:lifecycle-viewmodel-compose:2.10.0'
+
+    implementation 'androidx.activity:activity-ktx:1.13.0'
+    implementation 'androidx.fragment:fragment-ktx:1.5.7'
     implementation 'androidx.annotation:annotation:1.6.0'
     implementation 'androidx.appcompat:appcompat:1.6.1'
-    implementation 'androidx.camera:camera-camera2:1.2.3'
-    implementation 'androidx.camera:camera-core:1.2.3'
-    implementation 'androidx.camera:camera-extensions:1.2.3'
-    implementation 'androidx.camera:camera-lifecycle:1.2.3'
-    implementation 'androidx.camera:camera-view:1.2.3'
-    implementation 'androidx.core:core-ktx:1.10.0'
-    implementation 'androidx.fragment:fragment-ktx:1.5.7'
+    // CameraX — versions pulled transitively by blinkid-ux:8000.0.0 (1.6.1); no explicit pin needed
+    implementation 'androidx.core:core-ktx:1.18.0'
 
     implementation 'com.google.android.material:material:1.9.0'
     implementation 'com.google.code.gson:gson:2.9.0'
@@ -79,8 +85,7 @@ dependencies {
     implementation 'com.squareup.retrofit2:retrofit:2.9.0'
     implementation 'com.github.bumptech.glide:glide:4.16.0'
     kapt 'com.github.bumptech.glide:compiler:4.16.0'
-    implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-android:1.6.4'
-    implementation 'org.jetbrains.kotlin:kotlin-stdlib-jdk8:1.8.10'
+    implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-android:1.10.2'
 
     [//]: <> (IMPORTANT: Below dependencies must be defined for Selfie/Government ID document upload on S3)
     implementation 'org.bitbucket.b_c:jose4j:0.9.5'

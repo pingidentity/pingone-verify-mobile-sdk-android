@@ -1,5 +1,18 @@
 # Changelog
 
+## v3.3.0 - July 24th, 2026
+
+### Added
+
+- BlinkId SDK updated to v8000.0.0
+- Android 16 (targetSdkVersion 36) support added
+
+### Fixed
+
+- BlinkId document scan locked in portrait orientation
+
+# Changelog
+
 ## v3.2.0 - April 28th, 2026
 
 ### Added
