@@ -1,5 +1,12 @@
 # Changelog
 
+## v3.1.8 - July 30th, 2026
+
+### Fixed
+
+- Support for overriding LanguagePackProvider
+- Minor bug fixes
+
 ## v3.1.7 - June 5th, 2026
 
 ### Fixed

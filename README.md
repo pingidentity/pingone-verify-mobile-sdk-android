@@ -33,7 +33,7 @@ If you haven't done so already, clone or download the [PingOne Verify SDK for An
 
 1. Create a `libs` folder, if it doesn't exist under your module, and copy the downloaded `.aar` dependencies:
 
-    * PingOneVerify-3.1.7.aar
+    * PingOneVerify-3.1.8.aar
 
     * iad.aar
 
