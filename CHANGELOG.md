@@ -1,5 +1,11 @@
 # Changelog
 
+## v3.1.9 - August 7th, 2026
+
+### Fixed
+
+- Document / Selfie capture image auto-resize handled
+
 ## v3.1.8 - July 30th, 2026
 
 ### Fixed
