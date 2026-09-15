@@ -5,16 +5,16 @@ plugins {
 }
 
 android {
-    compileSdk 35
+    compileSdk 36
     namespace 'com.pingidentity.sdk.pingoneverify.sample'
-    buildToolsVersion = '34.0.0'
+    buildToolsVersion = '36.0.0'
 
     defaultConfig {
         applicationId "com.pingidentity.sdk.pingoneverify.sample"
         minSdkVersion 26
-        targetSdkVersion 35
-        versionCode 102
-        versionName "4.0.1"
+        targetSdkVersion 36
+        versionCode 110
+        versionName "4.2.0"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
@@ -38,23 +38,33 @@ android {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
+        minified {
+            initWith release
+            minifyEnabled true
+            matchingFallbacks = ['release']
+        }
+    }
+    packagingOptions {
+        // Exclude duplicate files from bouncy castle dependencies (brought by NfcCaptureProvider)
+        resources.excludes.add("META-INF/versions/**")
+        resources.excludes.add("META-INF/LICENSE.md")
     }
 }
 
 dependencies {
     // Verify Core - Mandatory dependencies for PingOne Verify SDK
-    implementation files('../../../SDK/PingOneVerify-4.0.1.aar')
-    implementation files('../../../SDK/NeoInterfaces-4.0.1.aar')
+    implementation files('../../../SDK/PingOneVerify-4.2.0.aar')
+    implementation files('../../../SDK/NeoInterfaces-4.2.0.aar')
 
     // Dependencies - needed for GeoLocation collection
-    implementation files('../../../SDK/GeoLocationProvider-4.0.1.aar')
+    implementation files('../../../SDK/GeoLocationProvider-4.2.0.aar')
 
     // Dependencies - needed for Selfie Verification (liveness)
-    implementation 'com.pingidentity.sdk.pingoneverify:SelfieCaptureProvider:4.0.1'
+    implementation 'com.pingidentity.sdk.pingoneverify:SelfieCaptureProvider:4.2.0'
     implementation files('../../../SDK/iad-2.4.0.aar')
 
     // Dependencies - needed for Government ID Verification
-    implementation 'com.pingidentity.sdk.pingoneverify:IdCaptureProvider:4.0.1'
+    implementation 'com.pingidentity.sdk.pingoneverify:IdCaptureProvider:4.2.0'
 
     // Dependencies - needed for QR Scanner Camera functionality in Sample App
     implementation 'androidx.camera:camera-camera2:1.4.2'

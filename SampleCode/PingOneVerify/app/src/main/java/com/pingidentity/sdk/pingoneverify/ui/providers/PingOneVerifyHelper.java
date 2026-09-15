@@ -2,12 +2,12 @@ package com.pingidentity.sdk.pingoneverify.ui.providers;
 
 import android.os.Handler;
 import android.os.Looper;
+
 import androidx.annotation.Nullable;
 import androidx.fragment.app.FragmentActivity;
 
 import com.pingidentity.sdk.pingoneverify.PingOneVerifyClient;
 import com.pingidentity.sdk.pingoneverify.errors.ClientBuilderError;
-import com.pingidentity.sdk.pingoneverify.neo.contracts.CaptureResultReceiver;
 import com.pingidentity.sdk.pingoneverify.neo.contracts.VerifyTransactionCoordinator;
 import com.pingidentity.sdk.pingoneverify.neo.contracts.VerifyTransactionCoordinatorDelegate;
 import com.pingidentity.sdk.pingoneverify.neo.errors.DocumentSubmissionError;
@@ -18,6 +18,7 @@ import com.pingidentity.sdk.pingoneverify.neo.models.RetryFeedback;
 import com.pingidentity.sdk.pingoneverify.neo.models.DocumentClass;
 import com.pingidentity.sdk.pingoneverify.neo.models.DocumentSubmissionResponse;
 import com.pingidentity.sdk.pingoneverify.neo.models.IdCaptureResult;
+import com.pingidentity.sdk.pingoneverify.neo.models.NfcCaptureResult;
 import com.pingidentity.sdk.pingoneverify.neo.models.SelfieCaptureResult;
 import com.pingidentity.sdk.pingoneverify.neo.settings.DocumentCaptureSettings;
 import com.pingidentity.sdk.pingoneverify.neo.settings.LocationCaptureSettings;
@@ -133,6 +134,17 @@ public class PingOneVerifyHelper implements VerifyTransactionCoordinatorDelegate
     }
 
     @Override
+    public void didCaptureNfc(VerifyTransactionCoordinator coordinator,
+                              NfcCaptureResult result) {
+        runOnMainThread(() -> {
+            // Both successful and pre-session failures are backend-driven NFC outcomes.
+            documentCapturePresenter.showWaitOverlay(coordinator);
+            // Simply pass result object - success (isSuccess())
+            coordinator.submitNfc(result);
+        });
+    }
+
+    @Override
     public void didCaptureGeolocation(VerifyTransactionCoordinator coordinator,
                                        float latitude, float longitude) {
         runOnMainThread(() -> {
@@ -155,11 +167,10 @@ public class PingOneVerifyHelper implements VerifyTransactionCoordinatorDelegate
             switch (settings.getDocumentType()) {
                 case GEOLOCATION -> documentCapturePresenter.captureLocation(coordinator, (LocationCaptureSettings) settings);
                 case OTP -> documentCapturePresenter.captureOtp(coordinator, (OtpCaptureSettings) settings);
-                case EMAIL, PHONE, SELFIE, GOVERNMENT_ID -> documentCapturePresenter.captureDocument(coordinator, settings);
-                default -> { if (coordinator instanceof CaptureResultReceiver) {
-                    ((CaptureResultReceiver) coordinator).captureError(
+                case EMAIL, PHONE, SELFIE, GOVERNMENT_ID, NFC -> documentCapturePresenter.captureDocument(coordinator, settings);
+                default -> documentCapturePresenter.dispatchCaptureError(coordinator,
                         new DocumentSubmissionError.DocumentCaptureError("unsupported_type",
-                                "Unsupported document type: " + settings.getDocumentType())); } }
+                                "Unsupported document type: " + settings.getDocumentType()));
             }
         });
     }

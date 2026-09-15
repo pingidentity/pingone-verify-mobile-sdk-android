@@ -89,8 +89,15 @@ public class DocumentCaptureDialog extends BaseFragment {
                 binding.layoutIcContainer.setImageDrawable(AppCompatResources.getDrawable(requireContext(), R.drawable.idv_selfie));
                 binding.btnCapture.setText(getLanguageString(R.string.idv_dataCapture_button));
                 break;
+            case NFC:
+                BindingAdapters.INSTANCE.setProviderText(binding.txtTitle, mLanguageProvider, R.string.idv_documentCapture_header_nfc);
+                binding.txtInstruction.setText(getLanguageString(R.string.idv_documentCapture_description_nfc));
+                binding.layoutIcContainer.setImageDrawable(AppCompatResources.getDrawable(requireContext(), R.drawable.idv_nfc));
+                binding.btnCapture.setText(getLanguageString(R.string.idv_dataCapture_button));
+                break;
         }
-        binding.btnSkip.setVisibility(mCaptureSettings.isOptional() ? View.VISIBLE : View.GONE);
+        boolean canSkip = mCaptureSettings.isOptional() && mDocument != DocumentClass.NFC;
+        binding.btnSkip.setVisibility(canSkip ? View.VISIBLE : View.GONE);
         binding.btnSkip.setOnClickListener(view -> mCoordinator.skipDocument(mDocument));
     }
 

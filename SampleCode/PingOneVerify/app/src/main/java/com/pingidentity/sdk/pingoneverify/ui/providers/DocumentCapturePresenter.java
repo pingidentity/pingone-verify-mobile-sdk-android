@@ -9,7 +9,10 @@ import androidx.fragment.app.FragmentActivity;
 import androidx.fragment.app.FragmentManager;
 
 import com.pingidentity.sdk.pingoneverify.contracts.DocumentCaptureContract;
+import com.pingidentity.sdk.pingoneverify.neo.contracts.CaptureResultReceiver;
+import com.pingidentity.sdk.pingoneverify.neo.errors.DocumentSubmissionError;
 import com.pingidentity.sdk.pingoneverify.neo.settings.OtpCaptureSettings;
+import com.pingidentity.sdk.pingoneverify.neo.settings.NfcCaptureSettings;
 import com.pingidentity.sdk.pingoneverify.utils.DocumentSubmissionTimer;
 import com.pingidentity.sdk.pingoneverify.neo.contracts.VerifyTransactionCoordinator;
 import com.pingidentity.sdk.pingoneverify.neo.models.AppThemeResponse;
@@ -75,6 +78,12 @@ public class DocumentCapturePresenter implements DocumentCaptureContract {
 
     void setLanguageProvider(LanguagePackProviderContract languageProvider) {
         mLanguageProvider = languageProvider;
+    }
+
+    void dispatchCaptureError(VerifyTransactionCoordinator coordinator, DocumentSubmissionError error) {
+        if (coordinator instanceof CaptureResultReceiver) {
+            ((CaptureResultReceiver) coordinator).captureError(error);
+        }
     }
 
     private void postDelayedOnMain(Runnable action) {
@@ -204,6 +213,7 @@ public class DocumentCapturePresenter implements DocumentCaptureContract {
         switch (settings.getDocumentType()) {
             case SELFIE -> coordinator.captureSelfie(activity);
             case GOVERNMENT_ID -> coordinator.captureGovernmentId(activity);
+            case NFC -> coordinator.captureNfc(activity, (NfcCaptureSettings) settings);
             default -> {}
         }
     }

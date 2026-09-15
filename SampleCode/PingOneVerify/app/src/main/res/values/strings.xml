@@ -30,6 +30,10 @@
     <string name="idv_documentCapture_header_selfie">Take a Selfie</string>
     <string name="idv_documentCapture_description_selfie">Make sure you can see your face in the oval.</string>
 
+    //NFC
+    <string name="idv_documentCapture_header_nfc">Verify Your ID</string>
+    <string name="idv_documentCapture_description_nfc">Your ID contains a secure chip that helps us confirm it\'s authentic. To ensure a smooth scan, remove any thick or metal cases, wallets, or attachments from the back of your phone.</string>
+
     //Email
     <string name="idv_emailCapture_title">Verify Your Email</string>
     <string name="idv_emailCapture_description">Enter your email address.</string>
