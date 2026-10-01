@@ -1,5 +1,11 @@
 # Changelog
 
+## v4.2.0 - September 16th, 2026
+
+### Added
+
+- Capability for NFC-chip read for supported government IDs
+
 ## v4.0.1 - July 1st, 2026
 
 ### Fixed
