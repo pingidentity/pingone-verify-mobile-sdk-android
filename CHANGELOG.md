@@ -1,5 +1,11 @@
 # Changelog
 
+## v4.2.1 - October 1st, 2026
+
+### Fixed
+
+- SDK license-keys code cleanup & fixes
+
 ## v4.2.0 - September 16th, 2026
 
 ### Added

@@ -105,18 +105,18 @@ allprojects {
 ```groovy
 dependencies {
     // Core
-    implementation files('path/to/SDK/PingOneVerify-4.2.0.aar')
-    implementation files('path/to/SDK/NeoInterfaces-4.2.0.aar')
+    implementation files('path/to/SDK/PingOneVerify-4.2.1.aar')
+    implementation files('path/to/SDK/NeoInterfaces-4.2.1.aar')
 
     // Geolocation capture
-    implementation files('path/to/SDK/GeoLocationProvider-4.2.0.aar')
+    implementation files('path/to/SDK/GeoLocationProvider-4.2.1.aar')
 
     // Selfie / liveness capture — declared via maven coordinates so transitive deps resolve automatically
-    implementation 'com.pingidentity.sdk.pingoneverify:SelfieCaptureProvider:4.2.0'
+    implementation 'com.pingidentity.sdk.pingoneverify:SelfieCaptureProvider:4.2.1'
     implementation files('path/to/SDK/iad-2.4.0.aar')
 
     // Government ID capture — declared via maven coordinates so transitive deps resolve automatically
-    implementation 'com.pingidentity.sdk.pingoneverify:IdCaptureProvider:4.2.0'
+    implementation 'com.pingidentity.sdk.pingoneverify:IdCaptureProvider:4.2.1'
 
     // Camera — required for QR scanning
     implementation 'androidx.camera:camera-camera2:1.4.2'
