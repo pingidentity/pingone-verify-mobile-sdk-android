@@ -1,5 +1,11 @@
 # Changelog
 
+## v3.0.3 - October 1st, 2026
+
+### Hotfix
+
+- Passport Card back-image handling bug-fix
+
 ## v3.0.2 - April 21st, 2026
 
 ### Hotfix
