@@ -1,5 +1,13 @@
 # Changelog
 
+## v3.1.10 - October 8th, 2026
+
+### Fixed
+
+- Verification info-screen can handle larger text as scrollable
+- Government ID capture back-press handling fixed
+- Cancel button contentDescription added
+
 ## v3.1.10 - September 7th, 2026
 
 ### Fixed
