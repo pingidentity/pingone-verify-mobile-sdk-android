@@ -120,13 +120,14 @@ public class DocumentCapturePresenter implements DocumentCaptureContract {
     private void clearBackStack() {
         FragmentActivity activity = mActivityRef.get();
         if (activity == null) return;
-        int count = activity.getSupportFragmentManager().getBackStackEntryCount();
+        FragmentManager fragmentManager = activity.getSupportFragmentManager();
+        if (activity.isFinishing() || activity.isDestroyed() || fragmentManager.isStateSaved()) return;
+        int count = fragmentManager.getBackStackEntryCount();
         if (count == 0 || mInitialEntryCount >= count) return;
         try {
-            FragmentManager.BackStackEntry entry =
-                activity.getSupportFragmentManager().getBackStackEntryAt(mInitialEntryCount);
-            activity.getSupportFragmentManager().popBackStackImmediate(
-                entry.getId(), FragmentManager.POP_BACK_STACK_INCLUSIVE);
+            FragmentManager.BackStackEntry entry = fragmentManager.getBackStackEntryAt(mInitialEntryCount);
+            fragmentManager.popBackStackImmediate(
+                    entry.getId(), FragmentManager.POP_BACK_STACK_INCLUSIVE);
         } catch (IllegalArgumentException e) {
             Log.e("DocumentCapturePresenter", "Error clearing backstack", e);
         }

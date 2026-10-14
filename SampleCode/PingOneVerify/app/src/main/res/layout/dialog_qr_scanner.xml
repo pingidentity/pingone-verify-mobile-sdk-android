@@ -22,6 +22,7 @@
             android:layout_height="wrap_content"
             android:layout_margin="16dp"
             android:src="@drawable/idv_cancel"
+            android:contentDescription="@string/idv_data_cancel"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:tint="@color/white" />

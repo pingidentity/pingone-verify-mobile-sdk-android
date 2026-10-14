@@ -1,5 +1,12 @@
 # Changelog
 
+## v4.2.2 - October 15th, 2026
+
+### Fixed
+
+- Accessibility handling improvements
+- Document Capture timeout bug-fix
+
 ## v4.2.1 - October 1st, 2026
 
 ### Fixed

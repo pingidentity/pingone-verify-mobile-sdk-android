@@ -21,6 +21,7 @@ public class MainFragment extends Fragment {
 
     private Button mBtnVerify;
     private View waitOverlay;
+    private String verificationUrl;
 
     @Nullable
     @Override
@@ -33,10 +34,16 @@ public class MainFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
         mBtnVerify = view.findViewById(R.id.btn_verify);
         waitOverlay = view.findViewById(R.id.wait_spinner);
-        mBtnVerify.setOnClickListener(mView -> initPingOneClient());
+        mBtnVerify.setOnClickListener(mView -> {
+            if (verificationUrl != null && !verificationUrl.isEmpty()) {
+                startVerification(verificationUrl);
+            } else {
+                startQrScanner();
+            }
+        });
     }
 
-    private void initPingOneClient() {
+    private void startQrScanner() {
         QrScannerDialog scanner = QrScannerDialog.newInstance(new QrScannerDialog.Listener() {
             @Override
             public void onQrScanned(String verificationUrl) {

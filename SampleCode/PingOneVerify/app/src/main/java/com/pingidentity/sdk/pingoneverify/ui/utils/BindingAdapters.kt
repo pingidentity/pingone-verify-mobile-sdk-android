@@ -3,7 +3,6 @@ package com.pingidentity.sdk.pingoneverify.ui.utils
 import android.content.Context
 import android.content.res.ColorStateList
 import android.graphics.PorterDuff
-import android.graphics.Typeface
 import android.util.Base64
 import android.view.View
 import android.widget.ImageView

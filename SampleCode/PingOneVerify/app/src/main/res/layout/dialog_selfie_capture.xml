@@ -102,6 +102,7 @@
             android:layout_marginTop="8dp"
             android:src="@drawable/idv_cancel"
             android:tint="@color/idv_selfie_close"
+            android:contentDescription="@string/idv_data_cancel"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 

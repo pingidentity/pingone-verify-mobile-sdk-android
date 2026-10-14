@@ -49,6 +49,9 @@
                         android:layout_height="40dp"
                         android:background="@null"
                         android:src="@drawable/idv_cancel"
+                        android:contentDescription="@string/idv_data_cancel"
+                        android:importantForAccessibility="yes"
+                        android:accessibilityTraversalAfter="@id/txt_instruction"
                         app:icon_tint="@{theme}"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
@@ -183,6 +186,7 @@
                         android:layout_height="wrap_content"
                         android:textColor="@{theme.bodyTextColor}"
                         android:layout_marginTop="@dimen/timer_marginT"
+                        android:accessibilityTraversalAfter="@id/txt_instruction"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent" />
 

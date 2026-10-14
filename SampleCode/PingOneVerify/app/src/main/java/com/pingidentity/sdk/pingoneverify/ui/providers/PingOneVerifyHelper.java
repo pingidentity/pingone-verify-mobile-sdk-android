@@ -5,6 +5,8 @@ import android.os.Looper;
 
 import androidx.annotation.Nullable;
 import androidx.fragment.app.FragmentActivity;
+import androidx.lifecycle.Lifecycle;
+import androidx.lifecycle.LifecycleEventObserver;
 
 import com.pingidentity.sdk.pingoneverify.PingOneVerifyClient;
 import com.pingidentity.sdk.pingoneverify.errors.ClientBuilderError;
@@ -41,6 +43,9 @@ public class PingOneVerifyHelper implements VerifyTransactionCoordinatorDelegate
     private WeakReference<VerifyHelperCallback> mCallbackRef;
     private final DocumentCapturePresenter documentCapturePresenter = new DocumentCapturePresenter();
     private PingOneVerifyClient mClient;
+    private LifecycleEventObserver mPendingFailureObserver;
+    private DocumentSubmissionError mPendingFailure;
+    private boolean mFailureDelivered;
 
     /**
      * Constructs the helper and begins async initialisation (URL fetch, language pack, app theme).
@@ -222,11 +227,48 @@ public class PingOneVerifyHelper implements VerifyTransactionCoordinatorDelegate
     @Override
     public void didFailWith(@Nullable VerifyTransactionCoordinator coordinator, DocumentSubmissionError error) {
         FragmentActivity activity = mActivityRef.get();
-        VerifyHelperCallback callback = mCallbackRef != null ? mCallbackRef.get() : null;
         if (activity == null) return;
-        activity.runOnUiThread(() -> {
-            closeNavigation();
-            if (callback != null) callback.onVerificationFailed(error);
-        });
+        activity.runOnUiThread(() -> queueFailure(activity, error));
+    }
+
+    private void queueFailure(FragmentActivity activity, DocumentSubmissionError error) {
+        if (mFailureDelivered || activity.isFinishing() || activity.isDestroyed()) return;
+        mPendingFailure = error;
+        dispatchFailureIfSafe(activity);
+        if (mFailureDelivered || mPendingFailureObserver != null) return;
+
+        mPendingFailureObserver = (source, event) -> {
+            if (event == Lifecycle.Event.ON_DESTROY || activity.isFinishing() || activity.isDestroyed()) {
+                clearPendingFailure(activity);
+            } else if (event == Lifecycle.Event.ON_RESUME) {
+                new Handler(Looper.getMainLooper()).post(() -> dispatchFailureIfSafe(activity));
+            }
+        };
+        activity.getLifecycle().addObserver(mPendingFailureObserver);
+    }
+
+    private void dispatchFailureIfSafe(FragmentActivity activity) {
+        if (mFailureDelivered || mPendingFailure == null) return;
+        if (activity.isFinishing() || activity.isDestroyed()) {
+            clearPendingFailure(activity);
+            return;
+        }
+        if (!activity.getLifecycle().getCurrentState().isAtLeast(Lifecycle.State.RESUMED)
+                || activity.getSupportFragmentManager().isStateSaved()) return;
+
+        DocumentSubmissionError error = mPendingFailure;
+        clearPendingFailure(activity);
+        mFailureDelivered = true;
+        closeNavigation();
+        VerifyHelperCallback callback = mCallbackRef != null ? mCallbackRef.get() : null;
+        if (callback != null) callback.onVerificationFailed(error);
+    }
+
+    private void clearPendingFailure(FragmentActivity activity) {
+        mPendingFailure = null;
+        if (mPendingFailureObserver != null) {
+            activity.getLifecycle().removeObserver(mPendingFailureObserver);
+            mPendingFailureObserver = null;
+        }
     }
 }
