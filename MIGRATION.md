@@ -72,11 +72,14 @@ That's it for the built-in UI. The helper:
 
 - `didReceiveAppTheme(coordinator, appTheme, error)` — server theme delivered. Apply, or fall back to defaults on error.
 - `didReceiveLanguagePack(coordinator, languageProvider, error)` — remote language pack delivered.
-- `shouldCaptureDocument(coordinator, settings)` — fires for every capture step. Drive your UI from `settings.getDocumentType()`.
-- `didCaptureGovernmentId(coordinator, result)` — show a preview screen, then call `coordinator.submitGovernmentId(result)`.
+- `shouldCaptureDocument(coordinator, settings)` — fires for each capture step. Switch on `settings.getDocumentType()`; for NFC, cast to `NfcCaptureSettings`, show your NFC instruction UI, then call `coordinator.captureNfc(activity, settings)`.
+- `didCaptureGovernmentId(coordinator, result)` — show a preview screen, then call `coordinator.submitGovernmentId(result)`. Preserve `result.getDocumentData()` MRZ values; they are needed for the subsequent NFC step.
 - `didCaptureSelfie(coordinator, result)` — show a preview screen, then call `coordinator.submitSelfie(result)`.
-- `shouldRetryCapture(coordinator, feedback, settings)` — server requested a retry. `feedback` is a `RetryFeedback` value.
+- `shouldRetryCapture(coordinator, feedback, settings)` — server requested a retry. `feedback` is a `RetryFeedback` value. For NFC retries (`settings.getDocumentType() == DocumentClass.NFC`), show retry feedback and call `coordinator.captureNfc(activity, (NfcCaptureSettings) settings)` when the user retries.
+- `didCaptureNfc(coordinator, result)` — **required for custom NFC UI**. The optional `:nfc-capture` provider returns a ReadID session result here; show processing and call `coordinator.submitNfc(result)` exactly once. `NfcCaptureResult` exposes `isSuccess()`, `getReadIdSessionId()`, and `getFailureReason()`; submit failures too so the backend can decide retry/fallback.
 - `didCaptureGeolocation(coordinator, latitude, longitude)` — location coordinates available. Call `coordinator.submitGeolocation(latitude, longitude)` from here.
+
+Android code references: the public coordinator methods are declared in `neo-interfaces/src/main/java/com/pingidentity/sdk/pingoneverify/neo/contracts/VerifyTransactionCoordinator.java`; the delegate callbacks are in `VerifyTransactionCoordinatorDelegate.java`. For a built-in UI example, see `app/src/main/java/com/pingidentity/sdk/pingoneverify/ui/providers/DocumentCapturePresenter.java` and `PingOneVerifyHelper.java`.
 - `didSubmitDocument(coordinator, response)` — document was submitted; update progress.
 - `didSubmitOtp(coordinator, success)` — OTP result. `true` on success; on `false`, show the user the error and let them re-enter.
 - `didUpdateOtpSession(coordinator, settings)` — OTP session updated (e.g. after a resend). Refresh the OTP entry screen with the new state.
@@ -98,13 +101,13 @@ That's it for the built-in UI. The helper:
 
 | Module | AAR | Status |
 |---|---|---|
-| `:verify-core` | `PingOneVerify-4.0.1.aar` | Required (no change) |
-| `:neo-interfaces` | `NeoInterfaces-4.0.1.aar` | Required (no change) |
+| `PingOneVerify` | `PingOneVerify-4.2.2.aar` | Required (no change) |
+| `:neo-interfaces` | `NeoInterfaces-4.2.2.aar` | Required (no change) |
 | `:language-provider` | — | Removed. Language pack fetching is now built into `PingOneVerify.aar` — no separate AAR or manual wiring needed. |
-| `:id-capture` | `IdCaptureProvider-4.0.1` (maven coordinates) | Required for government-ID capture. Must be declared via maven coordinates — see [AAR-based integration — dependency declaration change](#aar-based-integration--dependency-declaration-change). |
-| `:selfie-capture` | `SelfieCaptureProvider-4.0.1` (maven coordinates) | Required for selfie steps. Must be declared via maven coordinates — see [AAR-based integration — dependency declaration change](#aar-based-integration--dependency-declaration-change). |
-| `:location-provider` | `GeoLocationProvider-4.0.1.aar` | Optional. Required only for geolocation steps. |
-| `:geo-location` | — | **Removed.** Replaced by `GeoLocationProvider.aar` — remove any reference to the old AAR. |
+| `:id-capture` | `IdCaptureProvider-4.2.2` (maven coordinates) | Required for government-ID capture. Must be declared via maven coordinates — see [AAR-based integration — dependency declaration change](#aar-based-integration--dependency-declaration-change). |
+| `:selfie-capture` | `SelfieCaptureProvider-4.2.2` (maven coordinates) | Required for selfie steps. Must be declared via maven coordinates — see [AAR-based integration — dependency declaration change](#aar-based-integration--dependency-declaration-change). |
+| `:location-provider` | `GeoLocationProvider-4.2.2.aar` | Optional. Required only for geolocation steps. |
+| `:nfc-capture` | `NfcCaptureProvider-4.2.0` (Maven coordinates) | Optional. Required only for NFC steps; include the ReadID vendor AARs described in the NFC integration section. |
 
 ---
 
@@ -114,8 +117,8 @@ If you integrate via prebuilt AARs, the `IdCaptureProvider` and `SelfieCapturePr
 
 **Before:**
 ```groovy
-implementation files('path/to/SDK/IdCaptureProvider-4.0.0.aar')
-implementation files('path/to/SDK/SelfieCaptureProvider-4.0.0.aar')
+implementation files('path/to/SDK/IdCaptureProvider-4.2.2.aar')
+implementation files('path/to/SDK/SelfieCaptureProvider-4.2.2.aar')
 implementation files('path/to/SDK/blinkid-core-7.6.1.aar')
 ```
 
@@ -131,8 +134,9 @@ allprojects {
 }
 
 // In app build.gradle — use maven coordinates instead of files(...)
-implementation 'com.pingidentity.sdk.pingoneverify:IdCaptureProvider:4.0.1'
-implementation 'com.pingidentity.sdk.pingoneverify:SelfieCaptureProvider:4.0.1'
+implementation 'com.pingidentity.sdk.pingoneverify:IdCaptureProvider:4.2.2'
+implementation 'com.pingidentity.sdk.pingoneverify:SelfieCaptureProvider:4.2.2'
+runtimeOnly 'com.pingidentity.sdk.pingoneverify:NfcCaptureProvider:4.2.0' // optional; add only when NFC is enabled
 implementation files('path/to/SDK/iad-2.4.0.aar')  // still required as a flat AAR
 ```
 
@@ -170,6 +174,40 @@ The default UI layer (previously shipped as a prebuilt AAR) is now compiled dire
 1. Replace `PingOneVerifyClient.Builder().setRootActivity(...).setQrString(...).build().startVerification(...)` with `new PingOneVerifyHelper(activity, verificationUrl)`. The helper starts the flow automatically.
 2. Implementations for `DocumentSubmissionListener`, `BackActionListener`, `DocumentCaptureListener` can be removed. For built-in UI, no new interface implementations are required — it is handled in `PingOneVerifyHelper`.
 3. Remove `.setUIAppearance(_)` if it was used. Configure the theme in the PingOne Admin Console. The SDK applies the server theme automatically.
-4. Replace any reference to the old geolocation AAR with `GeoLocationProvider-4.0.1.aar`.
+4. Replace any reference to the old geolocation AAR with `GeoLocationProvider-4.2.2.aar`.
 5. Remove any `language-provider` AAR or dependency — language pack fetching is now built into `PingOneVerify.aar`.
 6. Update `IdCaptureProvider` and `SelfieCaptureProvider` from `files(...)` references to maven coordinates, and remove any explicit `blinkid-core` AAR reference — see [AAR-based integration — dependency declaration changes](#aar-based-integration--dependency-declaration-changes).
+
+## Capture settings
+
+`DocumentCaptureSettings` is the public base class for settings delivered to `shouldCaptureDocument`. Read `settings.getDocumentType()` and cast to the matching public subclass for modality-specific app-facing values:
+
+- `SelfieCaptureSettings` (`SELFIE`): `getCaptureTime()`, `isShouldCaptureAfterTimeout()`, `isAuthFlow()`, and `getPayloadSize()`.
+- `IdCaptureSettings` (`GOVERNMENT_ID`): document type and optionality.
+- `NfcCaptureSettings` (`NFC`): optionality, `languageCode`, and `NfcUiTheme` provider-neutral theme values.
+- `LocationCaptureSettings` (`GEOLOCATION`): optionality and permission-change state.
+- `EmailCaptureSettings` / `PhoneCaptureSettings`: email or phone capture step settings.
+
+Example:
+
+```java
+@Override
+public void shouldCaptureDocument(VerifyTransactionCoordinator coordinator,
+                                  DocumentCaptureSettings settings) {
+    switch (settings.getDocumentType()) {
+        case SELFIE -> showSelfieInstructions((SelfieCaptureSettings) settings);
+        case GOVERNMENT_ID -> showIdInstructions((IdCaptureSettings) settings);
+        case NFC -> showNfcInstructions((NfcCaptureSettings) settings);
+        case GEOLOCATION -> coordinator.captureGeolocation(context);
+        default -> showDataEntry(settings);
+    }
+}
+```
+
+For NFC, retain `IdCaptureResult.getDocumentData()` after government-ID capture; its MRZ fields are needed for the following chip-read step. In the NFC instruction callback, call `coordinator.captureNfc(activity, (NfcCaptureSettings) settings)`. After the provider returns `didCaptureNfc`, show processing and call `coordinator.submitNfc(result)` exactly once, including failure results; the backend decides retry/fallback. On an NFC retry, `shouldRetryCapture` supplies the retry `NfcCaptureSettings`; invoke `captureNfc` again when the user retries.
+
+
+Android source references:
+- Public settings: `neo-interfaces/src/main/java/com/pingidentity/sdk/pingoneverify/neo/settings/DocumentCaptureSettings.java` and its modality subclasses.
+- Core flow: the provider-neutral capture methods are documented on `VerifyTransactionCoordinator`; custom UI callback names are documented on `VerifyTransactionCoordinatorDelegate`.
+- Built-in UI routing/submission: `app/src/main/java/com/pingidentity/sdk/pingoneverify/ui/providers/DocumentCapturePresenter.java` and `PingOneVerifyHelper.java`.
