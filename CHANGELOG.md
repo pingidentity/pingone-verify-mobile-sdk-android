@@ -1,6 +1,15 @@
 # Changelog
 
-## v3.1.10 - October 8th, 2026
+## v3.1.12 - October 30th, 2026
+
+### Fixed
+
+- Accessibility related handling updates
+- Removed choose document type screen for unclassified government IDs
+- Document capture timeout crash fixed
+- Verification info-screen scroll handled for large content
+
+## v3.1.11 - October 8th, 2026
 
 ### Fixed
 
