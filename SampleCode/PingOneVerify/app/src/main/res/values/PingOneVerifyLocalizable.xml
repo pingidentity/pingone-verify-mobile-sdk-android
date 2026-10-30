@@ -63,6 +63,8 @@
     <string name="idv_otp_resend">Resend</string>
     <string name="idv_data_check_confirm">Yes, Continue</string>
     <string name="idv_data_check_retake">No, Retake</string>
+    <string name="idv_dataCapture_image_front">Front image</string>
+    <string name="idv_dataCapture_image_back">Back image</string>
 
     <string name="idv_permission_dialog_title">Permission not granted</string>
     <string name="idv_permission_camera_title">Cannot access camera</string>
