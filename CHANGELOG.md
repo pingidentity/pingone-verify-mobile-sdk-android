@@ -1,5 +1,14 @@
 # Changelog
 
+## v3.1.13 - November 18th, 2026
+
+### Fixed
+
+- Selfie hint-view handling fixes
+- Document scan redundant onboarding popup removed
+- Processing handling fixed on app resumed
+- Critical UI/UX & optimisation fixes
+
 ## v3.1.12 - October 30th, 2026
 
 ### Fixed
