@@ -2,4 +2,5 @@
 <resources>
     <dimen name="text_size_title">30sp</dimen>
     <dimen name="text_size_subtitle">18sp</dimen>
+    <dimen name="btn_corner_radius">8dp</dimen>
 </resources>
