@@ -1,5 +1,12 @@
 # Changelog
 
+## v3.1.14 - November 19th, 2026
+
+### Fixed
+
+- Network disconnected handling updated
+- Accessibility related minor updates
+
 ## v3.1.13 - November 18th, 2026
 
 ### Fixed
