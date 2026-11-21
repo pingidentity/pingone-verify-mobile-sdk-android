@@ -1,5 +1,12 @@
 # Changelog
 
+## v3.1.15 - November 21th, 2026
+
+### Fixed
+
+- Selfie error messages translation issue fixed
+- Accessibility related minor updates
+
 ## v3.1.14 - November 19th, 2026
 
 ### Fixed
